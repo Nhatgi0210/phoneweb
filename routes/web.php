@@ -22,7 +22,13 @@ Route::get('/home', function () {
 Route::get('/', function () {
     return redirect('/home');
 });
+Route::get('/login',function(){
+    return view('login');
+});
 Route::get('/user', function () {
     return "<h1>this is user page <h1>";
 });
 Route::get("product", [ProductController::class,'index']);
+Route::get('test',function(){
+    return view('test');
+});
