@@ -1,0 +1,257 @@
+.chip{
+    color:rgb(131, 241, 64);
+    font-family:Arial, Helvetica, sans-serif;
+}
+.trai{
+    width: 1000px;
+    height: 600px;
+    background-color: antiquewhite;
+}
+.green-box {
+    border: 2px solid #e6ecf3; /* Viền màu xanh */
+    padding: 6px; /* Khoảng cách giữa nội dung và viền */
+    width: 60px; /* Chiều rộng của ô */
+    border-radius: 10px;
+    display: inline-block;
+}
+.green-box1 {
+    border: 2px solid #43aee3; /* Viền màu xanh */
+    padding: 6px; /* Khoảng cách giữa nội dung và viền */
+    width: 60px; /* Chiều rộng của ô */
+    border-radius: 10px;
+    display: inline-block;
+    
+}
+.star-rating {
+    display: flex;
+    align-items: center;
+    font-size: 24px;
+}
+
+.star {
+    color:gray;
+    display: inline-block;
+}
+.star1{
+    color: gold;
+    display: inline-block;
+}
+
+.star.half {
+    position: relative;
+    display: inline-block;
+    overflow: hidden;
+}
+
+.star.half::before {
+    content: '\2605';
+    position: absolute;
+    color: gold;
+    width: 50%;
+    overflow: hidden;
+    left: 0;
+
+   
+}
+
+
+.star.empty {
+    color: gray;
+}
+.ul2 {
+    list-style-type: none; /* Loại bỏ dấu chấm mặc định của danh sách */
+    padding-left: 0; /* Loại bỏ padding mặc định của danh sách */
+    color: rgb(46, 44, 44);
+    font-size: 12px;
+}
+
+.ul2 li:before {
+    content: '\2022'; /* Ký tự dấu chấm tròn nhỏ */
+    color: #000; /* Màu sắc của dấu chấm */
+    display: inline-block;
+    width: 1em; /* Độ rộng của dấu chấm */
+    margin-left: -1em; /* Dịch chuyển dấu chấm để nó nằm chính giữa mục danh sách */
+    color:gray;
+}
+  .hidden {
+            overflow: hidden;
+            max-height: 0;
+            transition: max-height 0.3s ease-out;
+        }
+
+        #more.shown {
+            max-height: 1000px; /* Giá trị lớn hơn max-height của nội dung */
+            transition: max-height 0.3s ease-in;
+        }
+
+        .button2 {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            width: 200px;
+            height: 50px;
+        }
+
+        /* button:hover {
+            background-color: #0056b3;
+        } */
+        .chonlua {
+            max-width: 1500px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .an {
+            overflow: hidden;
+            max-height: 0;
+            transition: max-height 0.3s ease-out;
+        }
+
+        .hien {
+            max-height: 1000px;
+            transition: max-height 0.3s ease-in;
+        }
+
+        .nutxem {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            width: 200px;
+            height: 50px;
+        }
+        .image-container {
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .image-container img {
+            transition: transform 0.2s ease;
+        }
+        
+        .image-container:hover img {
+            transform: scale(1.2);
+        }
+        
+
+
+
+
+
+        .image-container {
+            position: relative;
+            width: 100%;
+        }
+        
+        .image-container img,
+        .image-container video {
+            width: 100%;
+            display: block;
+        }
+        
+        .video-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 5; 
+            /* Giảm độ trong suốt của video, có thể điều chỉnh giá trị từ 0 đến 1 */
+        }
+        
+        
+
+
+
+
+
+
+        .nutxemm {
+            background-color: #a7d8ff; /* Nền xanh nhạt */
+            border: 3px solid #007bff; /* Viền xanh dương */
+            border-radius: 7px; /* Góc bo tròn */
+            padding: 10px 20px;
+            color: rgb(17, 21, 109);
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s, border-color 0.3s;
+            width: 160px;
+            font-weight: 700;
+            height: 50px;
+            font-family: Arial, Helvetica, sans-serif;
+            
+        }
+        
+        .nutxemm:hover {
+            background-color: #7abaff; /* Nền xanh nhạt khi di chuột qua */
+            border-color: #0056b3; /* Viền xanh dương khi di chuột qua */
+        }
+        
+        .my-form {
+            border: 2px solid #ccc;
+            padding: 20px;
+            width: 460px;
+            background-image: url('nen.png');
+        }
+        h2 {
+            margin-top: -14px; /* Xóa khoảng cách mặc định giữa h2 và phần trên của form */
+            padding-top: 0; /* Xóa khoảng cách padding của h2 */
+            margin-left:-10px;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        .p1{
+            margin-top: -10px; /* Xóa khoảng cách mặc định giữa h2 và phần trên của form */
+            padding-top: 0; /* Xóa khoảng cách padding của h2 */
+            margin-left:-10px;
+            font-family: Arial, Helvetica, sans-serif;
+           
+        }
+        .p2{
+            margin-left:-10px;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        .cachle{
+            margin-left:-10px;
+        }
+        #username {
+            border-radius: 5px; /* Đặt bán kính cong */
+            padding: 5px; /* Tăng padding để làm cho ô nhập trở nên lớn hơn */
+        }
+        #usernamee {
+            border-radius: 5px; /* Đặt bán kính cong */
+            padding: 5px; /* Tăng padding để làm cho ô nhập trở nên lớn hơn */
+        }
+        .cachle2{
+            margin-left:0px;
+        }
+        #usernameee {
+            border-radius: 5px; /* Đặt bán kính cong */
+            padding: 5px; /* Tăng padding để làm cho ô nhập trở nên lớn hơn */
+            margin-top: 5px;
+        }
+        .chunho{
+            color:blue;
+            font-size: 10px;
+        }
+        table {
+        border-collapse: collapse;
+    }
+    table, th, td {
+        border: none;
+    }
+    .chuxam{
+        color:gray;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 10px;
+        
+        
+    }
+    .chuxanh{
+        color:blue;display: inline; 
+    }
+   

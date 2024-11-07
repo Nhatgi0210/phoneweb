@@ -1,7 +1,8 @@
 <?php
 
+use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\ProductController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -16,9 +17,11 @@ use App\Http\Controllers\ProductController;
 // Route::get('/', function () {
 //     return view('welcome');
 // });
-Route::get('/home', function () {    
-    return view('home');
-});
+
+
+Route::get("/home", [HomeController::class, 'index']);
+
+
 Route::get('/', function () {
     return redirect('/home');
 });
@@ -28,7 +31,7 @@ Route::get('/login',function(){
 Route::get('/user', function () {
     return "<h1>this is user page <h1>";
 });
-Route::get("product", [ProductController::class,'index']);
+
 Route::get('test',function(){
     return view('test');
 });
