@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Models\Brand;
 use App\Models\Product;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
@@ -10,10 +11,9 @@ use Illuminate\Http\Request;
 class HomeController extends Controller
 {
     public function index(){
-        $hotProducts = Product::whereHas("Tag",function($query){
-            $query->where("product_tag.end_date",">",Carbon::now())
-            ->where("tags.id",1);
-        })->get();
-        return view("home.index")->with("hotProducts", $hotProducts->take(4));
+        $hotProducts = Product::productWithTag('Hot')->get()->take(4);                                                                                                                                                                                                                                                                                                                                                      
+        $cheapProducts = Product::productWithTag('Giá rẻ')->get()->take(4);
+        $brands = Brand::all();
+        return view("home.index",compact('hotProducts','cheapProducts','brands'));
     }
 }

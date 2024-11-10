@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Foody - Organic Food Website Template</title>
+    <title>SMART PHONE</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
@@ -90,10 +90,11 @@
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Điện thoại</a>
                         <div class="dropdown-menu m-0">
-                            <a href="blog.html" class="dropdown-item">Samsung</a>
-                            <a href="feature.html" class="dropdown-item">iPhone</a>
-                            <a href="testimonial.html" class="dropdown-item">Oppo</a>
-                            <a href="404.html" class="dropdown-item">Xiaomi</a>
+                            @foreach ($brands as $brand)
+        <a href="#" class="dropdown-item">{{ $brand->brandName }}</a>
+    @endforeach
+                            
+                            
                         </div>
                     </div>
                     <a href="sosanh.html" class="nav-item nav-link">So sánh</a>
@@ -101,7 +102,7 @@
                    
                     <a href="dangkidangnhap.html" class="nav-item nav-link">Tài khoản</a>
                     <a href="#" onclick="return false;">
-                        <input type="text" placeholder="Tìm kiêm" style="padding: 10px; border: 2px solid #78c0ed; border-radius: 20px; outline: none; width: 100%; max-width: 200px; font-size: 16px; margin-top: 10px; background-color: transparent; color: #333;">
+                        <input type="text" placeholder="Tìm kiếm" style="padding: 10px; border: 2px solid #78c0ed; border-radius: 20px; outline: none; width: 100%; max-width: 200px; font-size: 16px; margin-top: 10px; background-color: transparent; color: #333;">
                     </a>
                     
                 </div>
@@ -287,7 +288,54 @@
         </div>
     </div>
     <!-- Product End -->
-
+    <div class="container-xxl py-5">
+        <div class="container">
+            <div class="row g-0 gx-5 align-items-end">
+                <div class="col-lg-6">
+                    <div class="section-header text-start mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 500px;">
+                        <h1 class="display-5 mb-3">Các mẫu điện thoại giá rẻ </h1>
+                       
+                    </div>
+                </div>
+                
+                
+            </div>
+            <div class="tab-content">
+                <div id="tab-1" class="tab-pane fade show p-0 active">
+                    <div class="row g-4">
+                        @foreach ($cheapProducts as $cheapProduct)
+                           
+                        
+                        <div class="col-xl-3 col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
+                            <div class="product-item">
+                                <div class="position-relative bg-light overflow-hidden">
+                                    <img class="img-fluid w-100" src="{{ asset('frontend/img/a799.jpg') }}" alt="">
+                                </div>
+                                <div class="text-center p-4">
+                                    <a class="d-block h5 mb-2" href="">{{ $cheapProduct->name }}</a>
+                                    <span class="text-primary me-1 formatted-number">{{ $cheapProduct->discount_price }}</span>
+                                    <span class="text-body text-decoration-line-through formatted-number">{{ $cheapProduct->original_price }}</span>
+                                </div>
+                                <div class="d-flex border-top">
+                                    <small class="w-50 text-center border-end py-2">
+                                        <a class="text-body" href=""><i class="fa fa-eye text-primary me-2"></i>View detail</a>
+                                    </small>
+                                    <small class="w-50 text-center py-2">
+                                        <a class="text-body" href=""><i class="fa fa-shopping-bag text-primary me-2"></i>Add to cart</a>
+                                    </small>
+                                </div>
+                            </div>
+                        </div>
+                       
+                       @endforeach
+                        
+                        
+                       
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- Firm Visit Start -->
     <div class="container-fluid bg-primary bg-icon mt-5 py-6">
