@@ -7,7 +7,6 @@
     <title>Document</title>
 </head>
 <body>
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
-    <h1 class="text-danger">This is home page</h1>
+   <form action="" method="POST"></form>
 </body>
 </html>

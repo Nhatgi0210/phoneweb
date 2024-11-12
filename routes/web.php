@@ -25,6 +25,7 @@ Route::get("/home", [HomeController::class, 'index']);
 Route::get('/', function () {
     return redirect('/home');
 });
+// Route::get('/product/{id}')
 Route::get('/login',function(){
     return view('login');
 });
