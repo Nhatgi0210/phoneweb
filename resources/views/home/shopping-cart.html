@@ -49,7 +49,9 @@
 .cart-part {
     display: flex;
     align-items: center;
-    margin: 20px 0;
+    justify-content: space-between; /* Căn đều các phần tử để tối ưu không gian */
+    flex-wrap: nowrap; /* Ngăn các phần tử xuống dòng */
+    gap: 10px; /* Thêm khoảng cách giữa các phần tử nếu cần */
 }
 
 .cart-img {
@@ -65,7 +67,8 @@
 .cart-desc {
     font-size: 20px;
     text-align: center;
-    width: 20%;
+    flex: 1; /* Cho phép phần mô tả mở rộng chiếm không gian cần thiết */
+    min-width: 150px; /* Đặt chiều rộng tối thiểu để ngăn bị ép quá nhỏ */
 }
 
 /* Giảm kích thước ô nhập */
@@ -73,7 +76,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 100px; /* Thay đổi chiều rộng của phần tử nhập để nhỏ hơn */
+    width: 70px; /* Thay đổi chiều rộng của phần tử nhập để nhỏ hơn */
     border-radius: 10px; /* Bo góc cho div */
     background-color: #f5f5f5; /* Nền sáng cho toàn bộ div */
     overflow: hidden; /* Đảm bảo không có phần tử nào bị nhô ra ngoài */
@@ -83,7 +86,7 @@
 
 /* Giảm kích thước của ô input */
 .cart-quantity input {
-    width: 100%; /* Chiếm hết chiều rộng của div */
+    width: 80%; /* Chiếm hết chiều rộng của div */
     padding: 5px; /* Giảm padding để ô nhỏ hơn */
     font-size: 16px; /* Giảm kích thước chữ */
     text-align: center;
@@ -136,7 +139,7 @@
   left: 10%;
   right: 10%;
   width: 80%;
-  background-color: #e9f8f4;
+  background-color: #64eac6;
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -305,10 +308,9 @@ margin: 0 auto;">
     <!-- Navbar End -->
 
 <!-- div trống -->
-<div style="height: 150px;"></div>
+<div style="height: 180px;"></div>
 
 <!-- div trống -->
-
 
 
 
@@ -316,36 +318,111 @@ margin: 0 auto;">
 <!-- giỏ hàng -->
 
 <div class="container">
-    <!-- 1 -->
-    <div class="cart-container">
-        <div class="cart-part">
-            <div class="cart-img">
-                <img src="img/14.jpg" alt="" style="width: 200px;height: 200px;">
-            </div>
-            <div class="cart-desc">
-                <h3>điện thoại 1</h3>
-            </div>
+   
 
-            <div class="cart-quantity">
-                <input type="number" id="quantity" min="0" value="1">
-            </div>
-
-            <div class="cart-price">
-                    <h4>28.000.000</h4>
-            </div>
-            <div class="cart-total">
-                <h4>28.000.000</h4>
-            </div>
-            <div class="cart-remove">
-                <button class="remove-btn">
-                    <i class="fas fa-trash-alt"></i> <!-- Icon thùng rác -->
-                </button>
-            </div>
-            
-            
+    <!-- test1 -->
+    <table style="width: 100%; border-collapse: collapse;">
+        <!-- <thead>
+            <tr>
+                <th style="padding: 8px; ">Cột 1</th>
+                <th style="padding: 8px; ">Cột 2</th>
+                <th style="padding: 8px; ">Cột 3</th>
+                <th style="padding: 8px; ">Cột 4</th>
+                <th style="padding: 8px; ">Cột 5</th>
+                <th style="padding: 8px; ">Cột 6</th>
+            </tr>
+        </thead> -->
+        <tbody>
+            <tr>
+               <!-- Sản phẩm 1 -->
+<tr>
+    <td style="padding: 8px;">
+        <div class="cart-img">
+            <img src="img/14.jpg" alt="" style="width: 150px; height: 150px;">
         </div>
-    </div>
-    <!-- 1 -->
+    </td>
+
+    <td style="padding: 8px; ">
+        <div class="cart-desc">
+            <h3>Samsung Galaxy S24 Ultra</h3>
+        </div>
+    </td>
+
+    <td style="padding: 8px; ">
+        <div class="cart-quantity">
+            <input type="number" id="quantity" min="0" value="1">
+        </div>
+    </td>
+
+    <td style="padding: 8px; ">
+        <div class="cart-price">
+            <h4>28.000.000</h4>
+        </div>
+    </td>
+
+    <td style="padding: 8px;">
+        <div class="cart-total">
+            <h4>28.000.000</h4>
+        </div>
+    </td>
+
+    <td style="padding: 8px; ">
+        <div class="cart-remove">
+            <button class="remove-btn">
+                <i class="fas fa-trash-alt"></i> 
+            </button>
+        </div>
+    </td>
+</tr>
+<!-- Hết sản phẩm 1 -->
+ 
+<!-- sản phâmr 2 -->
+<tr>
+    
+    <td style="padding: 8px; ">
+        <div class="cart-img">
+            <img src="img/13prm.jpg" alt="" style="width: 150px; height: 150px;">
+        </div>
+    </td>
+
+    <td style="padding: 8px; ">
+        <div class="cart-desc">
+            <h3>iPhone 13</h3>
+        </div>
+    </td>
+
+    <td style="padding: 8px; ">
+        <div class="cart-quantity">
+            <input type="number" id="quantity" min="0" value="1">
+        </div>
+    </td>
+
+    <td style="padding: 8px; ">
+        <div class="cart-price">
+            <h4>28.000.000</h4>
+        </div>
+    </td>
+
+    <td style="padding: 8px; ">
+        <div class="cart-total">
+            <h4>28.000.000</h4>
+        </div>
+    </td>
+
+    <td style="padding: 8px; ">
+        <div class="cart-remove">
+            <button class="remove-btn">
+                <i class="fas fa-trash-alt"></i> 
+            </button>
+        </div>
+    </td>
+</tr>
+<!-- hết sp2 -->
+         <hr>
+        </tbody>
+    </table>
+    
+    <!-- endtesst1 -->
     
 
     
