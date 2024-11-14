@@ -134,16 +134,14 @@
 
 /* Căn chỉnh tổng quan */
 .cart-summary {
-    position: fixed;
-  bottom: 20px; /* Cố định thanh giỏ hàng ở dưới cùng */
-  left: 10%;
-  right: 10%;
-  width: 80%;
-  background-color: #64eac6;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-   height:20% ;
+    display: flex; /* Dùng flexbox để căn chỉnh */
+    justify-content: space-between; /* Chia đều khoảng cách giữa các phần tử */
+    align-items: center; /* Căn giữa theo chiều dọc */
+    padding: 20px; /* Thêm khoảng cách trong container */
+    background-color: #cdeac3; /* Màu nền cho giỏ hàng */
+    border-radius: 10px; /* Bo góc cho giỏ hàng */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Thêm bóng đổ */
+   margin-left: 600px;
 }
 
 /* Căn chỉnh các nút ở cùng hàng */
@@ -218,6 +216,19 @@
     border-radius: 10px; /* Bo góc để mềm mại hơn */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Thêm bóng đổ nhẹ */
 }
+.cart-price p,
+.cart-price h4 {
+    white-space: nowrap;
+}
+.cart-total p,
+.cart-total h4 {
+    white-space: nowrap;
+}
+.fa-check-circle {
+    color: rgb(7, 242, 7); /* Màu xanh lá */
+    font-size: 14px; /* Kích thước icon */
+}
+
 
     </style>
    
@@ -356,13 +367,15 @@ margin: 0 auto;">
 
     <td style="padding: 8px; ">
         <div class="cart-price">
-            <h4>28.000.000</h4>
+            <p >giá sale <i class="fas fa-check-circle"></i></p>
+            <h4 style="color: #08d062;">28.000.000</h4>
         </div>
     </td>
 
     <td style="padding: 8px;">
         <div class="cart-total">
-            <h4>28.000.000</h4>
+            <p>giá gốc</p>
+            <h4><s style="color: #f53a14;">30.999.990</s></h4>
         </div>
     </td>
 
@@ -378,8 +391,7 @@ margin: 0 auto;">
  
 <!-- sản phâmr 2 -->
 <tr>
-    
-    <td style="padding: 8px; ">
+    <td style="padding: 8px;">
         <div class="cart-img">
             <img src="img/13prm.jpg" alt="" style="width: 150px; height: 150px;">
         </div>
@@ -387,7 +399,7 @@ margin: 0 auto;">
 
     <td style="padding: 8px; ">
         <div class="cart-desc">
-            <h3>iPhone 13</h3>
+            <h3> iPhone 13 Pro Max</h3>
         </div>
     </td>
 
@@ -399,13 +411,15 @@ margin: 0 auto;">
 
     <td style="padding: 8px; ">
         <div class="cart-price">
-            <h4>28.000.000</h4>
+            <p >giá sale <i class="fas fa-check-circle"></i></p>
+            <h4 style="color: #08d062;">28.000.000</h4>
         </div>
     </td>
 
-    <td style="padding: 8px; ">
+    <td style="padding: 8px;">
         <div class="cart-total">
-            <h4>28.000.000</h4>
+            <p>giá gốc</p>
+            <h4><s style="color: #f53a14;">30.999.990</s></h4>
         </div>
     </td>
 
@@ -418,6 +432,94 @@ margin: 0 auto;">
     </td>
 </tr>
 <!-- hết sp2 -->
+
+<!-- sản phẩm 3 -->
+<tr>
+    <td style="padding: 8px;">
+        <div class="cart-img">
+            <img src="img/14.jpg" alt="" style="width: 150px; height: 150px;">
+        </div>
+    </td>
+
+    <td style="padding: 8px; ">
+        <div class="cart-desc">
+            <h3>Samsung Galaxy S24 Ultra</h3>
+        </div>
+    </td>
+
+    <td style="padding: 8px; ">
+        <div class="cart-quantity">
+            <input type="number" id="quantity" min="0" value="1">
+        </div>
+    </td>
+
+    <td style="padding: 8px; ">
+        <div class="cart-price">
+            <p >giá sale <i class="fas fa-check-circle"></i></p>
+            <h4 style="color: #08d062;">28.000.000</h4>
+        </div>
+    </td>
+
+    <td style="padding: 8px;">
+        <div class="cart-total">
+            <p>giá gốc</p>
+            <h4><s style="color: #f53a14;">30.999.990</s></h4>
+        </div>
+    </td>
+
+    <td style="padding: 8px; ">
+        <div class="cart-remove">
+            <button class="remove-btn">
+                <i class="fas fa-trash-alt"></i> 
+            </button>
+        </div>
+    </td>
+</tr>
+<!-- hết sản phẩm 3 -->
+
+<!-- spham4 -->
+<tr>
+    <td style="padding: 8px;">
+        <div class="cart-img">
+            <img src="img/14.jpg" alt="" style="width: 150px; height: 150px;">
+        </div>
+    </td>
+
+    <td style="padding: 8px; ">
+        <div class="cart-desc">
+            <h3>Samsung Galaxy S24 Ultra</h3>
+        </div>
+    </td>
+
+    <td style="padding: 8px; ">
+        <div class="cart-quantity">
+            <input type="number" id="quantity" min="0" value="1">
+        </div>
+    </td>
+
+    <td style="padding: 8px; ">
+        <div class="cart-price">
+            <p >giá sale <i class="fas fa-check-circle"></i></p>
+            <h4 style="color: #08d062;">28.000.000</h4>
+        </div>
+    </td>
+
+    <td style="padding: 8px;">
+        <div class="cart-total">
+            <p>giá gốc</p>
+            <h4><s style="color: #f53a14;">30.999.990</s></h4>
+        </div>
+    </td>
+
+    <td style="padding: 8px; ">
+        <div class="cart-remove">
+            <button class="remove-btn">
+                <i class="fas fa-trash-alt"></i> 
+            </button>
+        </div>
+    </td>
+</tr>
+<!-- hép spham 4 -->
          <hr>
         </tbody>
     </table>
@@ -429,13 +531,15 @@ margin: 0 auto;">
      
     <div class="cart-summary">
         <div class="product-total">
-            <h2>Tổng tiền : <span id="total">39.980.000 </span> <h5>VNĐ</h5></h2>
+            <h2>Tổng tiền git add .(VNĐ) : <span id="total">39.980.000.000 </span></h2>
         </div>
         <div class="product-actions">
             <a href="#" class="checkout">Checkout</a>
             <button class="remove-all">Xóa hết</button>
         </div>
     </div>
+    
+    
     
     
     
