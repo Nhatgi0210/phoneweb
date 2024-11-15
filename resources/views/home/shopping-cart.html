@@ -132,22 +132,42 @@
     color: white; /* Màu trắng cho icon khi hover */
 }
 
-/* Căn chỉnh tổng quan */
 .cart-summary {
     display: flex; /* Dùng flexbox để căn chỉnh */
     justify-content: space-between; /* Chia đều khoảng cách giữa các phần tử */
     align-items: center; /* Căn giữa theo chiều dọc */
     padding: 20px; /* Thêm khoảng cách trong container */
-    background-color: #cdeac3; /* Màu nền cho giỏ hàng */
+    background-color: rgba(123, 131, 126, 0.5); /* Nền xanh lá trong suốt (rgba: red, green, blue, alpha) */
     border-radius: 10px; /* Bo góc cho giỏ hàng */
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Thêm bóng đổ */
-   margin-left: 600px;
+    margin-left: 0; /* Đặt lại về vị trí ban đầu */
+    margin-right: 0; /* Đảm bảo giỏ hàng không bị lệch ra ngoài */
+    width: 80%; /* Chiếm 80% chiều rộng của màn hình */
+    max-width: 1000px; /* Tối đa không quá 1000px */
+    margin: 0 auto; /* Canh giữa giỏ hàng */
+    flex-wrap: wrap; /* Cho phép các phần tử con thu nhỏ lại khi cần */
 }
+
+.cart-summary .item {
+    flex: 1 1 200px; /* Mỗi phần tử con có thể chiếm tối thiểu 200px */
+    min-width: 150px; /* Đảm bảo phần tử con không thu nhỏ quá 150px */
+    margin: 10px; /* Khoảng cách giữa các phần tử */
+}
+
+@media (max-width: 768px) {
+    .cart-summary {
+        flex-direction: column; /* Khi màn hình nhỏ, các phần tử con sẽ xếp theo cột */
+        width: 100%; /* Khi thu nhỏ màn hình, giỏ hàng chiếm toàn bộ chiều rộng */
+        margin-left: 0; /* Đảm bảo không có margin trái khi thu nhỏ */
+    }
+}
+
+
 
 /* Căn chỉnh các nút ở cùng hàng */
 .product-actions {
     display: flex;
-    justify-content: center; /* Căn giữa hai nút */
+    justify-content: left; /* Căn giữa hai nút */
     gap: 10px; /* Khoảng cách giữa các nút */
     width: 100%; /* Chiếm toàn bộ chiều rộng */
     margin-top: 10px; /* Khoảng cách với phần trên */
@@ -228,6 +248,30 @@
     color: rgb(7, 242, 7); /* Màu xanh lá */
     font-size: 14px; /* Kích thước icon */
 }
+/* Nút xác nhận */
+.cart-confirm {
+    width: 10%; /* Điều chỉnh chiều rộng */
+}
+
+/* Nút xác nhận với biểu tượng */
+.confirm-btn {
+    background-color: transparent; /* Nền trong suốt ban đầu */
+    border: 2px solid transparent; /* Viền trong suốt */
+    color: #2ecc71; /* Màu xanh lá cho icon */
+    font-size: 24px; /* Tăng kích thước icon */
+    padding: 8px 16px; /* Khoảng cách trong nút */
+    border-radius: 5px; /* Bo tròn góc nút */
+    cursor: pointer; /* Thay đổi con trỏ thành pointer khi hover */
+    transition: all 0.3s ease; /* Tạo hiệu ứng chuyển mượt mà */
+    border: 2px solid #27ae60; /* Viền xanh đậm khi hover */
+}
+
+/* Hiệu ứng hover cho nút xác nhận */
+.confirm-btn:hover {
+    background-color: #2ecc71; /* Nền xanh khi hover */
+    color: white; /* Màu trắng cho icon khi hover */
+}
+
 
 
     </style>
@@ -518,6 +562,8 @@ margin: 0 auto;">
             </button>
         </div>
     </td>
+
+   
 </tr>
 <!-- hép spham 4 -->
          <hr>
@@ -531,7 +577,7 @@ margin: 0 auto;">
      
     <div class="cart-summary">
         <div class="product-total">
-            <h2>Tổng tiền git add .(VNĐ) : <span id="total">39.980.000.000 </span></h2>
+            <h2>Tổng tiền (VNĐ) : <span id="total">39.980.000.000 </span></h2>
         </div>
         <div class="product-actions">
             <a href="#" class="checkout">Checkout</a>
@@ -641,6 +687,13 @@ margin: 0 auto;">
 
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
+    <script>
+        document.querySelector('.confirm-btn').addEventListener('click', function() {
+            // Logic xử lý xác nhận ở đây
+            alert('Đã xác nhận!');
+        });
+    </script>
+    
     <script>
   window.addEventListener('scroll', function() {
     const cartSummary = document.querySelector('.cart-summary');
