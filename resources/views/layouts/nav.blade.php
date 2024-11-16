@@ -41,7 +41,7 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <div class="navbar-nav ms-auto p-4 p-lg-0">
-                <a href="index.html" class="nav-item nav-link">Trang chủ</a>
+                <a href="{{ route('home') }}" class="nav-item nav-link">Trang chủ</a>
                 
                 <div class="nav-item dropdown">
                     <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Điện thoại</a>
@@ -53,7 +53,7 @@
                         
                     </div>
                 </div>
-                <a href="sosanh.html" class="nav-item nav-link">So sánh</a>
+                <a href="{{ route('sosanh') }}" class="nav-item nav-link">So sánh</a>
                 <a href="product.html" class="nav-item nav-link">Giỏ hàng</a>
                
                 <a href="dangkidangnhap.html" class="nav-item nav-link">Tài khoản</a>

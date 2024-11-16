@@ -18,12 +18,16 @@ use Illuminate\Support\Facades\Route;
 //     return view('welcome');
 // });
 
+// routes/web.php
 
-Route::get("/home", [HomeController::class, 'index']);
+Route::get("/home", [HomeController::class, 'index'])->name('home');
+
+
 
 
 Route::get('/', function () {
-    return redirect('/home');
+    return redirect()->route('home');
+
 });
 // Route::get('/product/{id}')
 Route::get('/login',function(){
@@ -36,3 +40,6 @@ Route::get('/user', function () {
 Route::get('test',function(){
     return view('test');
 });
+Route::get('/test2', [HomeController::class, 'test2']);
+Route::get('/sosanh', [HomeController::class, 'sosanh'])->name('sosanh');
+

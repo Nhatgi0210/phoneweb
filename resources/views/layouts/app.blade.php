@@ -40,6 +40,11 @@
     <!-- Navbar End -->
 
 
+    {{-- sosanh --}}
+    @yield('sosanh') 
+
+
+
     @yield('main_content')
 
    @include('layouts.secondary_content')
