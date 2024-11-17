@@ -34,13 +34,15 @@
    
     {{-- css giỏ hàng --}}
     @yield('cssgiohang')
+  
+
 </head>
 
 <body>
     <!-- Navbar Start -->
         @include('layouts.nav')
     <!-- Navbar End -->
-
+   
 
    
 
@@ -112,7 +114,21 @@ if (footerTop < windowHeight) {
 });
 
 </script>
+<script>
+ document.addEventListener('DOMContentLoaded', function() {
+    const button = document.querySelector('#myButton');
+    console.log(button);  // Kiểm tra xem button có tồn tại không
+    if (button) {
+        button.addEventListener('click', function() {
+            alert('Button clicked');
+        });
+    } else {
+        console.warn('Button not found');
+    }
+});
 
+
+</script>
 
 </body>
 
