@@ -31,10 +31,9 @@
     <!-- Template Stylesheet -->
     <link href="{{asset('frontend/css/style.css')  }}" rel="stylesheet">
     <!--  -->
-    @yield('css')
-    {{-- css của inforProduct --}}
-    @yield('cssin4')
    
+    {{-- css giỏ hàng --}}
+    @yield('cssgiohang')
 </head>
 
 <body>
@@ -43,19 +42,17 @@
     <!-- Navbar End -->
 
 
-    {{-- sosanh --}}
-    @yield('sosanh') 
+   
 
-{{-- in4 product --}}
-@yield('thongtin')
+
 
 {{-- gio hàng --}}
 @yield('giohang')
 
 
-    @yield('main_content')
+   
 
-   @include('layouts.secondary_content')
+
  
 
 
@@ -84,37 +81,38 @@
             element.textContent = number.toLocaleString('vi-VN'); 
         });
     </script>
-     <script>
-        document.querySelector('.confirm-btn').addEventListener('click', function() {
-            // Logic xử lý xác nhận ở đây
-            alert('Đã xác nhận!');
-        });
-    </script>
-    
-    <script>
-        window.addEventListener('scroll', function() {
-          const cartSummary = document.querySelector('.cart-summary');
-          const footer = document.querySelector('footer');
-      
-          // Lấy vị trí của footer và của cart-summary
-          const footerTop = footer.getBoundingClientRect().top;
-          const cartSummaryHeight = cartSummary.offsetHeight;
-          const windowHeight = window.innerHeight;
-      
-          if (footerTop < windowHeight) {
-              // Khi footer xuất hiện trong vùng hiển thị, đặt cart-summary ở trên footer
-              cartSummary.style.position = 'absolute';
-              cartSummary.style.bottom = 'auto';
-              cartSummary.style.top = `${footer.offsetTop - cartSummaryHeight - 20}px`; // 20px để tạo khoảng cách
-          } else {
-              // Khi chưa chạm tới footer, giữ cart-summary cố định ở dưới cùng
-              cartSummary.style.position = 'fixed';
-              cartSummary.style.bottom = '20px';
-              cartSummary.style.top = 'auto';
-          }
-      });
-      
-          </script>
+   <script>
+    document.querySelector('.confirm-btn').addEventListener('click', function() {
+        // Logic xử lý xác nhận ở đây
+        alert('Đã xác nhận!');
+    });
+</script>
+
+<script>
+window.addEventListener('scroll', function() {
+const cartSummary = document.querySelector('.cart-summary');
+const footer = document.querySelector('footer');
+
+// Lấy vị trí của footer và của cart-summary
+const footerTop = footer.getBoundingClientRect().top;
+const cartSummaryHeight = cartSummary.offsetHeight;
+const windowHeight = window.innerHeight;
+
+if (footerTop < windowHeight) {
+    // Khi footer xuất hiện trong vùng hiển thị, đặt cart-summary ở trên footer
+    cartSummary.style.position = 'absolute';
+    cartSummary.style.bottom = 'auto';
+    cartSummary.style.top = `${footer.offsetTop - cartSummaryHeight - 20}px`; // 20px để tạo khoảng cách
+} else {
+    // Khi chưa chạm tới footer, giữ cart-summary cố định ở dưới cùng
+    cartSummary.style.position = 'fixed';
+    cartSummary.style.bottom = '20px';
+    cartSummary.style.top = 'auto';
+}
+});
+
+</script>
+
 
 </body>
 

@@ -42,4 +42,9 @@ Route::get('test',function(){
 });
 Route::get('/test2', [HomeController::class, 'test2']);
 Route::get('/sosanh', [HomeController::class, 'sosanh'])->name('sosanh');
+Route::get('/dangki', [HomeController::class, 'dangki'])->name('dangki');
+Route::get('/inforProduct', [HomeController::class, 'inforProduct'])->name('inforProduct');
+Route::get('/shopping-cart', [HomeController::class, 'shopping_cart'])->name('shopping_cart');
+
+
 

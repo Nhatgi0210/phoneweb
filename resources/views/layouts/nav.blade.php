@@ -54,7 +54,7 @@
                     </div>
                 </div>
                 <a href="{{ route('sosanh') }}" class="nav-item nav-link">So sánh</a>
-                <a href="product.html" class="nav-item nav-link">Giỏ hàng</a>
+                <a href="#" class="nav-item nav-link">Giỏ hàng</a>
                
                 <a href="dangkidangnhap.html" class="nav-item nav-link">Tài khoản</a>
                 <a href="#" onclick="return false;">
@@ -64,7 +64,7 @@
             </div>
             <div class="d-none d-lg-flex ms-2">
             
-                <a class="btn-sm-square bg-white rounded-circle ms-3" href="">
+                <a class="btn-sm-square bg-white rounded-circle ms-3" href="{{ route('dangki') }}">
                     <small class="fa fa-user text-body"></small>
                 </a>
                 <a class="btn-sm-square bg-white rounded-circle ms-3" href="">

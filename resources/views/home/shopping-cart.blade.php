@@ -28,8 +28,9 @@
     <link href="css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Template Stylesheet -->
-    <link href="css/style.css" rel="stylesheet">
+    <link href="{{asset('frontend/css/style.css')  }}" rel="stylesheet">
     <!--  -->
+    @yield('css')
     
     <style>
 /* Cấu hình mặc định */
@@ -278,9 +279,7 @@
    
 </head>
 
-<body style=" max-width: 100vw; /* Giới hạn chiều rộng tối đa của trang */
-overflow-x: hidden; /* Ẩn thanh cuộn ngang nếu có */
-margin: 0 auto;">
+<body >
     <!-- Spinner Start -->
     <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
         <div class="spinner-border text-primary" role="status"></div>
@@ -335,16 +334,18 @@ margin: 0 auto;">
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Điện thoại</a>
                         <div class="dropdown-menu m-0">
-                            <a href="blog.html" class="dropdown-item">Samsung</a>
-                            <a href="feature.html" class="dropdown-item">iPhone</a>
-                            <a href="testimonial.html" class="dropdown-item">Oppo</a>
-                            <a href="404.html" class="dropdown-item">Xiaomi</a>
+                            @foreach ($brands as $brand)
+                        <a href="#" class="dropdown-item">{{ $brand->name }}</a>
+                    @endforeach
                         </div>
                     </div>
                     <a href="about.html" class="nav-item nav-link">So sánh</a>
                     <a href="product.html" class="nav-item nav-link">Giỏ hàng</a>
                    
                     <a href="contact.html" class="nav-item nav-link">Tài khoản</a>
+                    <a href="#" onclick="return false;">
+                        <input type="text" placeholder="Tìm kiếm" style="padding: 10px; border: 2px solid #78c0ed; border-radius: 20px; outline: none; width: 100%; max-width: 200px; font-size: 16px; margin-top: 10px; background-color: transparent; color: #333;">
+                    </a>
                 </div>
                 <div class="d-none d-lg-flex ms-2">
                     <a class="btn-sm-square bg-white rounded-circle ms-3" href="">
