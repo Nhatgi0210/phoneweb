@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('main_content')
-@include('layouts.slide')
+    @include('layouts.slide')
 
     {{-- news --}}
     <section id="billboard" class=" py-5">
@@ -69,7 +69,7 @@
           </svg></div>
       </div>
     </div>
-  </section>
+    </section>
     {{-- hot product --}}
     <div class="container-xxl py-5">
         <div class="container">

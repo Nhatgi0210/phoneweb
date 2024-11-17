@@ -36,3 +36,5 @@ Route::get('/user', function () {
 Route::get('test',function(){
     return view('test');
 });
+Route::post('/up-image',[HomeController::class,'upImage'])->name('upload.image');
+Route::get('/image',[HomeController::class,'image']);

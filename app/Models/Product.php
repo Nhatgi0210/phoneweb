@@ -10,6 +10,7 @@ class Product extends Model
 {
     use HasFactory;
 
+    // <!--Tag  -->
     public function Tag(){
         return $this->belongsToMany(Tag::class,'product_tag','product_id','tag_id')->withPivot('end_date');
     }
@@ -18,5 +19,13 @@ class Product extends Model
             $query->where('tags.name', $tag_name)
             ->where("product_tag.end_date",">",Carbon::now());
         });
+    }
+
+    //<!--Image-->
+    public function Image(){
+        return $this->hasMany(Image::class);
+    }
+    public function MainImage(){
+        return $this->hasOne(MainImage::class);
     }
 }
