@@ -41,7 +41,7 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <div class="navbar-nav ms-auto p-4 p-lg-0">
-                <a href="index.html" class="nav-item nav-link">Trang chủ</a>
+                <a href="{{ route('home') }}" class="nav-item nav-link">Trang chủ</a>
                 
                 <div class="nav-item dropdown">
                     <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Điện thoại</a>
@@ -53,8 +53,8 @@
                         
                     </div>
                 </div>
-                <a href="sosanh.html" class="nav-item nav-link">So sánh</a>
-                <a href="product.html" class="nav-item nav-link">Giỏ hàng</a>
+                <a href="{{ route('sosanh') }}" class="nav-item nav-link">So sánh</a>
+                <a href="{{ route('shopping_cart') }}" class="nav-item nav-link">Giỏ hàng</a>
                
                 <a href="dangkidangnhap.html" class="nav-item nav-link">Tài khoản</a>
                 <a href="#" onclick="return false;">
@@ -64,7 +64,7 @@
             </div>
             <div class="d-none d-lg-flex ms-2">
             
-                <a class="btn-sm-square bg-white rounded-circle ms-3" href="">
+                <a class="btn-sm-square bg-white rounded-circle ms-3" href="{{ route('dangki') }}">
                     <small class="fa fa-user text-body"></small>
                 </a>
                 <a class="btn-sm-square bg-white rounded-circle ms-3" href="">
