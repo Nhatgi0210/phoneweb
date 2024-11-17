@@ -54,7 +54,7 @@
                     </div>
                 </div>
                 <a href="{{ route('sosanh') }}" class="nav-item nav-link">So sánh</a>
-                <a href="#" class="nav-item nav-link">Giỏ hàng</a>
+                <a href="{{ route('shopping_cart') }}" class="nav-item nav-link">Giỏ hàng</a>
                
                 <a href="dangkidangnhap.html" class="nav-item nav-link">Tài khoản</a>
                 <a href="#" onclick="return false;">

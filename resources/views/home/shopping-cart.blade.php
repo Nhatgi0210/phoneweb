@@ -2,7 +2,7 @@
 @section('giohang')
 
 <!-- giỏ hàng -->
-<div style="height: 100px"></div>
+<div style="height: 120px"></div>
 <div class="container">
    
 
