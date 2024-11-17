@@ -3,13 +3,14 @@
 namespace App\Models;
 
 use Carbon\Carbon;
+use Carbon\Traits\Timestamp;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model
 {
     use HasFactory;
-
+    public $timestamps = null; 
     // <!--Tag  -->
     public function Tag(){
         return $this->belongsToMany(Tag::class,'product_tag','product_id','tag_id')->withPivot('end_date');
@@ -25,7 +26,5 @@ class Product extends Model
     public function Image(){
         return $this->hasMany(Image::class);
     }
-    public function MainImage(){
-        return $this->hasOne(MainImage::class);
-    }
+   
 }

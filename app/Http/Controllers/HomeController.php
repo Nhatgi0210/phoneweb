@@ -22,7 +22,7 @@ class HomeController extends Controller
     }
     public function upImage(Request $request){
         
-        $products =  Product::findOrFail($request->input('product_id'));
+        $product =  Product::findOrFail($request->input('product_id'));
 
         $request->validate([
             'images.*' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
@@ -31,32 +31,21 @@ class HomeController extends Controller
         foreach($request->file('images') as $imageFile ){
             $path = $imageFile->store('productImages','public');
             $image = new Image();
-            $image->product_id = $products->id;
+            $image->product_id = $product->id;
             $image->path = $path;
             $image->save();
         }
         $mainImageFile = $request->file('main_image');
         $path = $mainImageFile->store('productImages','public');
         $image2 = new Image();
-        $image2->product_id = $products->id;
+        $image2->product_id = $product->id;
         $image2->path = $path;
         $image2->save();
 
-        $mainImage = new MainImage();
-        $mainImage->product_id = $products->id;
-        $mainImage->image_id = $image2->id;
-       
-        try{
-            $mainImage->save();
-            $message = '<span style="color: green">UPLOAD THÀNH CÔNG!</span>';
-        }
-        catch(Exception $e){
-            $message = '<span style="color: red">LỖI:'.$e->getMessage().'</span>';
-        }
+        $product->main_image_path = $path;
+        $product->save();
         
-        
-        
-        return back()->with('message',$message);
+        return back();
     }
     public function image(){
         $products = Product::all();

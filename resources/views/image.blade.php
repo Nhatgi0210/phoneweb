@@ -7,9 +7,7 @@
     <title>Image</title>
 </head>
 <body>
-    @if (session('message'))
-    {!! session('message') !!}
-    @endif
+    
     <Form action="{{ route('upload.image') }}" method="POST" enctype="multipart/form-data">
         @csrf
         <select name="product_id" id="">

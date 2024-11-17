@@ -75,7 +75,7 @@
         <div class="container">
             <div class="row g-0 gx-5 align-items-end">
                 <div class="col-lg-6">
-                    <div class="section-header text-start mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 500px;">
+                    <div class="section-header text-start mb-5 wow fadeInUp " data-wow-delay="0.1s" style="max-width: 500px;">
                         <h1 class="display-5 mb-3">Các mẫu điện thoại hot trong năm </h1>
                     
                     </div>
@@ -89,10 +89,10 @@
                         @foreach ($hotProducts as $hotProduct)
                         
                         
-                        <div class="col-xl-3 col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
+                        <div class="col-xl-3 col-lg-4 col-md-6 wow fadeInUp product" data-wow-delay="0.3s">
                             <div class="product-item">
                                 <div class="position-relative bg-light overflow-hidden">
-                                    <img class="img-fluid w-100" src="{{ asset('frontend/img/a799.jpg') }}" alt="">
+                                    <img class="img-fluid w-100" src="{{ asset('storage/' .$hotProduct->main_image_path) }}" alt="">
                                 </div>
                                 <div class="text-center p-4">
                                     <a class="d-block h5 mb-2" href="">{{ $hotProduct->name }}</a>
@@ -141,7 +141,7 @@
                         <div class="col-xl-3 col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
                             <div class="product-item">
                                 <div class="position-relative bg-light overflow-hidden">
-                                    <img class="img-fluid w-100" src="{{ asset('frontend/img/a799.jpg') }}" alt="">
+                                    <img class="img-fluid w-100" src="{{ asset('storage/' .$cheapProduct->main_image_path) }}" alt="">
                                 </div>
                                 <div class="text-center p-4">
                                     <a class="d-block h5 mb-2" href="">{{ $cheapProduct->name }}</a>
