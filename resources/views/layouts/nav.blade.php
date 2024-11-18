@@ -48,7 +48,18 @@
                     <div class="dropdown-menu m-0">
                         <a href="{{ url('/products/') }}" class="dropdown-item">Tất cả</a>
                     @foreach ($brands as $brand)
-                        <a href="{{ url('/products/' . $brand->name) }}" class="dropdown-item">{{ $brand->name }}</a>
+                        <a href="{{ url('/brands/' . $brand->name) }}" class="dropdown-item">{{ $brand->name }}</a>
+                    @endforeach
+                        
+                        
+                    </div>
+                </div>
+                <div class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Phụ kiện</a>
+                    <div class="dropdown-menu m-0">
+                       
+                    @foreach ($categories as $category)
+                        <a href="{{ url('/categories/' . $category->name) }}" class="dropdown-item">{{ $category->name }}</a>
                     @endforeach
                         
                         
