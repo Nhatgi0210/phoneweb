@@ -44,7 +44,7 @@ class HomeController extends Controller
 
         $product->main_image_path = $path;
         $product->save();
-        
+
         return back();
     }
     public function image(){
