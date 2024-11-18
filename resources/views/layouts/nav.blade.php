@@ -56,7 +56,7 @@
                 <a href="{{ route('sosanh') }}" class="nav-item nav-link">So sánh</a>
                 <a href="{{ route('shopping_cart') }}" class="nav-item nav-link">Giỏ hàng</a>
                
-                <a href="dangkidangnhap.html" class="nav-item nav-link">Tài khoản</a>
+                <a href="{{ route('dangki') }}" class="nav-item nav-link">Tài khoản</a>
                 <a href="#" onclick="return false;">
                     <input type="text" placeholder="Tìm kiếm" style="padding: 10px; border: 2px solid #78c0ed; border-radius: 20px; outline: none; width: 100%; max-width: 200px; font-size: 16px; margin-top: 10px; background-color: transparent; color: #333;">
                 </a>
