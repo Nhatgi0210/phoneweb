@@ -41,7 +41,7 @@
     <!-- Navbar Start -->
         @include('layouts.nav')
     <!-- Navbar End -->
-    <div class="space" style="margin-top: 80px"></div>
+    <div class="space" style="margin-top: 130px"></div>
 
     {{-- sosanh --}}
     @yield('sosanh') 
