@@ -37,4 +37,9 @@ class Product extends Model
         return $this->belongsTo(Category::class);
     }
    
+    //config
+    public function phoneConfig()
+    {
+        return $this->hasOne(PhoneConfig::class);
+    }
 }

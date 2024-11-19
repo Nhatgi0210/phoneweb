@@ -76,7 +76,8 @@ class HomeController extends Controller
         $hotProducts = Product::productWithTag('Hot')->get()->take(4);
         $cheapProducts = Product::productWithTag('Giá rẻ')->get()->take(4);
         $brands = Brand::all();
-        return view('home.inforProduct', compact('hotProducts', 'cheapProducts', 'brands'));
+        $categories = Category::all();
+        return view('home.inforProduct', compact('hotProducts', 'cheapProducts', 'brands','categories'));
     }
     public function shopping_cart()
     {

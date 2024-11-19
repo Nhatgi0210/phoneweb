@@ -6,16 +6,16 @@ body {
             font-family: Arial, sans-serif;
             background-color: #f5f5f5;
             margin: 0;
-            padding: 20px;
+           
         }
-        .container {
+        /* .container {
             max-width: 1200px;
             margin: 0 auto;
             background-color: white;
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-        }
+        } */
         .product-info {
             display: flex;
             gap: 20px;
@@ -129,6 +129,7 @@ table tr:nth-child(even) td {
     transform: translateY(-3px);
 }
 
+
         </style>
 @endsection
 @section('css')
@@ -150,14 +151,28 @@ table tr:nth-child(even) td {
         </style>
 @endsection
 @section('thongtin')
+    <div class="container-fluid page-header mb-5 wow fadeIn" data-wow-delay="0.1s" style="margin-top: -130px; height: 550px;">
+        <div class="container" >
+            <h1 class="display-3 mb-3 animated slideInDown" style="font-size: 40px; margin-top: 80px">/Thông tin chi tiết</h1>
+            <nav aria-label="breadcrumb animated slideInDown">
+                <ol class="breadcrumb mb-0">
+                    <li class="breadcrumb-item"><a class="text-body" href="#"></a></li>
+                    <li class="breadcrumb-item"><a class="text-body" href="#"></a></li>
+                    <li class="breadcrumb-item text-dark active" aria-current="page"></li>
+                </ol>
+            </nav>
+        </div>
+    </div>
 <div class="container" style="margin-top: 120px">
+    @isset($product)
+   
     <div class="product-info">
         <div class="image-container">
-            <img src="img/13prm.jpg" alt="Product Image">
+            <img src="{{  asset('storage/' .$product->main_image_path)}}" alt="Product Image">
         </div>
         <div class="details">
-            <h2>iPhone 13 Pro Max</h2>
-            <p class="price">22.000.000 <span style="text-decoration: line-through; color: #888;">24.000.000</span></p>
+            <h2>{{ $product->name }}</h2>
+            <p class="price"><span class="formatted-number">{{ $product->discount_price }}</span> <span class="formatted-number" style="text-decoration: line-through; color: #888;">{{ $product->original_price }}</span></p>
             <p class="special-offer">Đang trong thời gian giảm giá</p>
             <div class="actions">
               
@@ -172,41 +187,45 @@ table tr:nth-child(even) td {
         <table>
             <thead>
                 <tr>
-                    <th>Số thứ tự</th>
                     <th>Cấu hình</th>
                     <th>Thông số</th>
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>màn hình </td>
-                    <td>6.5 in</td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>ROM</td>
-                    <td>128GB</td>
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td>RAM</td>
-                    <td>8</td>
-                </tr>
-                <tr>
-                    <td>4</td>
-                    <td>Chip</td>
-                    <td>A18</td>
-                </tr>
-                <tr>
-                    <td>5</td>
-                    <td>Pin</td>
-                    <td>3400 mAh</td>
-                </tr>
+              
+                    <tr>
+                        <td>Chip</td>
+                        <td>{{ $config->chip }}</td>
+                    </tr>
+                    <tr>
+                        <td>Ram</td>
+                        <td>{{ $config->ram }}</td>
+                    </tr>
+                    <tr>
+                        <td>Bộ nhớ</td>
+                        <td>{{  $config->rom}}</td>
+                    </tr>
+                    <tr>
+                        <td>Pin</td>
+                        <td>{{ $config->pin }}</td>
+                    </tr>
+                     <tr>
+                        <td>Màn hình</td>
+                        <td>{{ $config->man_hinh }}</td>
+                    </tr>
+                    <tr>
+                        <td>Camera trước</td>
+                        <td>{{$config->camera_truoc }}</td>
+                    </tr>
+                    <tr>
+                        <td>Camera sau</td>
+                        <td>{{$config->camera_sau}}</td>
+                    </tr>
+              
             </tbody>
         </table>
     </div>
-    
+    @endisset
 </div>
 
    

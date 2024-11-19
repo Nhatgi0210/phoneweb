@@ -39,10 +39,11 @@ class ProductController extends Controller
     }
 
     public function show($id)
-    {
-        $product = Product::findOrFail($id); // Hoặc dùng các query khác nếu cần
-        return view('products.show', compact('product'));
+    {   
+        $brands = Brand::all();
+        $categories = Category::all();
+        $product = Product::findOrFail($id); 
+        $config = $product->phoneConfig;
+        return view('home.inforProduct', compact('product','brands','categories','config'));
     }
-
-
 }

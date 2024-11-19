@@ -51,7 +51,7 @@
                                     <img class="img-fluid w-100" src="{{ asset('storage/' .$product->main_image_path) }}" alt="{{ $product->name }}">
                                 </div>
                                 <div class="text-center p-4">
-                                    <a class="d-block h5 mb-2" href="">{{ $product->name }}</a>
+                                    <a class="d-block h5 mb-2" href="{{ route('product.show',['id'=>$product->id ]) }}">{{ $product->name }}</a>
                                     <span class="text-primary me-1 formatted-number">{{ $product->discount_price }}</span>
                                     <span class="text-body text-decoration-line-through formatted-number">{{ $product->original_price }}</span>
                                 </div>

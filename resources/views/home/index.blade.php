@@ -95,13 +95,13 @@
                                     <img class="img-fluid w-100" src="{{ asset('storage/' .$hotProduct->main_image_path) }}" alt="">
                                 </div>
                                 <div class="text-center p-4">
-                                    <a class="d-block h5 mb-2" href="">{{ $hotProduct->name }}</a>
+                                    <a class="d-block h5 mb-2" href="{{ route('product.show', ['id' => $hotProduct->id]) }}">{{ $hotProduct->name }}</a>
                                     <span class="text-primary me-1 formatted-number">{{ $hotProduct->discount_price }}</span>
                                     <span class="text-body text-decoration-line-through formatted-number">{{ $hotProduct->original_price }}</span>
                                 </div>
                                 <div class="d-flex border-top">
                                     <small class="w-50 text-center border-end py-2">
-                                        <a class="text-body" href=""><i class="fa fa-eye text-primary me-2"></i>View detail</a>
+                                        <a class="text-body" href="{{ route('product.show', ['id' => $hotProduct->id]) }}"><i class="fa fa-eye text-primary me-2"></i>View detail</a>
                                     </small>
                                     <small class="w-50 text-center py-2">
                                         <a class="text-body" href=""><i class="fa fa-shopping-bag text-primary me-2"></i>Add to cart</a>
@@ -144,13 +144,13 @@
                                     <img class="img-fluid w-100" src="{{ asset('storage/' .$cheapProduct->main_image_path) }}" alt="">
                                 </div>
                                 <div class="text-center p-4">
-                                    <a class="d-block h5 mb-2" href="">{{ $cheapProduct->name }}</a>
+                                    <a class="d-block h5 mb-2" href="{{ route('product.show', ['id' => $cheapProduct->id]) }}">{{ $cheapProduct->name }}</a>
                                     <span class="text-primary me-1 formatted-number">{{ $cheapProduct->discount_price }}</span>
                                     <span class="text-body text-decoration-line-through formatted-number">{{ $cheapProduct->original_price }}</span>
                                 </div>
                                 <div class="d-flex border-top">
                                     <small class="w-50 text-center border-end py-2">
-                                        <a class="text-body" href=""><i class="fa fa-eye text-primary me-2"></i>View detail</a>
+                                        <a class="text-body" href="{{ route('product.show', ['id' => $cheapProduct->id]) }}"><i class="fa fa-eye text-primary me-2"></i>View detail</a>
                                     </small>
                                     <small class="w-50 text-center py-2">
                                         <a class="text-body" href=""><i class="fa fa-shopping-bag text-primary me-2"></i>Add to cart</a>
