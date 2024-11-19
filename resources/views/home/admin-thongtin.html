@@ -413,7 +413,101 @@ td {
             display: inline-block;
             margin-right: 5px;
         }
+        
+        .personal-info, .service-info {
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    width: 48%; /* Định dạng 2 phần tử song song */
+}
 
+h2, h3 {
+    color: #333;
+}
+
+label {
+    display: block;
+    margin-top: 15px;
+    font-weight: bold;
+}
+
+input, select, button {
+    width: 100%;
+    padding: 10px;
+    margin-top: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+button {
+    background-color: #28a745;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #218838;
+}
+
+.service-info {
+    text-align: center;
+}
+
+.profile-picture {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin-bottom: 15px;
+}
+
+.stats {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+}
+
+.stats div {
+    text-align: center;
+}
+
+.stats p {
+    margin: 5px 0;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column; /* Chuyển từ dạng ngang sang dọc */
+        align-items: center;
+    }
+
+    .personal-info, .service-info {
+        width: 90%; /* Mỗi phần tử chiếm toàn bộ chiều ngang */
+        margin-bottom: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    h2, h3 {
+        font-size: 1.2em; /* Giảm kích thước chữ trên màn hình nhỏ */
+    }
+
+    button {
+        font-size: 0.9em;
+        padding: 8px;
+    }
+
+    .stats {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .stats div {
+        margin-bottom: 10px;
+    }
+}
 
     </style>
 </head>
@@ -425,11 +519,8 @@ td {
             <h2 class="menu-title">Menu</h2>
             <ul class="menu-list">
     <li><i class="fas fa-user"></i> Xem thông tin cá nhân</li>
-    <li><i class="fas fa-tachometer-alt"></i> Bảng theo dõi</li>
-    <li><i class="fas fa-box"></i> Quản lý sản phẩm</li>
-    <li><i class="fas fa-users"></i> Quản lý người dùng</li>
-    <li><i class="fas fa-chart-line"></i> Thống kê</li>
-    <li><i class="fas fa-user-tie"></i> Quản lý nhân viên</li>
+    <li><i class="fas fa-tachometer-alt"></i> Hóa đơn</li>
+    <li><i class="fas fa-box"></i> Giỏ hàng</li>
     <li><i class="fas fa-sign-out-alt"></i> Đăng xuất</li>
 </ul>
 
@@ -454,41 +545,68 @@ td {
             </div>
             
             <div class="content">
-                <div class="metrics">
-                    <div class="widget widget-aa">Tổng khách hàng : 999</div>
-                    <div class="widget widget-bb">Đơn hàng chờ duyệt : 120</div>
-                    <div class="widget widget-cc">Đơn hàng đã duyệt :349</div>
-                </div>
-                <div class="widget2">
-                    <h2>Tổng quan phân khúc khác hàng</h2>
-                    <div class="chart-container">
-                        <canvas id="myChart"></canvas>
+                <div class="service-info">
+                    <img src="img/chocon.png" alt="Profile Picture" class="profile-picture">
+                    <h3>Nguyễn Thị Huyền Trân</h3>
+                    <button>Đổi mật khẩu</button>
+                    <p>Điểm tích lũy: <strong>34</strong></p>
+                    <p>Thời hạn sử dụng dịch vụ: <strong>24/10/2023 18:07</strong></p>
+        
+                    <div class="stats">
+                        <div>
+                            <p>Tin đăng ký</p>
+                            <p>Không giới hạn</p>
+                        </div>
+                        <div>
+                            <p>Tin đã gửi</p>
+                            <p>1551</p>
+                        </div>
+                        <div>
+                            <p>Tin còn lại</p>
+                            <p>Không giới hạn</p>
+                        </div>
                     </div>
-                    <div class="legend">
-                        <div><span style="background-color: #FF6384;"></span> Khách hàng 25-40 tuổi</div>
-                        <div><span style="background-color: #36A2EB;"></span>Khách hàng trẻ dưới 25 tuổi</div>
-                        <div><span style="background-color: #FFCE56;"></span>Khách hàng trên 60 tuổi</div>
-                        <div><span style="background-color: #4BC0C0;"></span> Khách hàng 40-60 tuổi</div>
-                    </div>
-                    
                 </div>
-                
-                <div class="data-table" style="margin-top: 10px;">
-                    <h3>Danh sách khách hàng</h3>
-                    <table>
-                        <tr>
-                            <th>ID</th>
-                            <th>Name</th>
-                            <th>Email</th>
-                        </tr>
-                        <tr>
-                            <td>1</td>
-                            <td>Phan Văn Sơn</td>
-                            <td>phanvson05@gmail.com</td>
-                        </tr>
-                    </table>
+        
+                <!-- Right section: Personal Information -->
+                <div class="personal-info">
+                    <h2>Thông tin cá nhân</h2>
+                    <form>
+                        <label>ID tài khoản Bombot:</label>
+                        <input type="text" value="3508857100098534" readonly>
+        
+                        <label>Họ và tên:</label>
+                        <input type="text" value="Nguyễn Thị Huyền Trân">
+        
+                        <label>Số điện thoại:</label>
+                        <input type="text" value="******" readonly>
+        
+                        <label>Email:</label>
+                        <input type="text" value="******@***.com" readonly>
+        
+                        <label>Công ty:</label>
+                        <input type="text" value="Công ty">
+        
+                        <label>Ngành nghề/Lĩnh vực kinh doanh:</label>
+                        <select>
+                            <option>Chọn ngành nghề</option>
+                        </select>
+        
+                        <label>Quốc gia:</label>
+                        <select>
+                            <option selected>Việt Nam</option>
+                        </select>
+        
+                        <label>Tỉnh/Thành phố:</label>
+                        <select>
+                            <option>Chọn tỉnh/thành phố</option>
+                        </select>
+        
+                        <button type="submit">Cập nhật thông tin</button>
+                    </form>
                 </div>
             </div>
+           
         </div>
     </div>
 
@@ -549,46 +667,6 @@ td {
 
     </script>
      <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"></script>
-     <script>
-         var ctx = document.getElementById('myChart').getContext('2d');
-         var myChart = new Chart(ctx, {
-             type: 'doughnut',
-             data: {
-                 labels: ['Khách hàng 25-40 tuổi', 'Khách hàng trẻ dưới 25 tuổi', 'Khách hàng trên 60 tuổi', 'Khách hàng 40-60 tuổi'],
-                 datasets: [{
-                     data: [38, 22, 12, 28],
-                     backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0'],
-                     borderWidth: 2,
-                     borderColor: '#fff',
-                     hoverBorderWidth: 3
-                 }]
-             },
-             options: {
-                 responsive: true,
-                 maintainAspectRatio: true,
-                 legend: {
-                     display: false
-                 },
-                 cutoutPercentage: 70,
-                 elements: {
-                     arc: {
-                         roundedCornersFor: 3
-                     }
-                 },
-                 tooltips: {
-                     callbacks: {
-                         label: function(tooltipItem, data) {
-                             var label = data.labels[tooltipItem.index] || '';
-                             if (label) {
-                                 label += ': ';
-                             }
-                             label += Math.round(data.datasets[0].data[tooltipItem.index]) + '%';
-                             return label;
-                         }
-                     }
-                 }
-             }
-         });
-     </script>
+    
 </body>
 </html>
