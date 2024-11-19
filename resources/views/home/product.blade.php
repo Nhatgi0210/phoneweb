@@ -11,13 +11,15 @@
                 @isset($brand)
                     <li class="breadcrumb-item text-dark active" aria-current="page">{{ $brand->name}}</li>
                 @endisset
-                
+                @isset($category)
+                    <li class="breadcrumb-item text-dark active" aria-current="page">{{ $category->name}}</li>
+                @endisset
             </ol>
         </nav>
     </div>
 </div>
     
-    <?php $title = $brand ?? "Tất cả sản phẩm"; ?>
+    <?php $title = $brand->name ?? "Tất cả sản phẩm"; ?>
 
 
     {{-- hot product --}}

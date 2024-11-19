@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\Brand;
+use App\Models\Category;
 use App\Models\MainImage;
 use App\Models\Product;
 use Carbon\Carbon;
@@ -14,11 +15,13 @@ use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
+    
     public function index(){
         $hotProducts = Product::productWithTag('Hot')->get()->take(4);                                                                                                                                                                                                                                                                                                                                                      
         $cheapProducts = Product::productWithTag('Giá rẻ')->get()->take(4);
         $brands = Brand::all();
-        return view("home.index",compact('hotProducts','cheapProducts','brands'));
+        $categories = Category::all();
+        return view("home.index",compact('hotProducts','cheapProducts','brands','categories'));
     }
     public function upImage(Request $request){
         
@@ -80,7 +83,8 @@ class HomeController extends Controller
         $hotProducts = Product::productWithTag('Hot')->get()->take(4);
         $cheapProducts = Product::productWithTag('Giá rẻ')->get()->take(4);
         $brands = Brand::all();
-        return view('home.shopping-cart', compact('hotProducts', 'cheapProducts', 'brands'));
+        $categories = Category::all();
+        return view('home.shopping-cart', compact('hotProducts', 'cheapProducts', 'brands','categories'));
     }
     
 

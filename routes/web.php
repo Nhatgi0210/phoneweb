@@ -49,6 +49,8 @@ Route::get('/dangki', [HomeController::class, 'dangki'])->name('dangki');
 Route::get('/inforProduct', [HomeController::class, 'inforProduct'])->name('inforProduct');
 Route::get('/shopping-cart', [HomeController::class, 'shopping_cart'])->name('shopping_cart');
 Route::get('/products',[ProductController::class, 'index']);
-Route::get('/products/{name}', [ProductController::class, 'showProductsByBrandName']);
+Route::get('/brands/{name}', [ProductController::class, 'showProductsByBrandName']);
+Route::get('/categories/{name}', [ProductController::class, 'showProductsByCategory'])->name('category.products');
+Route::get('/product/{id}', [ProductController::class, 'show'])->name('product.show');
 
 
