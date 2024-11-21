@@ -333,15 +333,75 @@ td {
 .user-avatar:hover {
     transform: scale(1.1);  /* Phóng to ảnh một chút khi hover */
 }
-.widget-aa{
-    background-color: #b3cff1;
+/* Container chứa các widget */
+.metrics {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px; /* Khoảng cách giữa các widget */
+    margin-bottom: 20px;
 }
-.widget-bb{
-    background-color: #f1b3ee;
+
+/* Style chung cho tất cả các widget */
+.widget {
+    width: 250px; /* Đặt chiều rộng cho widget */
+    padding: 20px;
+    border-radius: 10px;
+    background-color: #fff;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: all 0.3s ease; /* Hiệu ứng khi hover */
+    font-weight: bold;
 }
-.widget-cc{
-    background-color: #74f587;
+
+.widget:hover {
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2); /* Hiệu ứng khi hover */
+    transform: translateY(-5px); /* Đưa widget lên một chút khi hover */
 }
+
+/* Style cho widget loại AA (Tổng khách hàng) */
+.widget-aa {
+    border-left: 5px solid #28a745; /* Màu xanh lá cho viền bên trái */
+    background-color: #e9f7ef; /* Nền màu xanh nhạt */
+}
+
+/* Style cho widget loại BB (Đơn hàng chờ duyệt) */
+.widget-bb {
+    border-left: 5px solid #ffc107; /* Màu vàng cho viền bên trái */
+    background-color: #fff3cd; /* Nền màu vàng nhạt */
+}
+
+/* Style cho widget loại CC (Đơn hàng đã duyệt) */
+.widget-cc {
+    border-left: 5px solid #007bff; /* Màu xanh dương cho viền bên trái */
+    background-color: #d1ecf1; /* Nền màu xanh dương nhạt */
+}
+
+/* Style cho tiêu đề widget */
+.title {
+    font-size: 16px;
+    color: #555;
+    margin-bottom: 12px;
+    text-transform: uppercase;
+}
+
+/* Style cho giá trị hiển thị */
+.value {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 8px;
+}
+
+.amount {
+    font-size: 30px;
+    font-weight: 600;
+}
+
+.currency {
+    font-size: 14px;
+    color: #888;
+}
+
+
 .search-container {
     display: flex;
     align-items: center;
@@ -414,7 +474,7 @@ td {
             margin-right: 5px;
         }
 
-
+  @yield('cssthongtincanhan');
     </style>
 </head>
 <body>
@@ -443,59 +503,25 @@ td {
                     <button class="search-btn"><i class="fas fa-search"></i></button>
                 </div>
                 
+                
                 <div class="icons">
                     <span class="notification-bell">🔔</span>
                     <!-- User avatar icon -->
                     <span class="user-profile" id="userAvatar"><div class="icons">
-                        <img id="userAvatar" src="img/chocon.png" alt="User Avatar" class="user-avatar">
+                        <img id="userAvatar" src="{{ asset('img/gai.jpg') }}" alt="User Avatar" class="user-avatar">
                     </div>
                     </span>
                 </div>
             </div>
             
-            <div class="content">
-                <div class="metrics">
-                    <div class="widget widget-aa">Tổng khách hàng : 999</div>
-                    <div class="widget widget-bb">Đơn hàng chờ duyệt : 120</div>
-                    <div class="widget widget-cc">Đơn hàng đã duyệt :349</div>
-                </div>
-                <div class="widget2">
-                    <h2>Tổng quan phân khúc khác hàng</h2>
-                    <div class="chart-container">
-                        <canvas id="myChart"></canvas>
-                    </div>
-                    <div class="legend">
-                        <div><span style="background-color: #FF6384;"></span> Khách hàng 25-40 tuổi</div>
-                        <div><span style="background-color: #36A2EB;"></span>Khách hàng trẻ dưới 25 tuổi</div>
-                        <div><span style="background-color: #FFCE56;"></span>Khách hàng trên 60 tuổi</div>
-                        <div><span style="background-color: #4BC0C0;"></span> Khách hàng 40-60 tuổi</div>
-                    </div>
-                    
-                </div>
-                
-                <div class="data-table" style="margin-top: 10px;">
-                    <h3>Danh sách khách hàng</h3>
-                    <table>
-                        <tr>
-                            <th>ID</th>
-                            <th>Name</th>
-                            <th>Email</th>
-                        </tr>
-                        <tr>
-                            <td>1</td>
-                            <td>Phan Văn Sơn</td>
-                            <td>phanvson05@gmail.com</td>
-                        </tr>
-                    </table>
-                </div>
-            </div>
+           @yield('thongtincanhan') 
         </div>
     </div>
 
     <!-- User Profile Menu -->
     <div class="user-menu" id="userMenu">
         <div class="profile">
-            <img src="img/chocon.png" alt="Profile Picture" style="object-fit: cover;">
+            <img src="{{ asset('img/gai.jpg') }}" alt="Profile Picture" style="object-fit: cover;">
             <div class="name">Nguyễn Văn A</div>
             <div class="email"> <p style="color: #8d8a7f;">NguyenVanA@gmail.com</p></div>
         </div>

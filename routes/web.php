@@ -46,6 +46,7 @@ Route::get('/image',[HomeController::class,'image']);
 Route::get('/test2', [HomeController::class, 'test2']);
 Route::get('/sosanh', [HomeController::class, 'sosanh'])->name('sosanh');
 Route::get('/dangki', [HomeController::class, 'dangki'])->name('dangki');
+
 Route::get('/shopping-cart', [HomeController::class, 'shopping_cart'])->name('shopping_cart');
 Route::get('/products',[ProductController::class, 'index']);
 Route::get('/brands/{name}', [ProductController::class, 'showProductsByBrandName']);
@@ -53,3 +54,15 @@ Route::get('/categories/{name}', [ProductController::class, 'showProductsByCateg
 Route::get('/product/{id}', [ProductController::class, 'show'])->name('product.show');
 Route::get('/search/products', [ProductController::class, 'searchProducts'])->name('search.products');
 Route::get('compare',[ProductController::class,'compare'])->name('compare.phone');
+Route::get('/appadmin', [HomeController::class, 'appadmin'])->name('appadmin');
+Route::get('/admin-thongtin', [HomeController::class, 'admin_thongtin'])->name('admin_thongtin');
+Route::get('/admin', [HomeController::class, 'admin'])->name('admin');
+Route::get('/admin_manage_product', [HomeController::class, 'admin_manage_product'])->name('admin_manage_product');
+Route::get('/admin_manage_user', [HomeController::class, 'admin_manage_user'])->name('admin_manage_user');
+Route::get('/editproduct', [HomeController::class, 'editproduct'])->name('editproduct');
+
+
+
+
+
+

@@ -1,19 +1,74 @@
 @extends('layouts.app')
 @section('css')
 <style>
+ /* Đặt kiểu cho bảng */
+ table {
+            width: 100%; /* Đặt lại kích thước bảng nhỏ hơn */
+            margin: 20px auto; /* Căn giữa bảng */
+            border-collapse: collapse; /* Loại bỏ khoảng cách giữa các cell */
+            border-radius: 8px; /* Bo góc cho bảng */
+            overflow: hidden; /* Đảm bảo bo góc của bảng */
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Đổ bóng nhẹ xung quanh bảng */
+        }
 
-    tr:hover {
-            background-color: #42dcf0; /* Hiệu ứng hover cho hàng */
-        }
-        
+        /* Kiểu cho các ô trong bảng */
         th, td {
-            font-family: Arial, sans-serif; /* Font chữ */
-            font-size: 16px; /* Kích thước chữ */
+            padding: 8px 12px; /* Giảm padding để bảng nhỏ hơn */
+            text-align: center; /* Căn giữa nội dung trong ô */
+            font-size: 14px; /* Giảm kích thước font chữ */
+            border: 1px solid #ddd; /* Đặt viền nhẹ cho các ô */
         }
-        table {
-            border-radius: 10px; /* Bo góc cho toàn bộ bảng */
-            overflow: hidden; /* Đảm bảo không có phần nào nhô ra ngoài */
-            transition: all 0.3s ease; /* Hiệu ứng chuyển đổi */
+
+        /* Màu nền của tiêu đề cột */
+        th {
+            background-color: #4CAF50; /* Nền màu xanh lá */
+            color: white; /* Màu chữ trắng */
+            font-size: 16px; /* Font chữ lớn hơn một chút */
+        }
+
+        /* Màu nền của các hàng */
+        tr:nth-child(even) {
+            background-color: #f9f9f9; /* Nền màu sáng cho các hàng chẵn */
+        }
+
+        tr:hover {
+            background-color: #f1f1f1; /* Nền màu xám khi hover lên hàng */
+        }
+
+        /* Cột đầu tiên (số thứ tự) */
+        td:first-child {
+            font-size: 12px; /* Giảm kích thước font cho cột số thứ tự */
+            font-weight: bold; /* Làm đậm số thứ tự */
+            background-color: #f1f1f1; /* Nền nhẹ cho cột số thứ tự */
+        }
+         /* Tạo kiểu cho nút */
+         .beautiful-button {
+            display: inline-block;
+            padding: 12px 24px;
+            font-size: 16px;
+            font-weight: bold;
+            color: white;
+            background-color: #7beb7f;
+            border: none;
+            border-radius: 50px; /* Bo tròn góc */
+            text-align: center;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.3s ease; /* Hiệu ứng mượt mà */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Đổ bóng */
+        }
+
+        /* Hiệu ứng hover */
+        .beautiful-button:hover {
+            background-color: #49f551; /* Màu nền thay đổi khi hover */
+            transform: scale(1.1); /* Phóng to nút khi hover */
+            box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2); /* Đổ bóng đậm hơn */
+        }
+
+        /* Hiệu ứng khi nút được nhấn */
+        .beautiful-button:active {
+            transform: scale(1); /* Trở về kích thước ban đầu khi nhấn */
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Đổ bóng nhẹ khi nhấn */
         }
     .suggestion-item {
         padding: 5px;
@@ -40,7 +95,7 @@
 @endsection
 @section('sosanh') 
 <!-- so sánh -->
-<div style="height:200px"></div>
+<div style="height:100px"></div>
 <div style="text-align: center;">
     <form action="{{ route('compare.phone') }}" method="get">
          <div class="d-flex justify-content-center align-items-center border-animation-left" style="flex-wrap: nowrap;">
@@ -82,9 +137,49 @@
 
 
 <!-- hiển thị bảng so sánh -->
+<<<<<<< HEAD
+=======
+ <center>
+    <a href="#" class="beautiful-button">So sánh ngay</a>
+    <h1 class="display-5 mb-3">Kết quả so sánh </h1>
+>>>>>>> 35af41302dc656d2194f7b7d6c20864d21d4d994
 
 
+<<<<<<< HEAD
  
+=======
+ <table>
+    <thead>
+        <tr>
+            <th>Thông số</th>
+            <th>Điện thoại 1</th>
+            <th>Điện thoại 2</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Màn hình</td>
+            <td>?</td>    
+            <td>???</td>
+        </tr>
+        <tr>
+            <td>RAM</td>
+            <td>?</td>
+            <td>???</td>
+        </tr>
+        <tr>
+            <td>RAM</td>
+            <td>?</td>
+            <td>???</td>
+        </tr>
+        <tr>
+            <td>Pin</td>
+            <td>?</td>
+            <td>???</td>
+        </tr>
+    </tbody>
+</table>
+>>>>>>> 35af41302dc656d2194f7b7d6c20864d21d4d994
 
 
  <!-- hết hiển thị bản so sánhh -->

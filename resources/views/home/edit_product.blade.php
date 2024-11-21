@@ -1,0 +1,164 @@
+@extends('layouts.appadmin')
+@section('csseditproduct')
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    font-weight: bold;
+    color: #555;
+    margin-bottom: 5px;
+    display: block;
+}
+
+.form-control {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background-color: #f7f7f7;
+}
+
+.form-control:focus {
+    border-color: #4CAF50;
+    outline: none;
+    background-color: #fff;
+}
+
+.form-group img {
+    margin-bottom: 10px;
+    max-width: 200px;
+    max-height: 200px;
+    display: block;
+}
+
+.btn {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    font-size: 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    display: inline-block;
+    text-align: center;
+    text-decoration: none;
+    transition: background-color 0.3s;
+}
+
+.btn:hover {
+    background-color: #45a049;
+}
+
+.form-group em {
+    font-size: 12px;
+    color: #777;
+}
+
+.form-group textarea {
+    height: 150px;
+    resize: vertical;
+}
+
+/* Styling the select dropdown */
+select.form-control {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    padding: 10px;
+}
+
+/* Styling for the alert message */
+.alert {
+    background-color: #dff0d8;
+    color: #3c763d;
+    padding: 15px;
+    border: 1px solid #d6e9c6;
+    border-radius: 4px;
+    margin-bottom: 20px;
+}
+@endsection
+
+@section('editproduct')
+<h1>Cập Nhật Sản Phẩm</h1>
+
+<!-- Success Alert Message -->
+<div class="alert">
+    <strong>Thông báo: </strong> Thông báo đã được hiển thị thành công.
+</div>
+
+<form action="#" method="POST" enctype="multipart/form-data">
+    
+    <!-- Loại sản phẩm -->
+    <div class="form-group">
+        <label for="MaDM">Loại sản phẩm:</label>
+        <select id="MaDM" name="MaDM" class="form-control">
+            <option value="1">Điện thoại</option>
+            <option value="2">Máy tính bảng</option>
+            <option value="3">Laptop</option>
+        </select>
+    </div>
+
+    <!-- Loại sản phẩm con -->
+    <div class="form-group">
+        <label for="MaLSP">Loại sản phẩm con:</label>
+        <select id="MaLSP" name="MaLSP" class="form-control">
+            <option value="1">Smartphone</option>
+            <option value="2">Phablet</option>
+            <option value="3">Tablet</option>
+        </select>
+    </div>
+
+    <!-- Tên sản phẩm -->
+    <div class="form-group">
+        <label for="TenSP">Tên sản phẩm:</label>
+        <input type="text" id="TenSP" name="TenSP" class="form-control" placeholder="Nhập tên sản phẩm">
+    </div>
+
+    <!-- Đơn giá -->
+    <div class="form-group">
+        <label for="DonGia">Đơn giá:</label>
+        <input type="text" id="DonGia" name="DonGia" class="form-control" placeholder="Nhập đơn giá sản phẩm">
+    </div>
+
+    <!-- Số lượng -->
+    <div class="form-group">
+        <label for="SoLuong">Số lượng:</label>
+        <input type="text" id="SoLuong" name="SoLuong" class="form-control" placeholder="Nhập số lượng sản phẩm">
+    </div>
+
+    <!-- Hình ảnh 1 -->
+    <div class="form-group">
+        <label for="HinhAnh1">Hình ảnh 1:</label>
+        <img src="https://via.placeholder.com/200" alt="Hình ảnh 1">
+        <input type="file" id="HinhAnh1" name="HinhAnh1" class="form-control">
+    </div>
+
+    <!-- Hình ảnh 2 -->
+    <div class="form-group">
+        <label for="HinhAnh2">Hình ảnh 2:</label>
+        <img src="https://via.placeholder.com/200" alt="Hình ảnh 2">
+        <input type="file" id="HinhAnh2" name="HinhAnh2" class="form-control">
+    </div>
+
+    <!-- Mô tả -->
+    <div class="form-group">
+        <label for="MoTa">Mô tả:</label>
+        <textarea id="MoTa" name="MoTa" class="form-control" placeholder="Nhập mô tả sản phẩm"></textarea>
+    </div>
+
+    <!-- Trạng thái -->
+    <div class="form-group">
+        <label for="TrangThai">Trạng thái:</label>
+        <input type="checkbox" id="TrangThai" name="TrangThai" value="1"> <em>(Check cho phép hiển thị sản phẩm)</em>
+    </div>
+
+    <button type="submit" class="btn">Cập Nhật</button>
+</form>
+@endsection

@@ -124,11 +124,11 @@ button:hover {
 .signin-btn {
   background-color: #ffffff;
   color: #ff6b6b;
-  border: 1px solid #ff6b6b;
+  border: 1px solid #6bff75;
 }
 
 .signin-btn:hover {
-  background-color: #77cef3;
+  background-color: #77f3a5;
   color: #ffffff;
 }
 
@@ -166,10 +166,11 @@ a {
     <div class="form-container" id="signupForm">
       <h2>Create Account</h2>
       
-      <p>Vui lòng điền đủ thông</p>
+      <p>Vui lòng điền đủ thông tin</p>
       <form action="#">
         <input type="text" placeholder="Name" required>
         <input type="email" placeholder="Email" required>
+        <input type="text" placeholder="Phone number" required>
         <input type="password" placeholder="Password" required>
         <input type="password" placeholder="Confirm Password" required>
         <label class="checkbox-container" >
