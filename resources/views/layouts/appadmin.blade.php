@@ -183,7 +183,7 @@ td {
 /* User menu styles */
 #userMenu {
     position: absolute;
-    top: 8%; /* Đặt menu cách avatar 50px */
+    top: 10%; /* Đặt menu cách avatar 50px */
     right: 0;
     background-color: #fff;
     width: 250px;
@@ -333,74 +333,42 @@ td {
 .user-avatar:hover {
     transform: scale(1.1);  /* Phóng to ảnh một chút khi hover */
 }
-/* Container chứa các widget */
+/* Container để chứa các widget */
 .metrics {
-    display: flex;
-    justify-content: space-between;
-    gap: 20px; /* Khoảng cách giữa các widget */
-    margin-bottom: 20px;
+    display: flex;                     /* Sử dụng Flexbox để căn chỉnh các phần tử con */
+    justify-content: space-around;     /* Căn đều các widget trên trục ngang */
+    margin-bottom: 20px;               /* Khoảng cách dưới cùng của container */
 }
 
 /* Style chung cho tất cả các widget */
 .widget {
-    width: 250px; /* Đặt chiều rộng cho widget */
-    padding: 20px;
-    border-radius: 10px;
-    background-color: #fff;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    text-align: center;
-    transition: all 0.3s ease; /* Hiệu ứng khi hover */
-    font-weight: bold;
+    padding: 20px;                     /* Khoảng cách bên trong widget */
+    border-radius: 8px;                /* Bo góc cho widget */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);  /* Hiệu ứng bóng cho widget */
+    background: #fff;                  /* Màu nền trắng */
+    text-align: center;                /* Căn giữa nội dung trong widget */
+    font-size: 16px;                   /* Kích thước font chữ */
+    font-weight: bold;                 /* Đậm font chữ */
+    color: #333;                       /* Màu chữ */
 }
 
-.widget:hover {
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2); /* Hiệu ứng khi hover */
-    transform: translateY(-5px); /* Đưa widget lên một chút khi hover */
-}
-
-/* Style cho widget loại AA (Tổng khách hàng) */
+/* Widget loại AA */
 .widget-aa {
-    border-left: 5px solid #28a745; /* Màu xanh lá cho viền bên trái */
-    background-color: #e9f7ef; /* Nền màu xanh nhạt */
+    background-color: #f8d7da;         /* Màu nền cho widget loại AA */
+    color: #721c24;                    /* Màu chữ cho widget loại AA */
 }
 
-/* Style cho widget loại BB (Đơn hàng chờ duyệt) */
+/* Widget loại BB */
 .widget-bb {
-    border-left: 5px solid #ffc107; /* Màu vàng cho viền bên trái */
-    background-color: #fff3cd; /* Nền màu vàng nhạt */
+    background-color: #d4edda;         /* Màu nền cho widget loại BB */
+    color: #155724;                    /* Màu chữ cho widget loại BB */
 }
 
-/* Style cho widget loại CC (Đơn hàng đã duyệt) */
+/* Widget loại CC */
 .widget-cc {
-    border-left: 5px solid #007bff; /* Màu xanh dương cho viền bên trái */
-    background-color: #d1ecf1; /* Nền màu xanh dương nhạt */
+    background-color: #d1ecf1;         /* Màu nền cho widget loại CC */
+    color: #0c5460;                    /* Màu chữ cho widget loại CC */
 }
-
-/* Style cho tiêu đề widget */
-.title {
-    font-size: 16px;
-    color: #555;
-    margin-bottom: 12px;
-    text-transform: uppercase;
-}
-
-/* Style cho giá trị hiển thị */
-.value {
-    font-size: 24px;
-    color: #333;
-    margin-bottom: 8px;
-}
-
-.amount {
-    font-size: 30px;
-    font-weight: 600;
-}
-
-.currency {
-    font-size: 14px;
-    color: #888;
-}
-
 
 .search-container {
     display: flex;
@@ -475,6 +443,8 @@ td {
         }
 
   @yield('cssthongtincanhan');
+  @yield('cssmanageproduct');
+  @yield('cssmanageuser');
     </style>
 </head>
 <body>
@@ -502,7 +472,7 @@ td {
                     <input type="text" class="search-bar" placeholder="Search...">
                     <button class="search-btn"><i class="fas fa-search"></i></button>
                 </div>
-                
+                <div></div>
                 
                 <div class="icons">
                     <span class="notification-bell">🔔</span>
@@ -515,6 +485,9 @@ td {
             </div>
             
            @yield('thongtincanhan') 
+           @yield('admin')
+           @yield('manageproduct')
+           @yield('manageuser')
         </div>
     </div>
 
