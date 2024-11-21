@@ -51,5 +51,5 @@ Route::get('/products',[ProductController::class, 'index']);
 Route::get('/brands/{name}', [ProductController::class, 'showProductsByBrandName']);
 Route::get('/categories/{name}', [ProductController::class, 'showProductsByCategory'])->name('category.products');
 Route::get('/product/{id}', [ProductController::class, 'show'])->name('product.show');
-
-
+Route::get('/search/products', [ProductController::class, 'searchProducts'])->name('search.products');
+Route::get('compare',[ProductController::class,'compare'])->name('compare.phone');

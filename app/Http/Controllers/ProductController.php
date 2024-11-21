@@ -46,4 +46,31 @@ class ProductController extends Controller
         $config = $product->phoneConfig;
         return view('home.inforProduct', compact('product','brands','categories','config'));
     }
+    public function searchProducts(Request $request)
+    {
+        $keyword = $request->input('keyword');
+        $products = Product::where('name', 'LIKE', "%{$keyword}%")
+                   ->where('category_id', 1)
+                   ->pluck('name');
+        
+        if ($products->isEmpty()) {
+            return response('No products found');
+        }
+        $html = '';
+        foreach ($products as $product) {
+            $html .= '<li class="suggestion-item">' . htmlspecialchars($product) . '</li>';
+        }
+       
+       
+        return response($html);
+    }
+    public function compare(Request $request){
+        $brands = Brand::all();
+        $categories = Category::all();
+        $phone1 = Product::where('name',$request->input('phone1'))->first();
+        $phone2 = Product::where('name',$request->input('phone2'))->first();
+        $config1 = $phone1->phoneConfig;
+        $config2 = $phone2->phoneConfig;
+        return view('home.compare_result', compact('config1','config2','phone1','phone2','brands','categories'));
+    }
 }
