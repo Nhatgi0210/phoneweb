@@ -64,14 +64,10 @@ class HomeController extends Controller
         $hotProducts = Product::productWithTag('Hot')->get()->take(4);
         $cheapProducts = Product::productWithTag('Giá rẻ')->get()->take(4);
         $brands = Brand::all();
-<<<<<<< HEAD
+
         $categories = Category::all();
         return view('home.sosanh', compact('hotProducts', 'cheapProducts', 'brands','categories'));
-=======
-        $categories = Category::all();  // Lấy tất cả danh mục
-    
-        return view('home.sosanh', compact('hotProducts', 'cheapProducts', 'brands', 'categories'));  // Truyền 'categories' vào view
->>>>>>> 35af41302dc656d2194f7b7d6c20864d21d4d994
+
     }
     
     //shopping-cart

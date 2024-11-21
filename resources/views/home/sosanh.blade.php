@@ -108,7 +108,7 @@
                 </div>
                 <br>
                 <!-- Ô input phía dưới -->
-                <input id="search-box1" type="text" placeholder="nhập điện thoại 1" name="phone1" style="padding: 10px; border: 2px solid #78c0ed; border-radius: 20px; outline: none; width: 100%; max-width: 200px; font-size: 16px; margin-top: 10px;">
+                <input id="search-box1" type="text" required placeholder="nhập điện thoại 1" name="phone1" style="padding: 10px; border: 2px solid #78c0ed; border-radius: 20px; outline: none; width: 100%; max-width: 200px; font-size: 16px; margin-top: 10px;">
                 <ul id="suggestion-list1" class="suggestion-list"></ul>
             </div>
             
@@ -123,7 +123,7 @@
                 </div>
                 <br>
                 <!-- Ô input phía dưới -->
-                <input id="search-box2" type="text" placeholder="nhập điện thoại 2" name="phone2" style="padding: 10px; border: 2px solid #78c0ed; border-radius: 20px; outline: none; width: 100%; max-width: 200px; font-size: 16px; margin-top: 10px;">
+                <input id="search-box2" type="text" required placeholder="nhập điện thoại 2" name="phone2" style="padding: 10px; border: 2px solid #78c0ed; border-radius: 20px; outline: none; width: 100%; max-width: 200px; font-size: 16px; margin-top: 10px;">
                 <ul id="suggestion-list2" class="suggestion-list"></ul>
             </div>
         
@@ -137,49 +137,6 @@
 
 
 <!-- hiển thị bảng so sánh -->
-<<<<<<< HEAD
-=======
- <center>
-    <a href="#" class="beautiful-button">So sánh ngay</a>
-    <h1 class="display-5 mb-3">Kết quả so sánh </h1>
->>>>>>> 35af41302dc656d2194f7b7d6c20864d21d4d994
-
-
-<<<<<<< HEAD
- 
-=======
- <table>
-    <thead>
-        <tr>
-            <th>Thông số</th>
-            <th>Điện thoại 1</th>
-            <th>Điện thoại 2</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>Màn hình</td>
-            <td>?</td>    
-            <td>???</td>
-        </tr>
-        <tr>
-            <td>RAM</td>
-            <td>?</td>
-            <td>???</td>
-        </tr>
-        <tr>
-            <td>RAM</td>
-            <td>?</td>
-            <td>???</td>
-        </tr>
-        <tr>
-            <td>Pin</td>
-            <td>?</td>
-            <td>???</td>
-        </tr>
-    </tbody>
-</table>
->>>>>>> 35af41302dc656d2194f7b7d6c20864d21d4d994
 
 
  <!-- hết hiển thị bản so sánhh -->
