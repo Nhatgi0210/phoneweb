@@ -53,3 +53,4 @@ Route::get('/categories/{name}', [ProductController::class, 'showProductsByCateg
 Route::get('/product/{id}', [ProductController::class, 'show'])->name('product.show');
 
 
+

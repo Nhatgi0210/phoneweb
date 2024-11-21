@@ -194,6 +194,95 @@
     </table>
     
     <!-- endtesst1 -->
+    {{-- hóa đơn --}}
+    <div id="hoadon"style="height: 80px"></div>
+    <div class="invoice-box">
+        <h2 >Hóa Đơn Mua Hàng</h2>
+        <h3 style="color: rgb(29, 146, 223);">BIG WHALE</h3>
+        <table cellpadding="0" cellspacing="0">
+            <tr class="top">
+                <td colspan="2">
+                    <table>
+                        <tr>
+                            <td>
+                                Mã Hóa Đơn: <strong>123456</strong><br>
+                                Ngày Tạo: <strong>21/11/2024</strong>
+                            </td>
+                            <td>
+                                <span>Địa chỉ giao hàng:</span> 123 Đường ABC, Thành phố XYZ, Việt Nam<br>
+                                <span>Tên khách hàng:</span> <b>Nguyễn Linh</b><br>
+                                <span>Số điện thoại:</span> <b> 1234567890</b><br>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            <tr class="heading">
+                <td>
+                    Sản phẩm
+                </td>
+                <td>
+                    Giá
+                </td>
+            </tr>
+            <tr class="item">
+                <td>
+                    Tên sản phẩm 1
+                </td>
+                <td>
+                    10,000,000 VND
+                </td>
+            </tr>
+            <tr class="item">
+                <td>
+                    Tên sản phẩm 2
+                </td>
+                <td>
+                    5,000,000 VND
+                </td>
+            </tr>
+            <tr class="item last">
+                <td>
+                    Tên sản phẩm 3
+                </td>
+                <td>
+                    2,000,000 VND
+                </td>
+            </tr>
+            <tr class="item">
+                <td>
+                    <b>Tổng tiền hàng:</b>
+                </td>
+                <td>
+                  <b>17.000.000 VND</b>
+                </td>
+            </tr>
+            <tr class="item">
+                <td>
+                   <b>Phí vận chuyển</b>
+                </td>
+                <td>
+                  <b>    50.000 VND</b>
+                </td>
+            </tr>
+            <tr class="item">
+                <td>
+                     <b>Giảm giá (Voucher) </b>
+                </td>
+                <td>
+                    <b> -1,000,000 VND </b>
+                </td>
+            </tr>
+            <tr class="total">
+                <td></td>
+                <td>
+                    Tổng cộng: 16,050,000 VND
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div style="height: 120px;"></div>
+    {{-- hết hóa đơn --}}
     
 
     
@@ -203,8 +292,8 @@
             <h2>Tổng tiền (VNĐ) : <span id="total">39.980.000.000 </span></h2>
         </div>
         <div class="product-actions">
-            <a href="#" class="checkout">Checkout</a>
-            <button class="remove-all">Xóa hết</button>
+            <a href="#hoadon" class="checkout">Xem hóa đơn</a>
+            <button class="remove-all">Đặt hàng </button>
         </div>
     </div>
     
@@ -383,7 +472,7 @@
     
     /* Style cho nút Xóa hết */
     .remove-all {
-        background-color: #ea7c70; /* Màu nền đỏ */
+        background-color: #70ea7a; /* Màu nền đỏ */
         color: white; /* Màu chữ trắng */
         padding: 8px 50px; /* Giảm chiều ngang padding */
         font-size: 14px; /* Kích thước chữ */
@@ -396,7 +485,7 @@
     
     /* Hiệu ứng hover cho nút Xóa hết */
     .remove-all:hover {
-        background-color: #f69f96; /* Màu nền thay đổi khi hover */
+        background-color: #33f73a; /* Màu nền thay đổi khi hover */
         /* transform: translateY(-8px); Hiệu ứng nâng nút lên khi hover */
         box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); /* Thêm bóng đổ khi hover */
         color: white;
@@ -457,6 +546,52 @@
         color: white; /* Màu trắng cho icon khi hover */
     }
     
+    /*  */
+    /* mmmmmmm */
+    .invoice-box {
+            max-width: 800px;
+            margin: auto;
+            padding: 30px;
+            border: 1px solid #eee;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+            background: #fff;
+            color: #555;
+        }
+        .invoice-box h2, .invoice-box h3 {
+            text-align: center;
+            margin: 0 0 20px 0;
+        }
+        .invoice-box table {
+            width: 100%;
+            line-height: inherit;
+            text-align: left;
+        }
+        .invoice-box table td {
+            padding: 8px;
+            vertical-align: top;
+        }
+        .invoice-box table tr td:nth-child(2) {
+            text-align: right;
+        }
+        .invoice-box table tr.heading td {
+            background: #eee;
+            border-bottom: 1px solid #ddd;
+            font-weight: bold;
+        }
+        .invoice-box table tr.item td {
+            border-bottom: 1px solid #eee;
+        }
+        .invoice-box table tr.item.last td {
+            border-bottom: none;
+        }
+        .invoice-box table tr.total td:nth-child(2) {
+            border-top: 2px solid #eee;
+            font-weight: bold;
+        }
+        .invoice-box .information span {
+            display: block;
+            margin-bottom: 5px;
+        }
     
     
         </style>

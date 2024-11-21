@@ -6,9 +6,9 @@
             <small class="ms-4"><i class=""></i></small>
         </div>
         <div class="col-lg-6 px-5 text-end" style="color: white !important;">
-            <small style="color: rgb(246, 248, 250) !important;">Follow us:</small>
-            <a class="text-body ms-3" href="" style="color: white !important;"><i class="fab fa-facebook-f"></i></a>
-            <a class="text-body ms-3" href="" style="color: white !important;"><i class="fab fa-instagram"></i></a>
+            <small style="color: rgb(15, 129, 243) !important;">Follow us:</small>
+            <a class="text-body ms-3" href="" style="color: rgb(48, 122, 241) !important;"><i class="fab fa-facebook-f"></i></a>
+            <a class="text-body ms-3" href="" style="color: rgb(245, 122, 200) !important;"><i class="fab fa-instagram"></i></a>
         </div>
         
     </div>
