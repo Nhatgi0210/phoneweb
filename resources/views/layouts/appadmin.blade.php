@@ -445,6 +445,7 @@ td {
   @yield('cssthongtincanhan');
   @yield('cssmanageproduct');
   @yield('cssmanageuser');
+  @yield('csseditproduct');
     </style>
 </head>
 <body>
@@ -488,6 +489,7 @@ td {
            @yield('admin')
            @yield('manageproduct')
            @yield('manageuser')
+           @yield('editproduct')
         </div>
     </div>
 

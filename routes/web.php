@@ -57,6 +57,7 @@ Route::get('/admin-thongtin', [HomeController::class, 'admin_thongtin'])->name('
 Route::get('/admin', [HomeController::class, 'admin'])->name('admin');
 Route::get('/admin_manage_product', [HomeController::class, 'admin_manage_product'])->name('admin_manage_product');
 Route::get('/admin_manage_user', [HomeController::class, 'admin_manage_user'])->name('admin_manage_user');
+Route::get('/editproduct', [HomeController::class, 'editproduct'])->name('editproduct');
 
 
 

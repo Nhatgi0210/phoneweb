@@ -114,7 +114,7 @@
             <td>0901234567</td>
             <td>Quản trị viên</td>
             <td>
-                <a href="aa">   <button class="btn-custom btn-view">Xem</button></a>
+                <a href="">   <button class="btn-custom btn-view">Xem</button></a>
                 <button class="btn-custom btn-edit">Sửa</button>
                 <button class="btn-custom btn-delete">Xóa</button>
             </td>

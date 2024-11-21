@@ -131,6 +131,14 @@ class HomeController extends Controller
         $categories = Category::all();
         return view('home.admin_manage_user', compact('hotProducts', 'cheapProducts', 'brands','categories'));
     }
+    public function editproduct()
+    {
+        $hotProducts = Product::productWithTag('Hot')->get()->take(4);
+        $cheapProducts = Product::productWithTag('Giá rẻ')->get()->take(4);
+        $brands = Brand::all();
+        $categories = Category::all();
+        return view('home.edit_product', compact('hotProducts', 'cheapProducts', 'brands','categories'));
+    }
     
 
 }   
