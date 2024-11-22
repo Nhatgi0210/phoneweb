@@ -58,4 +58,12 @@ class AdminController extends Controller
         $categories = Category::all();
         return view('home.edit_product', compact('hotProducts', 'cheapProducts', 'brands','categories'));
     }
+    public function add_product()
+    {
+        $hotProducts = Product::productWithTag('Hot')->get()->take(4);
+        $cheapProducts = Product::productWithTag('Giá rẻ')->get()->take(4);
+        $brands = Brand::all();
+        $categories = Category::all();
+        return view('home.add_product', compact('hotProducts', 'cheapProducts', 'brands','categories'));
+    }
 }

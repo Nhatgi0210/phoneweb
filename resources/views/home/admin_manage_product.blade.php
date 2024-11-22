@@ -130,7 +130,7 @@ table td {
     <button class="search2-btn">Tìm kiếm</button>
 </div>
 <h2>Danh Sách Sản Phẩm</h2> <br>
-<button class="nutthem">Thêm sản phẩm </button>
+ <a href=" {{ route('add_product') }}"><button class="nutthem">Thêm sản phẩm </button> </a>
 
 <table>
     <thead>
@@ -146,7 +146,7 @@ table td {
             <td>Điện Thoại iPhone 14</td>
             <td>
                 <a href="#" class="btn btn-view">Xem</a>
-                <a href="#" class="btn btn-edit">Sửa</a>
+                <a href="{{ route('edit_product') }}" class="btn btn-edit">Sửa</a>
                 <a href="#" class="btn btn-delete">Xóa</a>
             </td>
         </tr>
@@ -155,7 +155,7 @@ table td {
             <td>Điện Thoại Samsung Galaxy S23</td>
             <td>
                 <a href="#" class="btn btn-view">Xem</a>
-                <a href="#" class="btn btn-edit">Sửa</a>
+                <a href="{{ route('edit_product') }}" class="btn btn-edit">Sửa</a>
                 <a href="#" class="btn btn-delete">Xóa</a>
             </td>
         </tr>

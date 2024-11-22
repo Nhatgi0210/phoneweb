@@ -92,7 +92,7 @@ class HomeController extends Controller
         $categories = Category::all();
         return view('home.shopping-cart', compact('hotProducts', 'cheapProducts', 'brands','categories'));
     }
-    
+   
     
 
 }   

@@ -446,6 +446,7 @@ td {
   @yield('cssmanageproduct');
   @yield('cssmanageuser');
   @yield('csseditproduct');
+  @yield('cssaddproduct');
     </style>
 </head>
 <body>
@@ -455,13 +456,12 @@ td {
             <button class="toggle-btn">☰</button>
             <h2 class="menu-title">Menu</h2>
             <ul class="menu-list">
-    <li><i class="fas fa-user"></i> Xem thông tin cá nhân</li>
-    <li><i class="fas fa-tachometer-alt"></i> Bảng theo dõi</li>
-    <li><i class="fas fa-box"></i> Quản lý sản phẩm</li>
-    <li><i class="fas fa-users"></i> Quản lý người dùng</li>
-    <li><i class="fas fa-chart-line"></i> Thống kê</li>
-    <li><i class="fas fa-user-tie"></i> Quản lý nhân viên</li>
-    <li><i class="fas fa-sign-out-alt"></i> Đăng xuất</li>
+   <a href="{{ route('admin_thongtin') }}" style="text-decoration: none;color: inherit;">   <li><i class="fas fa-user"></i> Xem thông tin cá nhân</li></a>
+   <a href="{{ route('admin') }}" style="text-decoration: none;color: inherit;"><li><i class="fas fa-tachometer-alt"></i> Bảng theo dõi</li>     </a>
+   <a href="{{ route('admin_manage_user') }}" style="text-decoration: none;color: inherit;">     <li><i class="fas fa-users"></i> Quản lý người dùng</li></a>
+   <a href="{{ route('admin_manage_product') }}" style="text-decoration: none;color: inherit;">     <li><i class="fas fa-chart-line"></i>Quản lý sản phẩm </li> </a>
+   <li><i class="fas fa-sign-out-alt"></i> Quản lý đơn</li>
+   <li><i class="fas fa-sign-out-alt"></i> Đăng xuất</li>
 </ul>
 
         </div>
@@ -490,6 +490,8 @@ td {
            @yield('manageproduct')
            @yield('manageuser')
            @yield('editproduct')
+           @yield('addproduct')
+           
         </div>
     </div>
 

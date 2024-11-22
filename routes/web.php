@@ -62,6 +62,7 @@ Route::get('/admin', [AdminController::class, 'admin'])->name('admin');
 Route::get('/admin_manage_product', [AdminController::class, 'admin_manage_product'])->name('admin_manage_product');
 Route::get('/admin_manage_user', [AdminController::class, 'admin_manage_user'])->name('admin_manage_user');
 Route::get('/editproduct', [AdminController::class, 'editproduct'])->name('editproduct');
+Route::get('/add_product', [AdminController::class, 'add_product'])->name('add_product');
 
 
 
