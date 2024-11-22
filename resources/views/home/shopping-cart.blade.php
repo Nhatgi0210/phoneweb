@@ -1,8 +1,22 @@
-@extends('layouts.app2')
+@extends('layouts.app')
 @section('giohang')
-
+<div class="space" style="margin-bottom: 40px"></div>
+<div class="container">
+    <div class="row g-0 gx-5 align-items-end">
+        <div class="col-lg-6">
+            <div class="section-header text-start mb-5 wow fadeInUp " data-wow-delay="0.1s" style="max-width: 500px;">
+                <h1 class="display-5 mb-3">Giỏ hàng
+                     
+                </h1>
+            
+            </div>
+        </div>
+        
+        
+    </div>
+</div>
 <!-- giỏ hàng -->
-<div style="height: 120px"></div>
+{{-- <div style="height: 120px"></div> --}}
 <div class="container">
    
 
@@ -304,7 +318,7 @@
 </div>
 @endsection
 
-@section('cssgiohang')
+@section('css')
 <style>
     /* Cấu hình mặc định */
     * {
@@ -595,4 +609,5 @@
     
     
         </style>
+
 @endsection
