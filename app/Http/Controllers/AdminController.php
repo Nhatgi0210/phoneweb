@@ -66,4 +66,6 @@ class AdminController extends Controller
         $categories = Category::all();
         return view('home.add_product', compact('hotProducts', 'cheapProducts', 'brands','categories'));
     }
+
+    
 }

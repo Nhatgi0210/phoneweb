@@ -91,9 +91,11 @@
                         
                         <div class="col-xl-3 col-lg-4 col-md-6 wow fadeInUp product" data-wow-delay="0.3s">
                             <div class="product-item">
-                                <div class="position-relative bg-light overflow-hidden">
-                                    <img class="img-fluid w-100" src="{{ asset('storage/' .$hotProduct->main_image_path) }}" alt="">
-                                </div>
+                              <div class="position-relative bg-light overflow-hidden" style="width: 300px; height: 200px;"> <!-- Thiết lập khung cố định -->
+                                <img class="img-fluid" src="{{ asset('storage/' .$hotProduct->main_image_path) }}" alt="" style="max-width: 100%; max-height: 100%; object-fit: contain; display: block; margin: auto;">
+                            </div>
+                            
+                            
                                 <div class="text-center p-4">
                                     <a class="d-block h5 mb-2" href="{{ route('product.show', ['id' => $hotProduct->id]) }}">{{ $hotProduct->name }}</a>
                                     <span class="text-primary me-1 formatted-number">{{ $hotProduct->discount_price }}</span>
@@ -140,8 +142,11 @@
                         
                         <div class="col-xl-3 col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
                             <div class="product-item">
-                                <div class="position-relative bg-light overflow-hidden">
-                                    <img class="img-fluid w-100" src="{{ asset('storage/' .$cheapProduct->main_image_path) }}" alt="">
+                              {{--  --}}
+                             
+                              {{--  --}}
+                                <div class="position-relative bg-light overflow-hidden" style="width: 300px; height: 200px;">
+                                    <img class="img-fluid w-100" src="{{ asset('storage/' .$cheapProduct->main_image_path) }}" alt=""style="max-width: 100%; max-height: 100%; object-fit: contain; display: block; margin: auto;">
                                 </div>
                                 <div class="text-center p-4">
                                     <a class="d-block h5 mb-2" href="{{ route('product.show', ['id' => $cheapProduct->id]) }}">{{ $cheapProduct->name }}</a>

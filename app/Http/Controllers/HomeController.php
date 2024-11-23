@@ -75,6 +75,11 @@ class HomeController extends Controller
     {
         return view('home.formdangki');
     }
+
+    public function dangnhap()
+    {
+        return view('home.formdangnhap');
+    }
     
     public function inforProduct()
     {

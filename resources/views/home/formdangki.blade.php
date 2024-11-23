@@ -178,8 +178,10 @@ a {
         Tôi đồng ý với&nbsp;<div class="p" style="color: red;"><u>Điều khoản</u></div>&nbsp;của công ty
         </label>
         <button type="submit">Sign Up</button>
+        <button type="submit" class="signin-btn">Sign In</button> <a href="{{ route('dangnhap') }}"></a>
+        {{-- <a href="{{ route('dangnhap') }}"><button class="signin-btn">Sign In</button></a> --}}
       </form>
-      <button class="signin-btn">Sign In</button>
+      
     </div>
     <div class="illustration">
       <!-- Illustration background -->
