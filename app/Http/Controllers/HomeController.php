@@ -71,10 +71,7 @@ class HomeController extends Controller
     }
     
     //shopping-cart
-    public function dangki()
-    {
-        return view('home.formdangki');
-    }
+    
     
     public function inforProduct()
     {

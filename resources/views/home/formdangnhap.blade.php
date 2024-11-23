@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Responsive Login Form</title>
+  <title>Đăng nhập</title>
   <link rel="stylesheet" href="style.css">
   <style>
     * {
@@ -113,6 +113,10 @@ button:hover {
     display: block;
   }
 }
+.error-m{
+  list-style: none;
+  color: red
+}
 
   </style>
 </head>
@@ -128,12 +132,22 @@ button:hover {
         <a href="#"><img src="https://img.icons8.com/ios-filled/50/000000/facebook.png" alt="Facebook"></a>
       </div>
       <p>or use your email account:</p>
-      <form action="#">
-        <input type="email" placeholder="Email" required>
-        <input type="password" placeholder="Password" required>
+      <form action="{{ url('/login')}}" method="POST">
+        @csrf
+        <input type="email" name="email" placeholder="Email" required>
+        <input type="password" name="password" placeholder="Password" required>
         <button type="submit">Sign In</button>
+        @if ($errors->any())
+          <div>
+              <ul>
+                  @foreach ($errors->all() as $error)
+                      <li class="error-m"><h2>{{ $error }}</h2></li>
+                  @endforeach
+              </ul>
+          </div>
+        @endif
       </form>
-      <p class="signup-link">Don't have an account? <a href="#">Sign Up</a></p>
+      <p class="signup-link">Don't have an account? <a href="{{ route('register') }}">Sign Up</a></p>
     </div>
   </div>
 </body>

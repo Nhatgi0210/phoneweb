@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Responsive Signup Form</title>
+  <title>Đăng ký tài khoản</title>
   <link rel="stylesheet" href="style.css">
   <style>
    /* Các CSS bạn đã viết trước đó */
@@ -125,6 +125,7 @@ button:hover {
   background-color: #ffffff;
   color: #ff6b6b;
   border: 1px solid #6bff75;
+  width: 100%;
 }
 
 .signin-btn:hover {
@@ -145,7 +146,7 @@ button:hover {
 }
 
 /* Mở rộng thẻ a bao phủ toàn bộ body */
-a {
+a .to-home{
   display: block;
   width: 100%;
   height: 100%;
@@ -156,34 +157,65 @@ a {
   cursor: pointer;
 }
 
+.error-m{
+  list-style: none;
+  color: red
+}
   </style>
 </head>
 <body>
   <!-- Thẻ <a> để chuyển hướng khi nhấp ngoài form -->
-  <a href="{{ route('home') }}"></a> 
+  <a class="to-home" href="{{ route('home') }}"></a> 
 
   <div class="container">
     <div class="form-container" id="signupForm">
       <h2>Create Account</h2>
       
       <p>Vui lòng điền đủ thông tin</p>
-      <form action="#">
-        <input type="text" placeholder="Name" required>
-        <input type="email" placeholder="Email" required>
-        <input type="text" placeholder="Phone number" required>
-        <input type="password" placeholder="Password" required>
-        <input type="password" placeholder="Confirm Password" required>
+      <span id="error-message" style="color: red; display: none">Mật khẩu không trùng khớp</span>
+      @if ($errors->any())
+          <div class="alert alert-danger">
+              <ul>
+                  @foreach ($errors->all() as $error)
+                      <li class="error-m"><h2>{{ $error }}</h2></li>
+                  @endforeach
+              </ul>
+          </div>
+      @endif
+      
+      <br>
+      <form action="{{ url('register') }}" method="POST">
+        @csrf
+        <input type="text" name="name" placeholder="Full Name" required>
+        <input type="email" name="email" placeholder="Email" required>
+        <input type="text" name="phone" placeholder="Phone number (10 digits)"  pattern="[0-9]{10}" required>
+        <input type="password" id="password" name="password" placeholder="Password" required>
+        <input type="password" id="confirmPassword" placeholder="Confirm Password" required>
         <label class="checkbox-container" >
           <input type="checkbox" required>
         Tôi đồng ý với&nbsp;<div class="p" style="color: red;"><u>Điều khoản</u></div>&nbsp;của công ty
         </label>
         <button type="submit">Sign Up</button>
       </form>
-      <button class="signin-btn">Sign In</button>
+      <a href="{{ route('login') }}"><button class="signin-btn">Sign In</button></a>
     </div>
     <div class="illustration">
       <!-- Illustration background -->
     </div>
   </div>
+  <script>
+    document.getElementById('signupForm').addEventListener('submit', function(event) {
+        const password = document.getElementById('password').value;
+        const confirmPassword = document.getElementById('confirmPassword').value;
+        const errorMessage = document.getElementById('error-message');
+    
+        if (password !== confirmPassword) {
+            event.preventDefault(); // Ngăn form gửi đi
+            errorMessage.style.display = 'block'; // Hiển thị thông báo lỗi
+        } else {
+            errorMessage.style.display = 'none'; // Ẩn thông báo lỗi nếu trùng
+        }
+    });
+  </script>
 </body>
 </html>

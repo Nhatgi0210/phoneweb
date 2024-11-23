@@ -434,6 +434,7 @@
         max-width: 1000px; /* Tối đa không quá 1000px */
         margin: 0 auto; /* Canh giữa giỏ hàng */
         flex-wrap: wrap; /* Cho phép các phần tử con thu nhỏ lại khi cần */
+        z-index: 10;
     }
     
     .cart-summary .item {
