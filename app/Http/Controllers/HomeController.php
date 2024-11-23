@@ -71,7 +71,7 @@ class HomeController extends Controller
     }
     
     //shopping-cart
-    
+ 
     
     public function inforProduct()
     {
