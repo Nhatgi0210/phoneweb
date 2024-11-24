@@ -183,7 +183,7 @@ td {
 /* User menu styles */
 #userMenu {
     position: absolute;
-    top: 10%; /* Đặt menu cách avatar 50px */
+    top: 30px; /* Đặt menu cách avatar 50px */
     right: 0;
     background-color: #fff;
     width: 250px;

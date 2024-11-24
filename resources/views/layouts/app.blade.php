@@ -57,7 +57,7 @@
 }
         #userMenu {
     position: absolute;
-    top: 20%; /* Đặt menu cách avatar 50px */
+    top: 15%; /* Đặt menu cách avatar 50px */
     right: 0;
     background-color: #fff;
     width: 220px;
@@ -67,6 +67,12 @@
     opacity: 0;
     z-index: 100;
     transform: translateX(80%); /* Bắt đầu ở ngoài màn hình */
+    
+    position: sticky;
+    margin-left: auto;!important
+    top: 10; /* Độ cao từ đỉnh trang */
+   
+   
 }
 
 
