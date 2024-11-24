@@ -55,18 +55,6 @@
                   </div>
                 </div>
               </div>
-           
-           
-            
-          </div>
-          <div class="swiper-pagination"></div>
-        </div>
-        <div class="icon-arrow icon-arrow-left"><svg width="50" height="50" viewBox="0 0 24 24">
-            <use xlink:href="#arrow-left"></use>
-          </svg></div>
-        <div class="icon-arrow icon-arrow-right"><svg width="50" height="50" viewBox="0 0 24 24">
-            <use xlink:href="#arrow-right"></use>
-          </svg></div>
       </div>
     </div>
     </section>

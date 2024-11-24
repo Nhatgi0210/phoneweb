@@ -70,9 +70,15 @@
                
                 <a href="{{ route('login') }}" class="nav-item nav-link">Tài khoản</a>
 
-                <a href="#" onclick="return false;">
-                    <input type="text" placeholder="Tìm kiếm" style="padding: 10px; border: 2px solid #78c0ed; border-radius: 20px; outline: none; width: 100%; max-width: 200px; font-size: 16px; margin-top: 10px; background-color: transparent; color: #333;">
-                </a>
+                <form action="{{ route('showsearch') }}" method="GET" id="search-form">
+                    <input type="text" id="search-boxa" name="phonea" placeholder="Tìm kiếm" 
+                           style="padding: 10px; border: 2px solid #78c0ed; border-radius: 20px; outline: none; width: 100%; max-width: 200px; font-size: 16px; margin-top: 10px; background-color: transparent; color: #333;">
+                    <input type="submit" value="🔍" style="background: none; border: none; cursor: pointer; font-size: 20px; color: #78c0ed;">
+                    <ul id="suggestion-list12" class="suggestion-list"></ul>
+                </form>
+                
+                
+                
                 
             </div>
             <div class="d-none d-lg-flex ms-2">
@@ -94,7 +100,7 @@
     <ul>
         <li><a href="#"><i class="fas fa-user icon"></i>Xem thông tin</a></li>
         <li><a href="#"><i class="fas fa-exchange-alt icon"></i>Chuyển đổi tài khoản</a></li>
-        {{-- <li><a href="#"><i class="fas fa-file-invoice icon"></i>Đơn hàng</a></li> --}}
+        
         <li><a href="#"><i class="fas fa-sign-out-alt icon"></i>Đăng xuất</a></li>
     </ul>
 </div>
@@ -129,5 +135,42 @@
            }, 300);
        }
    });
+</script>
+<script>
+    function handleSearch(searchBoxId, suggestionListId) {
+        const routeUrl = "{{ route('search.products') }}";
+        const searchBox = document.getElementById(searchBoxId);
+        const suggestionList = document.getElementById(suggestionListId);
+        searchBox.addEventListener('input', function () {
+            const keyword = searchBox.value.trim();
+
+        
+            if (keyword.length > 2) {
+                const xhr = new XMLHttpRequest();
+                xhr.open('GET', `${routeUrl}?keyword=${encodeURIComponent(keyword)}`, true);
+
+                xhr.onreadystatechange = function () {
+                    if (xhr.readyState === 4) {
+                        const data = xhr.responseText;  
+                        suggestionList.innerHTML = data;  
+
+                        // Đảm bảo rằng các sự kiện click vào gợi ý được xử lý
+                        document.querySelectorAll('.suggestion-item').forEach(item => {
+                            item.addEventListener('click', function () {
+                                searchBox.value = this.textContent;
+                                suggestionList.innerHTML = ''; // Xóa danh sách gợi ý
+                            });
+                        });
+                    }
+                };
+
+                xhr.send();
+            } else {
+                suggestionList.innerHTML = ''; // Xóa danh sách gợi ý nếu từ khóa quá ngắn
+            }
+        });
+    }
+    handleSearch('search-boxa','suggestion-list12');
+   
 </script>
 

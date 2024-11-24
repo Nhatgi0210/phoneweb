@@ -91,6 +91,14 @@
         list-style-type: none;
         z-index: 10; 
     }
+    .aaa{
+        
+    position: absolute;
+    top: calc(100% + 5px); /* Cách ô input một khoảng nhỏ */
+   
+
+
+    }
 </style>
 @endsection
 @section('sosanh') 
@@ -109,7 +117,7 @@
                 <br>
                 <!-- Ô input phía dưới -->
                 <input id="search-box1" type="text" required placeholder="nhập điện thoại 1" name="phone1" style="padding: 10px; border: 2px solid #78c0ed; border-radius: 20px; outline: none; width: 100%; max-width: 200px; font-size: 16px; margin-top: 10px;">
-                <ul id="suggestion-list1" class="suggestion-list"></ul>
+                <ul id="suggestion-list1" class="suggestion-list aaa" ></ul>
             </div>
             
             <!-- Dấu phân cách -->
@@ -128,7 +136,8 @@
             </div>
         
         </div>
-        <input type="submit" value="So sánh">
+        <input type="submit" value="So sánh" style="background-color: #007bff; color: white; padding: 10px 20px; border: none; border-radius: 5px; font-size: 16px; cursor: pointer; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); transition: all 0.3s ease;">
+
     </form>
    
    

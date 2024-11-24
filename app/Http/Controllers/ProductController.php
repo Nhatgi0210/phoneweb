@@ -44,7 +44,15 @@ class ProductController extends Controller
         $categories = Category::all();
         $product = Product::findOrFail($id); 
         $config = $product->phoneConfig;
-        return view('home.inforProduct', compact('product','brands','categories','config'));
+        $product = Product::find($id);  // Lấy sản phẩm theo ID
+$brand = $product->brand;  // Truy cập thông tin thương hiệu của sản phẩm
+
+// $relatedProducts = $brand->products->where('id', '!=', $id); // Loại trừ sản phẩm hiện tại
+$relatedProducts = Product::where('brand_id', $product->brand_id)
+    ->where('category_id', $product->category_id)
+    ->where('id', '!=', $product->id)  // Loại bỏ sản phẩm hiện tại
+    ->get();
+        return view('home.inforProduct', compact('product','brands','categories','config','relatedProducts'));
     }
     public function searchProducts(Request $request)
     {
@@ -72,5 +80,15 @@ class ProductController extends Controller
         $config1 = $phone1->phoneConfig;
         $config2 = $phone2->phoneConfig;
         return view('home.compare_result', compact('config1','config2','phone1','phone2','brands','categories'));
+    }
+
+    public function showsearch(Request $request){
+        $brands = Brand::all();
+        $categories = Category::all();
+        $product = Product::where('name',$request->input('phonea'))->first();
+        // $product = Product::findOrFail($id); 
+        $config = $product->phoneConfig;
+       
+        return view('home.inforProduct', compact('config','product','brands','categories'));
     }
 }

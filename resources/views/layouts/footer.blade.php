@@ -4,8 +4,7 @@
     <div class="container py-5">
         <div class="row g-5">
             <div class="col-lg-3 col-md-6">
-                {{-- <h1 class="fw-bold text-primary mb-4"><span class="text-secondary" ><p style="color: rgb(92, 153, 233);">BIG WHALE</p></span></h1> --}}
-                <image href="{{ asset('frontend/img/caheo.png') }}" width="100" height="100" clip-path="url(#circleClip)" preserveAspectRatio="xMidYMid meet" />
+                <h1 class="fw-bold text-primary mb-4"><span class="text-secondary" ><p style="color: rgb(92, 153, 233);">BIG WHALE</p></span></h1>
                 <p>Diam dolor diam ipsum sit. Aliqu diam amet diam et eos. Clita erat ipsum et lorem et sit, sed stet lorem sit clita</p>
                 <div class="d-flex pt-2">
                     <a class="btn btn-square btn-outline-light rounded-circle me-1" href=""><i class="fab fa-twitter"></i></a>

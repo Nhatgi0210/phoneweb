@@ -70,5 +70,6 @@ Route::get('/login',[AccountController::class,'showLoginForm'])->name("login")->
 Route::post('/login',[AccountController::class,'login']);
 
 Route::get('/logout',[AccountController::class,'logout']);
+Route::get('showsearch',[ProductController::class,'showsearch'])->name('showsearch');
 
 

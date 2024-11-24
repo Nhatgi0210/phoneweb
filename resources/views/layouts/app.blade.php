@@ -35,6 +35,27 @@
     {{-- css của inforProduct --}}
     @yield('cssin4')
     <style>
+         .suggestion-item {
+        padding: 5px;
+        cursor: pointer;
+    }
+
+    .suggestion-item:hover {
+        background: #f0f0f0;
+    }
+    .suggestion-list {
+        position: absolute;
+        top:calc(100% + 35px);
+        max-height: 180px;
+        overflow-y: auto;
+        background-color: white;
+        border: 1px solid #ccc;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        padding: 0;
+        margin: 0;
+        list-style-type: none;
+        z-index: 10; 
+    }
         @keyframes slideIn {
     from {
         transform: translateX(100%); /* Bắt đầu từ bên phải ngoài màn hình */
@@ -170,8 +191,8 @@
     <!-- Footer End -->
 
 
-    <!-- Back to Top -->
-    <a href="#" class="btn btn-lg btn-primary btn-lg-square rounded-circle back-to-top"><i class="bi bi-arrow-up"></i></a>
+   
+    
 {{-- menu logout --}}
 {{-- <div class="user-menu" id="userMenu">
     <div class="profile">
