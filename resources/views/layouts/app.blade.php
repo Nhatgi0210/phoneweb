@@ -34,6 +34,104 @@
     @yield('css')
     {{-- css của inforProduct --}}
     @yield('cssin4')
+    <style>
+        @keyframes slideIn {
+    from {
+        transform: translateX(100%); /* Bắt đầu từ bên phải ngoài màn hình */
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0); /* Đưa vào vị trí ban đầu */
+        opacity: 1;
+    }
+}
+@keyframes slideOut {
+    from {
+        transform: translateX(0); /* Đang ở trong màn hình */
+        opacity: 1;
+    }
+    to {
+        transform: translateX(100%); /* Di chuyển ra ngoài màn hình */
+        opacity: 0;
+    }
+}
+        #userMenu {
+    position: absolute;
+    top: 20%; /* Đặt menu cách avatar 50px */
+    right: 0;
+    background-color: #fff;
+    width: 220px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    display: none;
+    opacity: 0;
+    z-index: 100;
+    transform: translateX(80%); /* Bắt đầu ở ngoài màn hình */
+}
+
+
+#userMenu.show {
+    display: block;
+    opacity: 1; /* Khi hiển thị, opacity = 1 */
+    transform: translateY(0); /* Vị trí ban đầu khi hiển thị */
+}
+
+#userMenu ul {
+    list-style: none;
+    padding: 10px;
+    margin: 0;
+    
+}
+
+#userMenu ul li {
+    padding: 15px;
+    border-bottom: 1px solid #eee;
+    font-size: 14px; 
+}
+
+#userMenu ul li:hover {
+    background-color: #f7f7f7;
+}
+
+#userMenu ul li a {
+    text-decoration: none;
+    color: #333;
+    display: flex;
+    align-items: center;
+}
+
+#userMenu ul li a .icon {
+    margin-right: 10px;
+}
+
+#userMenu .profile {
+    text-align: center;
+    padding: 20px;
+    /* background-color: #007BFF; màu nen cho userr */ 
+    background-image: url('img/dammay.png');
+    color: #fff;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+#userMenu .profile img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    margin-bottom: 10px;
+}
+
+#userMenu .profile .name {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+#userMenu .profile .email {
+    font-size: 14px;
+    color: #ddd;
+}
+    </style>
+   
    
 </head>
 
@@ -57,7 +155,9 @@
 
    @include('layouts.secondary_content')
  
+{{-- menu profile --}}
 
+{{-- endmenu profile --}}
 
     <!-- Footer Start -->
         @include('layouts.footer')
@@ -66,7 +166,21 @@
 
     <!-- Back to Top -->
     <a href="#" class="btn btn-lg btn-primary btn-lg-square rounded-circle back-to-top"><i class="bi bi-arrow-up"></i></a>
-
+{{-- menu logout --}}
+{{-- <div class="user-menu" id="userMenu">
+    <div class="profile">
+        <img src="{{ asset('img/gai.jpg') }}" alt="Profile Picture" style="object-fit: cover;">
+        <div class="name">Nguyễn Văn A</div>
+        <div class="email"> <p style="color: #8d8a7f;">NguyenVanA@gmail.com</p></div>
+    </div>
+    <ul>
+        <li><a href="#"><i class="fas fa-user icon"></i>Xem thông tin</a></li>
+        <li><a href="#"><i class="fas fa-exchange-alt icon"></i>Chuyển đổi tài khoản</a></li>
+        <li><a href="#"><i class="fas fa-file-invoice icon"></i>Đơn hàng</a></li>
+        <li><a href="#"><i class="fas fa-sign-out-alt icon"></i>Đăng xuất</a></li>
+    </ul>
+</div> --}}
+{{-- endmenu logout --}}
 
     <!-- JavaScript Libraries -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>

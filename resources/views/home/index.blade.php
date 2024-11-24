@@ -93,7 +93,7 @@
                             <div class="product-item">
                               <div class="position-relative bg-light overflow-hidden" style="width: 300px; height: 200px;"> <!-- Thiết lập khung cố định -->
                                 <img class="img-fluid" src="{{ asset('storage/' .$hotProduct->main_image_path) }}" alt="" style="max-width: 100%; max-height: 100%; object-fit: contain; display: block; margin: auto;">
-                            </div>
+                              </div>
                             
                             
                                 <div class="text-center p-4">
@@ -101,8 +101,14 @@
                                     <span class="text-primary me-1 formatted-number">{{ $hotProduct->discount_price }}</span>
                                     <span class="text-body text-decoration-line-through formatted-number">{{ $hotProduct->original_price }}</span>
                                 </div>
+                                 <div style="text-align: center">
+                                <b>Màn hình: </b> 6.5 in <br>
+                                <b>Chip:</b> Snapdragon 8 gen 3 <br>
+                                <b>Pin:</b> 5000 mAh
+                                 </div>
                                 <div class="d-flex border-top">
                                     <small class="w-50 text-center border-end py-2">
+                                      
                                         <a class="text-body" href="{{ route('product.show', ['id' => $hotProduct->id]) }}"><i class="fa fa-eye text-primary me-2"></i>View detail</a>
                                     </small>
                                     <small class="w-50 text-center py-2">

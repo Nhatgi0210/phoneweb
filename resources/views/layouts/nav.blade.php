@@ -76,8 +76,8 @@
                 
             </div>
             <div class="d-none d-lg-flex ms-2">
-            
-                <a class="btn-sm-square bg-white rounded-circle ms-3" href="{{ route('register') }}">
+                {{-- {{ route('register') }} --}}
+                <a class="btn-sm-square bg-white rounded-circle ms-3"id="menuu">
                     <small class="fa fa-user text-body"></small>
                 </a>
                 <a class="btn-sm-square bg-white rounded-circle ms-3" href="">
@@ -88,3 +88,46 @@
     </nav>
 </div>
 <!-- Navbar End -->
+
+<div class="user-menu" id="userMenu">
+   
+    <ul>
+        <li><a href="#"><i class="fas fa-user icon"></i>Xem thông tin</a></li>
+        <li><a href="#"><i class="fas fa-exchange-alt icon"></i>Chuyển đổi tài khoản</a></li>
+        {{-- <li><a href="#"><i class="fas fa-file-invoice icon"></i>Đơn hàng</a></li> --}}
+        <li><a href="#"><i class="fas fa-sign-out-alt icon"></i>Đăng xuất</a></li>
+    </ul>
+</div>
+
+
+<script>
+    // Show/Hide user menu when clicking on user avatar
+    document.getElementById('menuu').addEventListener('click', function () {
+       const userMenu = document.getElementById('userMenu');
+       
+       // Nếu menu đang hiển thị, thu vào
+       if (userMenu.style.display === 'block') {
+           userMenu.style.animation = 'slideOut 0.3s forwards'; // Hiệu ứng thu vào
+           setTimeout(() => {
+               userMenu.style.display = 'none';
+           }, 300);
+       } 
+       // Nếu menu không hiển thị, thu vào
+       else {
+           userMenu.style.display = 'block';
+           userMenu.style.animation = 'slideIn 0.3s forwards'; // Hiệu ứng thu vào
+       }
+   });
+
+   // Close user menu if clicked outside
+   window.addEventListener('click', function (event) {
+       const userMenu = document.getElementById('userMenu');
+       if (!userMenu.contains(event.target) && !document.getElementById('menuu').contains(event.target)) {
+           userMenu.style.animation = 'slideOut 0.3s forwards'; // Thu vào menu khi click ra ngoài
+           setTimeout(() => {
+               userMenu.style.display = 'none';
+           }, 300);
+       }
+   });
+</script>
+
