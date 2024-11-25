@@ -152,11 +152,42 @@ table td {
             <td>{{ $product->name }}</td>
             <td>
                 <a href="{{ route('edit_product', $product->id) }}" class="btn btn-edit">Sửa</a>
-                <a href="#" class="btn btn-delete" onclick="return confirm('Bạn có chắc chắn muốn xóa sản phẩm này?')">Xóa</a>
+                <form action="{{ route('product.delete2', $product->id) }}" method="POST" onsubmit="return confirm('Bạn có chắc chắn muốn xóa sản phẩm này không?');">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="btn btn-danger">Xóa</button>
+                </form>
+                
+
             </td>
         </tr>
         @endforeach
     </tbody>
 </table>
+<script>
+    function deleteProduct(id) {
+        if (confirm("Bạn có chắc chắn muốn xóa sản phẩm này?")) {
+            fetch(`/product/${id}`, {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    document.getElementById('product-' + id).remove(); // Ẩn phần tử sản phẩm
+                } else {
+                    alert("Có lỗi xảy ra khi xóa sản phẩm.");
+                }
+            })
+            .catch(error => {
+                alert("Có lỗi xảy ra!");
+            });
+        }
+    }
+</script>
+    
 
 @endsection

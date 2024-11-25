@@ -220,4 +220,28 @@ class ProductController extends Controller
 }
 
 
+public function delete_product2($id)
+{
+    try {
+        // Tìm sản phẩm theo ID
+        $product = Product::findOrFail($id); // Nếu không tìm thấy sẽ ném lỗi
+
+        // Xóa thông tin cấu hình của sản phẩm nếu có
+        $product->phoneConfig()->delete();
+
+        // Xóa sản phẩm
+        $product->delete();
+
+        // Trả về kết quả thành công
+        return redirect()->route('admin_manage_product')->with('success', 'Sản phẩm đã được xóa!');
+    } catch (\Exception $e) {
+        // Trả về thông báo lỗi nếu có vấn đề
+        return redirect()->route('admin_manage_product')->with('error', 'Có lỗi xảy ra khi xóa sản phẩm.');
+    }
+}
+
+
+
+
+
 }

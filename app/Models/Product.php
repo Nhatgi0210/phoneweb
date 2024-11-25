@@ -41,8 +41,16 @@ class Product extends Model
     }
    
     //config
-    public function phoneConfig()
-    {
-        return $this->hasOne(PhoneConfig::class);
-    }
+    // public function phoneConfig()
+    // {
+    //     return $this->hasOne(PhoneConfig::class);
+    // }
+
+    // Trong Product.php
+public function phoneConfig()
+{
+    return $this->hasOne(PhoneConfig::class, 'product_id');
 }
+
+}
+

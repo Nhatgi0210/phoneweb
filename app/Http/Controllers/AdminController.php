@@ -198,6 +198,51 @@ public function updatePosition(Request $request, $id)
 
 
 
+public function edit_product2($id)
+{
+    $product = Product::with('brand', 'category', 'phoneConfig')->findOrFail($id);
+    $brands = Brand::all();
+    $categories = Category::all();
+
+    // \Log::info('Product Details:', $product->toArray()); // Debug dữ liệu sản phẩm
+
+    return view('home.edit_product', compact('product', 'brands', 'categories'));
+}
+
+
+
+
+public function update_product(Request $request, $id)
+{
+    // Lấy sản phẩm từ database
+    $product = Product::find($id);
+
+    // Cập nhật thông tin của sản phẩm
+    $product->update([
+        'name' => $request->TenSP,
+        'original_price' => $request->DonGia,
+        'category_id' => $request->MaDM,
+        'brand_id' => $request->MaLSP,
+    ]);
+
+    // Cập nhật thông tin cấu hình điện thoại (screen, chip, RAM, ROM, Pin)
+    $product->phoneConfig()->updateOrCreate(
+        ['product_id' => $product->id],
+        [
+            // 'ManHinh' => $request->ManHinh,
+            'man_hinh' => $request->ManHinh, // Đổi ManHinh thành man_hinh
+
+            'Chip' => $request->Chip,
+            'ROM' => $request->ROM,
+            'RAM' => $request->RAM,
+            'Pin' => $request->Pin,
+        ]
+    );
+
+    // Redirect lại trang quản lý sản phẩm với thông báo thành công
+    return redirect()->route('admin_manage_product')->with('success', 'Sản phẩm đã được cập nhật!');
+}
+
 
 
 

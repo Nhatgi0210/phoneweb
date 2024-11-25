@@ -110,3 +110,7 @@ Route::put('/admin/users/{id}/update-position', [AdminController::class, 'update
 Route::post('/add-product', [ProductController::class, 'store'])->name('product.store');
 Route::post('/admin/store-product', [ProductController::class, 'store'])->name('storeproduct');
 Route::get('/admin/products/create', [ProductController::class, 'create'])->name('products.create');
+
+Route::get('/edit_product/{id}', [AdminController::class, 'edit_product2'])->name('edit_product');
+Route::post('/update-product/{id}', [AdminController::class, 'update_product'])->name('update_product.store');
+Route::delete('/product/{id}', [ProductController::class, 'delete_product2'])->name('product.delete2');
