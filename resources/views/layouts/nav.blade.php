@@ -66,6 +66,7 @@
                     </div>
                 </div>
                 <a href="{{ route('sosanh') }}" class="nav-item nav-link">So sánh</a>
+                {{-- <a href="{{ route('profile') }}" class="nav-item nav-link">xem thông tin</a> --}}
                 <a href="{{ route('shopping_cart') }}" class="nav-item nav-link">Giỏ hàng</a>
                
                 <a href="{{ route('login') }}" class="nav-item nav-link">Tài khoản</a>
@@ -97,44 +98,54 @@
 
 <div class="user-menu" id="userMenu">
    
-    <ul>
-        <li><a href="#"><i class="fas fa-user icon"></i>Xem thông tin</a></li>
-        <li><a href="#"><i class="fas fa-exchange-alt icon"></i>Chuyển đổi tài khoản</a></li>
+    <ul style="color: #333;">
+        {{-- <li><a href="{{ route('sosanh') }}"><i class="fas fa-user icon"></i>Xem thông tin</a></li> --}}
+        {{-- <li><a href="#"><i class="fas fa-exchange-alt icon"></i>Chuyển đổi tài khoản</a></li> --}}
+        <a href="{{ route('profile') }}"> <li><i class="fas fa-user icon"></i>&nbsp;&nbsp;&nbsp;Xem thông tin</li> </a>
+        <a href=""> <li><i class="fas fa-exchange-alt icon"></i>&nbsp;&nbsp;&nbsp;Chuyển đổi tài khoản</li></a>
+      
+        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+            @csrf
+        </form>
         
-        <li><a href="#"><i class="fas fa-sign-out-alt icon"></i>Đăng xuất</a></li>
+        <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+            <li><i class="fas fa-sign-out-alt icon"></i>&nbsp;&nbsp;&nbsp;Đăng xuất</li>
+        </a>
+        
     </ul>
 </div>
 
 
 <script>
-    // Show/Hide user menu when clicking on user avatar
-    document.getElementById('menuu').addEventListener('click', function () {
-       const userMenu = document.getElementById('userMenu');
-       
-       // Nếu menu đang hiển thị, thu vào
-       if (userMenu.style.display === 'block') {
-           userMenu.style.animation = 'slideOut 0.3s forwards'; // Hiệu ứng thu vào
-           setTimeout(() => {
-               userMenu.style.display = 'none';
-           }, 300);
-       } 
-       // Nếu menu không hiển thị, thu vào
-       else {
-           userMenu.style.display = 'block';
-           userMenu.style.animation = 'slideIn 0.3s forwards'; // Hiệu ứng thu vào
-       }
-   });
+document.getElementById('menuu').addEventListener('click', function (event) {
+    const userMenu = document.getElementById('userMenu');
+    
+    // Ngừng sự kiện click để tránh ảnh hưởng đến liên kết trong menu
+    event.stopPropagation(); 
 
-   // Close user menu if clicked outside
-   window.addEventListener('click', function (event) {
-       const userMenu = document.getElementById('userMenu');
-       if (!userMenu.contains(event.target) && !document.getElementById('menuu').contains(event.target)) {
-           userMenu.style.animation = 'slideOut 0.3s forwards'; // Thu vào menu khi click ra ngoài
-           setTimeout(() => {
-               userMenu.style.display = 'none';
-           }, 300);
-       }
-   });
+    // Nếu menu đang hiển thị, thu vào
+    if (userMenu.style.display === 'block') {
+        userMenu.style.animation = 'slideOut 0.3s forwards';
+        setTimeout(() => {
+            userMenu.style.display = 'none';
+        }, 300);
+    } else {
+        userMenu.style.display = 'block';
+        userMenu.style.animation = 'slideIn 0.3s forwards';
+    }
+});
+
+// Đảm bảo menu đóng lại khi click bên ngoài
+window.addEventListener('click', function (event) {
+    const userMenu = document.getElementById('userMenu');
+    if (!userMenu.contains(event.target) && !document.getElementById('menuu').contains(event.target)) {
+        userMenu.style.animation = 'slideOut 0.3s forwards';
+        setTimeout(() => {
+            userMenu.style.display = 'none';
+        }, 300);
+    }
+});
+
 </script>
 <script>
     function handleSearch(searchBoxId, suggestionListId) {

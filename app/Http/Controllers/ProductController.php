@@ -88,7 +88,13 @@ $relatedProducts = Product::where('brand_id', $product->brand_id)
         $product = Product::where('name',$request->input('phonea'))->first();
         // $product = Product::findOrFail($id); 
         $config = $product->phoneConfig;
-       
-        return view('home.inforProduct', compact('config','product','brands','categories'));
+        $brand = $product->brand;  // Truy cập thông tin thương hiệu của sản phẩm
+
+        // $relatedProducts = $brand->products->where('id', '!=', $id); // Loại trừ sản phẩm hiện tại
+        $relatedProducts = Product::where('brand_id', $product->brand_id)
+            ->where('category_id', $product->category_id)
+            ->where('id', '!=', $product->id)  // Loại bỏ sản phẩm hiện tại
+            ->get();
+        return view('home.inforProduct', compact('config','product','brands','categories','relatedProducts'));
     }
 }

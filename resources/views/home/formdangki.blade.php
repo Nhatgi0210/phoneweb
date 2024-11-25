@@ -190,7 +190,8 @@ a .to-home{
         <input type="email" name="email" placeholder="Email" required>
         <input type="text" name="phone" placeholder="Phone number (10 digits)"  pattern="[0-9]{10}" required>
         <input type="password" id="password" name="password" placeholder="Password" required>
-        <input type="password" id="confirmPassword" placeholder="Confirm Password" required>
+<input type="password" id="confirmPassword" name="password_confirmation" placeholder="Confirm Password" required>
+
         <label class="checkbox-container" >
           <input type="checkbox" required>
         Tôi đồng ý với&nbsp;<div class="p" style="color: red;"><u>Điều khoản</u></div>&nbsp;của công ty

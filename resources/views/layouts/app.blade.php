@@ -4,6 +4,8 @@
 <head>
     <meta charset="utf-8">
     <title>SMART PHONE</title>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
@@ -76,32 +78,28 @@
         opacity: 0;
     }
 }
-        #userMenu {
-    position: absolute;
-    top: 15%; /* Đặt menu cách avatar 50px */
-    right: 0;
+#userMenu {
+    position: fixed; /* Đặt vị trí menu cố định trên màn hình */
+    top: 120px; /* Khoảng cách từ viền trên màn hình */
+    right: 20px; /* Khoảng cách từ viền phải màn hình */
     background-color: #fff;
     width: 220px;
     border-radius: 10px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
     display: none;
     opacity: 0;
-    z-index: 100;
+    z-index: 1000;
     transform: translateX(80%); /* Bắt đầu ở ngoài màn hình */
-    
-    position: sticky;
-    margin-left: auto;!important
-    top: 10; /* Độ cao từ đỉnh trang */
-   
-   
+    color: #333 !important; /* Sửa lại cú pháp */
 }
-
 
 #userMenu.show {
     display: block;
-    opacity: 1; /* Khi hiển thị, opacity = 1 */
-    transform: translateY(0); /* Vị trí ban đầu khi hiển thị */
+    opacity: 1;
+    transform: translateX(0); /* Hiển thị menu */
 }
+
+
 
 #userMenu ul {
     list-style: none;

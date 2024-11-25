@@ -21,19 +21,28 @@ class AccountController extends Controller
         $request->validate([
             'name' => 'required|string|max:50',
             'email' => 'required|email|unique:users,email',
-            'password' => 'required|string',
+            'phone' => 'required|string|regex:/^[0-9]{10}$/|unique:users,phone', // Kiểm tra định dạng số điện thoại
+            'password' => 'required|string|min:6|confirmed', // Đảm bảo mật khẩu và confirm password khớp
         ]);
+    
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
-            'password' => md5($request->password)
+            'phone' => $request->phone, // Thêm dòng này để lưu số điện thoại
+            'password' => bcrypt($request->password), // Mã hóa mật khẩu bằng bcrypt
         ]);
-        $user->refresh();
+    
         auth()->login($user);
-        $positionName = $user->Position->name;
-        session(['position' => $positionName]);
+    
+        // Nếu bạn dùng Position liên quan đến user, cần xử lý mối quan hệ này
+        if ($user->Position) {
+            $positionName = $user->Position->name;
+            session(['position' => $positionName]);
+        }
+    
         return redirect()->route('home')->with('success', 'Đăng ký thành công!');
     }
+    
     // login
     public function showLoginForm(){
         return view('home.formdangnhap');
@@ -65,8 +74,10 @@ class AccountController extends Controller
     }
     public function logout()
     {
-        auth()->logout(); 
-        session()->put('position', null);
-        return redirect()->route('home'); 
+        auth()->logout(); // Đăng xuất người dùng
+        session()->invalidate(); // Hủy bỏ tất cả session
+        session()->regenerateToken(); // Tạo lại token CSRF
+        return redirect()->route('homemm'); // Chuyển hướng về trang chủ hoặc trang đăng nhập
     }
+    
 }

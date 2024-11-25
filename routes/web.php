@@ -59,6 +59,7 @@ Route::get('/appadmin', [AdminController::class, 'appadmin'])->name('appadmin');
 Route::get('/admin-thongtin', [AdminController::class, 'admin_thongtin'])->name('admin_thongtin');
 Route::get('/admin', [AdminController::class, 'admin'])->name('admin')->middleware('role:admin');
 Route::get('/admin_manage_product', [AdminController::class, 'admin_manage_product'])->name('admin_manage_product');
+Route::get('/adminthongtin', [AdminController::class, 'adminthongtin'])->name('adminthongtin');
 Route::get('/admin_manage_user', [AdminController::class, 'admin_manage_user'])->name('admin_manage_user');
 Route::get('/editproduct', [AdminController::class, 'editproduct'])->name('editproduct');
 Route::get('/add_product', [AdminController::class, 'add_product'])->name('add_product');
@@ -69,7 +70,25 @@ Route::post('/register', [AccountController::class, 'register']);
 Route::get('/login',[AccountController::class,'showLoginForm'])->name("login")->middleware('login');
 Route::post('/login',[AccountController::class,'login']);
 
-Route::get('/logout',[AccountController::class,'logout']);
-Route::get('showsearch',[ProductController::class,'showsearch'])->name('showsearch');
+// Route::get('/logout',[AccountController::class,'logout']);
+Route::post('/logout', [AccountController::class, 'logout'])
+    ->middleware('auth')
+    ->name('logout');
 
+
+Route::get('showsearch',[ProductController::class,'showsearch'])->name('showsearch');
+Route::get('/edit_user/{id}', [AdminController::class, 'edit_user'])->name('edit_user');
+Route::post('/update_user/{id}', [AdminController::class, 'update_user'])->name('update_user');
+Route::post('/update_avatar/{id}', [AdminController::class, 'update_avatar'])->name('update_avatar');
+Route::post('/update-user-and-avatar', [AdminController::class, 'updateUserAndAvatar'])->name('update_user_and_avatar');
+
+Route::get('/delete_user', [AdminController::class, 'delete_user'])->name('delete_user');
+Route::get('/admin-thongtin2/{id}', [AdminController::class, 'admin_thongtin2'])->name('admin_thongtin2');
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [AdminController::class, 'profile'])->name('profile');
+    // Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+});
+
+Route::delete('/user/{userId}', [AdminController::class, 'destroy'])->name('user.delete');
+Route::get('/admin/users', [AdminController::class, 'adminthongtin'])->name('adminthongtin');
 
