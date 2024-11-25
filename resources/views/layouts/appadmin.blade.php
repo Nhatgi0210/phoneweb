@@ -28,6 +28,13 @@ body {
     display: flex;
     width: 100%;
 }
+.table-custom select {
+    width: 100%;
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    background-color: #f9f9f9;
+}
 
 .sidebar {
     width: 250px;

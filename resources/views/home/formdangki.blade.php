@@ -188,18 +188,20 @@ a .to-home{
         @csrf
         <input type="text" name="name" placeholder="Full Name" required>
         <input type="email" name="email" placeholder="Email" required>
-        <input type="text" name="phone" placeholder="Phone number (10 digits)"  pattern="[0-9]{10}" required>
+        <input type="text" name="phone" placeholder="Phone number (10 digits)" pattern="[0-9]{10}" required>
         <input type="password" id="password" name="password" placeholder="Password" required>
-<input type="password" id="confirmPassword" name="password_confirmation" placeholder="Confirm Password" required>
-
-        <label class="checkbox-container" >
-          <input type="checkbox" required>
-        Tôi đồng ý với&nbsp;<div class="p" style="color: red;"><u>Điều khoản</u></div>&nbsp;của công ty
+        <input type="password" id="confirmPassword" name="password_confirmation" placeholder="Confirm Password" required>
+    
+        <label class="checkbox-container">
+            <input type="checkbox" required>
+            Tôi đồng ý với&nbsp;<div class="p" style="color: red;"><u>Điều khoản</u></div>&nbsp;của công ty
         </label>
         <button type="submit">Sign Up</button>
-       <a href="{{ route('login') }}"> <button type="submit" class="signin-btn">Sign In</button> </a>
-        {{-- <a href="{{ route('dangnhap') }}"><button class="signin-btn">Sign In</button></a> --}}
-      </form>
+        
+        <!-- Nút Sign In dưới dạng liên kết -->
+        <p class="signup-link">You already have an account <a href="{{ route('login') }}">Sign Up</a></p>
+    </form>
+    
       {{-- <a href="{{ route('login') }}"><button class="signin-btn">Sign In</button></a> --}}
     </div>
     <div class="illustration">

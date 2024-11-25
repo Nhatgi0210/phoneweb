@@ -113,7 +113,19 @@
             <td>{{ $user->name }}</td>
             <td>{{ $user->email }}</td>
             <td>{{ $user->phone }}</td>
-            <td>{{ $user->position->name }}</td>
+            <td>
+                <form action="{{ route('admin.update_position', $user->id) }}" method="POST">
+                    @csrf
+                    @method('PUT')
+                    <select name="position_id" onchange="this.form.submit()" class="form-control">
+                        @foreach ($positions as $position)
+                            <option value="{{ $position->id }}" {{ $user->position_id == $position->id ? 'selected' : '' }}>
+                                {{ $position->name }}
+                            </option>
+                        @endforeach
+                    </select>
+                </form>
+            </td>
             <td>
                 <a href="{{ route('admin_thongtin2', $user->id) }}" style="text-decoration: none;">
                     <button class="btn-custom btn-view">Xem</button>
@@ -134,10 +146,9 @@
             </td>
         </tr>
         @endforeach
-        
-    
     </tbody>
 </table>
+
 <script>
  <script>
   function deleteUser(userId) {

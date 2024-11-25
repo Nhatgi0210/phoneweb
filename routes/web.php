@@ -91,4 +91,5 @@ Route::middleware('auth')->group(function () {
 
 Route::delete('/user/{userId}', [AdminController::class, 'destroy'])->name('user.delete');
 Route::get('/admin/users', [AdminController::class, 'adminthongtin'])->name('adminthongtin');
+Route::put('/admin/users/{id}/update-position', [AdminController::class, 'updatePosition'])->name('admin.update_position');
 

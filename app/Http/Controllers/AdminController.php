@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\Position;
 use App\Models\Brand;
 use App\Models\Product;
 use App\Models\Category;
@@ -69,13 +69,17 @@ class AdminController extends Controller
         return view('home.add_product', compact('hotProducts', 'cheapProducts', 'brands','categories'));
     }
     public function adminthongtin()
-    {
-        // Lấy danh sách người dùng cùng quyền hạn (position)
-        $users = User2::with('position')->get();  // Lấy dữ liệu từ bảng 'users' cùng với dữ liệu quyền hạn từ bảng 'positions'
+{
+    // Lấy danh sách người dùng cùng quyền hạn (position)
+    $users = User2::with('position')->get();  // Lấy dữ liệu từ bảng 'users' cùng với dữ liệu quyền hạn từ bảng 'positions'
 
-        // Truyền dữ liệu qua view 'home.admin_manage_user'
-        return view('home.admin_manage_user', compact('users'));
-    }
+    // Lấy danh sách quyền từ bảng 'positions'
+    $positions = Position::all();  // Giả sử bạn có model Position, nếu không thì thay thế bằng model tương ứng
+
+    // Truyền dữ liệu qua view 'home.admin_manage_user'
+    return view('home.admin_manage_user', compact('users', 'positions'));
+}
+
     public function edit_user($id)
     {
         // Tìm người dùng theo ID
@@ -170,6 +174,25 @@ public function destroy($id)
     } else {
         return redirect()->route('adminthongtin')->with('error', 'User not found');
     }
+}
+
+
+public function updatePosition(Request $request, $id)
+{
+    // Validate dữ liệu đầu vào
+    $request->validate([
+        'position_id' => 'required|exists:positions,id',  // Kiểm tra position_id có tồn tại trong bảng positions
+    ]);
+
+    // Lấy người dùng theo ID
+    $user = User2::findOrFail($id);
+
+    // Cập nhật quyền của người dùng
+    $user->position_id = $request->input('position_id');
+    $user->save();
+
+    // Quay lại trang danh sách người dùng với thông báo thành công
+    return redirect()->route('adminthongtin')->with('success', 'Quyền hạn người dùng đã được cập nhật!');
 }
 
 
