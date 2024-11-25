@@ -132,42 +132,31 @@ table td {
 <h2>Danh Sách Sản Phẩm</h2> <br>
  <a href=" {{ route('add_product') }}"><button class="nutthem">Thêm sản phẩm </button> </a>
 
-<table>
+ <table>
     <thead>
         <tr>
             <th>Số Thứ Tự</th>
+            <th>Ảnh</th>
             <th>Tên Sản Phẩm</th>
             <th>Hành Động</th>
         </tr>
     </thead>
     <tbody>
+        @foreach ($products as $index => $product)
         <tr>
-            <td>1</td>
-            <td>Điện Thoại iPhone 14</td>
+            <td>{{ $index + 1 }}</td>
+            <td> <img src="{{ asset('storage/' . $product->main_image_path) }}" 
+                alt="{{ $product->name }}" 
+                width="100" 
+                height="auto"></td>
+            <td>{{ $product->name }}</td>
             <td>
-                <a href="#" class="btn btn-view">Xem</a>
-                <a href="{{ route('edit_product') }}" class="btn btn-edit">Sửa</a>
-                <a href="#" class="btn btn-delete">Xóa</a>
+                <a href="{{ route('edit_product', $product->id) }}" class="btn btn-edit">Sửa</a>
+                <a href="#" class="btn btn-delete" onclick="return confirm('Bạn có chắc chắn muốn xóa sản phẩm này?')">Xóa</a>
             </td>
         </tr>
-        <tr>
-            <td>2</td>
-            <td>Điện Thoại Samsung Galaxy S23</td>
-            <td>
-                <a href="#" class="btn btn-view">Xem</a>
-                <a href="{{ route('edit_product') }}" class="btn btn-edit">Sửa</a>
-                <a href="#" class="btn btn-delete">Xóa</a>
-            </td>
-        </tr>
-        <tr>
-            <td>3</td>
-            <td>Xiaomi 13</td>
-            <td>
-                <a href="#" class="btn btn-view">Xem</a>
-                <a href="#" class="btn btn-edit">Sửa</a>
-                <a href="#" class="btn btn-delete">Xóa</a>
-            </td>
-        </tr>
+        @endforeach
     </tbody>
 </table>
+
 @endsection

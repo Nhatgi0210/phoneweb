@@ -1,31 +1,40 @@
+
+
 @extends('layouts.appadmin')
 
 @section('addproduct')
 <h1>Thêm Sản Phẩm</h1>
 
-<!-- Success Alert Message -->
+<!-- Hiển thị lỗi nếu có -->
+@if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
 
-
-<form action="#" method="POST" enctype="multipart/form-data">
-    
+<form action="{{ route('add_product.store') }}" method="POST" enctype="multipart/form-data">
+    @csrf
     <!-- Loại sản phẩm -->
     <div class="form-group">
         <label for="MaDM">Loại sản phẩm:</label>
         <select id="MaDM" name="MaDM" class="form-control">
-            <option value="1">Điện thoại</option>
-            <option value="2">Tai nghe</option>
-            <option value="3">Sạc</option>
-            <option value="4">Loa</option>
+            @foreach($categories as $category)
+                <option value="{{ $category->id }}">{{ $category->name }}</option>
+            @endforeach
         </select>
     </div>
 
-    <!-- Loại sản phẩm con -->
+    <!-- Hãng sản phẩm -->
     <div class="form-group">
         <label for="MaLSP">Hãng:</label>
         <select id="MaLSP" name="MaLSP" class="form-control">
-            <option value="1">Redmi</option>
-            <option value="2">Samsung</option>
-            <option value="3">Vivo</option>
+            @foreach($brands as $brand)
+                <option value="{{ $brand->id }}">{{ $brand->name }}</option>
+            @endforeach
         </select>
     </div>
 
@@ -40,52 +49,37 @@
         <label for="DonGia">Đơn giá:</label>
         <input type="text" id="DonGia" name="DonGia" class="form-control" placeholder="Nhập đơn giá sản phẩm">
     </div>
-{{-- cấu hình --}}
-<div class="form-group">
-    <label for="ManHinh">Màn hình:</label>
-    <input type="text" id="ManHinh" name="ManHinh" class="form-control" placeholder="Nhập thông số màn hình">
-</div>
 
-<div class="form-group">
-    <label for="Chip">Chip:</label>
-    <input type="text" id="Chip" name="Chip" class="form-control" placeholder="Nhập thông tin chip">
-</div>
-
-<div class="form-group">
-    <label for="RAM">RAM:</label>
-    <input type="text" id="RAM" name="RAM" class="form-control" placeholder="Nhập dung lượng RAM">
-</div>
-
-<div class="form-group">
-    <label for="ROM">ROM:</label>
-    <input type="text" id="ROM" name="ROM" class="form-control" placeholder="Nhập dung lượng ROM">
-</div>
-
-<div class="form-group">
-    <label for="Pin">Pin:</label>
-    <input type="text" id="Pin" name="Pin" class="form-control" placeholder="Nhập dung lượng pin">
-</div>
-
-   
-
-    <!-- Hình ảnh 1 -->
+    <!-- Các thông số cấu hình -->
     <div class="form-group">
-        <label for="HinhAnh1">Hình ảnh 1:</label>
-        <img src="https://via.placeholder.com/200" alt="Hình ảnh 1">
+        <label for="ManHinh">Màn hình:</label>
+        <input type="text" id="ManHinh" name="ManHinh" class="form-control" placeholder="Nhập thông số màn hình">
+    </div>
+
+    <div class="form-group">
+        <label for="Chip">Chip:</label>
+        <input type="text" id="Chip" name="Chip" class="form-control" placeholder="Nhập thông tin chip">
+    </div>
+
+    <div class="form-group">
+        <label for="RAM">RAM:</label>
+        <input type="text" id="RAM" name="RAM" class="form-control" placeholder="Nhập dung lượng RAM">
+    </div>
+
+    <div class="form-group">
+        <label for="ROM">ROM:</label>
+        <input type="text" id="ROM" name="ROM" class="form-control" placeholder="Nhập dung lượng ROM">
+    </div>
+
+    <div class="form-group">
+        <label for="Pin">Pin:</label>
+        <input type="text" id="Pin" name="Pin" class="form-control" placeholder="Nhập dung lượng pin">
+    </div>
+
+    <!-- Hình ảnh -->
+    <div class="form-group">
+        <label for="HinhAnh1">Hình ảnh:</label>
         <input type="file" id="HinhAnh1" name="HinhAnh1" class="form-control">
-    </div>
-
-    <!-- Hình ảnh 2 -->
-    <div class="form-group">
-        <label for="HinhAnh2">Hình ảnh 2:</label>
-        <img src="https://via.placeholder.com/200" alt="Hình ảnh 2">
-        <input type="file" id="HinhAnh2" name="HinhAnh2" class="form-control">
-    </div>
-    <!-- Hình ảnh 3 -->
-    <div class="form-group">
-        <label for="HinhAnh3">Hình ảnh 3:</label>
-        <img src="https://via.placeholder.com/200" alt="Hình ảnh 3">
-        <input type="file" id="HinhAnh3" name="HinhAnh3" class="form-control">
     </div>
 
     <!-- Mô tả -->
@@ -103,6 +97,8 @@
     <button type="submit" class="btn">Thêm sản phẩm</button>
 </form>
 @endsection
+
+
 
 @section('cssaddproduct')
 h1 {

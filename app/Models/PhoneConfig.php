@@ -12,4 +12,12 @@ class PhoneConfig extends Model
     {
         return $this->belongsTo(Product::class);
     }
+    protected $fillable = [
+        'product_id',
+        'chip',
+        'ram',
+        'rom',
+        'pin',
+        'man_hinh',
+    ];
 }

@@ -58,11 +58,25 @@ Route::get('compare',[ProductController::class,'compare'])->name('compare.phone'
 Route::get('/appadmin', [AdminController::class, 'appadmin'])->name('appadmin');
 Route::get('/admin-thongtin', [AdminController::class, 'admin_thongtin'])->name('admin_thongtin');
 Route::get('/admin', [AdminController::class, 'admin'])->name('admin')->middleware('role:admin');
-Route::get('/admin_manage_product', [AdminController::class, 'admin_manage_product'])->name('admin_manage_product');
+// Route::get('/admin_manage_product', [AdminController::class, 'admin_manage_product'])->name('admin_manage_product');
 Route::get('/adminthongtin', [AdminController::class, 'adminthongtin'])->name('adminthongtin');
 Route::get('/admin_manage_user', [AdminController::class, 'admin_manage_user'])->name('admin_manage_user');
-Route::get('/editproduct', [AdminController::class, 'editproduct'])->name('editproduct');
+Route::get('/edit_product', [AdminController::class, 'edit_product'])->name('edit_product');
 Route::get('/add_product', [AdminController::class, 'add_product'])->name('add_product');
+Route::post('/add_product', [ProductController::class, 'store'])->name('add_product.store');
+
+
+Route::put('/edit_product/{id}', [ProductController::class, 'update'])->name('edit_product.update');
+
+
+
+// // Route GET để hiển thị form thêm sản phẩm
+// Route::get('/add_product', [ProductController::class, 'create'])->name('add_product');
+
+// // Route POST để lưu sản phẩm
+// Route::post('/add_product', [ProductController::class, 'store'])->name('add_product');
+
+
 
 Route::get('/register', [AccountController::class, 'showRegistrationForm'])->name('register')->middleware('login');
 Route::post('/register', [AccountController::class, 'register']);
@@ -75,6 +89,7 @@ Route::post('/logout', [AccountController::class, 'logout'])
     ->middleware('auth')
     ->name('logout');
 
+    Route::get('/admin_manage_product', [AdminController::class, 'admin_manage_product'])->name('admin_manage_product');
 
 Route::get('showsearch',[ProductController::class,'showsearch'])->name('showsearch');
 Route::get('/edit_user/{id}', [AdminController::class, 'edit_user'])->name('edit_user');
@@ -92,4 +107,6 @@ Route::middleware('auth')->group(function () {
 Route::delete('/user/{userId}', [AdminController::class, 'destroy'])->name('user.delete');
 Route::get('/admin/users', [AdminController::class, 'adminthongtin'])->name('adminthongtin');
 Route::put('/admin/users/{id}/update-position', [AdminController::class, 'updatePosition'])->name('admin.update_position');
-
+Route::post('/add-product', [ProductController::class, 'store'])->name('product.store');
+Route::post('/admin/store-product', [ProductController::class, 'store'])->name('storeproduct');
+Route::get('/admin/products/create', [ProductController::class, 'create'])->name('products.create');
