@@ -77,7 +77,7 @@ class AccountController extends Controller
         auth()->logout(); // Đăng xuất người dùng
         session()->invalidate(); // Hủy bỏ tất cả session
         session()->regenerateToken(); // Tạo lại token CSRF
-        return redirect()->route('homemm'); // Chuyển hướng về trang chủ hoặc trang đăng nhập
+        return redirect()->route('home'); // Chuyển hướng về trang chủ hoặc trang đăng nhập
     }
     
 }

@@ -79,7 +79,7 @@ Route::put('/edit_product/{id}', [ProductController::class, 'update'])->name('ed
 
 
 
-Route::get('/register', [AccountController::class, 'showRegistrationForm'])->name('register')->middleware('login');
+Route::get('/register', [AccountController::class, 'showRegistrationForm'])->name('register')->middleware('notlogin');
 Route::post('/register', [AccountController::class, 'register']);
 
 Route::get('/login',[AccountController::class,'showLoginForm'])->name("login")->middleware('notlogin');
