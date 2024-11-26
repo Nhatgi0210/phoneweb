@@ -86,33 +86,38 @@
             <div class="tab-content">
                 <div id="tab-1" class="tab-pane fade show p-0 active">
                     <div class="row g-4">
-                        @foreach ($hotProducts as $hotProduct)
+                        @foreach ($hotProducts as $product)
                         
                         
                         <div class="col-xl-3 col-lg-4 col-md-6 wow fadeInUp product" data-wow-delay="0.3s">
                             <div class="product-item">
                               <div class="position-relative bg-light overflow-hidden" style="width: 300px; height: 200px;"> <!-- Thiết lập khung cố định -->
-                                <img class="img-fluid" src="{{ asset('storage/' .$hotProduct->main_image_path) }}" alt="" style="max-width: 100%; max-height: 100%; object-fit: contain; display: block; margin: auto;">
+                                <img class="img-fluid" src="{{ asset('storage/' .$product->main_image_path) }}" alt="" style="max-width: 100%; max-height: 100%; object-fit: contain; display: block; margin: auto;">
                               </div>
                             
                             
                                 <div class="text-center p-4">
-                                    <a class="d-block h5 mb-2" href="{{ route('product.show', ['id' => $hotProduct->id]) }}">{{ $hotProduct->name }}</a>
-                                    <span class="text-primary me-1 formatted-number">{{ $hotProduct->discount_price }}</span>
-                                    <span class="text-body text-decoration-line-through formatted-number">{{ $hotProduct->original_price }}</span>
+                                    <a class="d-block h5 mb-2" href="{{ route('product.show', ['id' => $product->id]) }}">{{ $product->name }}</a>
+                                    <span class="text-primary me-1 formatted-number">{{ $product->discount_price }}</span>
+                                    <span class="text-body text-decoration-line-through formatted-number">{{ $product->original_price }}</span>
                                 </div>
-                                 <div style="text-align: center">
+                                 {{-- <div style="text-align: center">
                                 <b>Màn hình: </b> 6.5 in <br>
                                 <b>Chip:</b> Snapdragon 8 gen 3 <br>
                                 <b>Pin:</b> 5000 mAh
-                                 </div>
+                                 </div> --}}
                                 <div class="d-flex border-top">
                                     <small class="w-50 text-center border-end py-2">
                                       
-                                        <a class="text-body" href="{{ route('product.show', ['id' => $hotProduct->id]) }}"><i class="fa fa-eye text-primary me-2"></i>View detail</a>
+                                        <a class="text-body" href="{{ route('product.show', ['id' => $product->id]) }}"><i class="fa fa-eye text-primary me-2"></i>View detail</a>
                                     </small>
                                     <small class="w-50 text-center py-2">
-                                        <a class="text-body" href=""><i class="fa fa-shopping-bag text-primary me-2"></i>Add to cart</a>
+                                      <span class="text-body" href="">
+                                        <i class="fa fa-shopping-bag text-primary me-2"></i>
+                                        <button class="submit-btn add-to-cart" data-product-id="{{ $product->id }}" data-user-id="{{ auth()->user()->id??'0' }}">Add to cart</button>
+                                        <meta name="csrf-token" content="{{ csrf_token() }}">
+                                      </span>
+                                      
                                     </small>
                                 </div>
                             </div>
@@ -143,7 +148,7 @@
             <div class="tab-content">
                 <div id="tab-1" class="tab-pane fade show p-0 active">
                     <div class="row g-4">
-                        @foreach ($cheapProducts as $cheapProduct)
+                        @foreach ($cheapProducts as $product)
                         
                         
                         <div class="col-xl-3 col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
@@ -152,19 +157,24 @@
                              
                               {{--  --}}
                                 <div class="position-relative bg-light overflow-hidden" style="width: 300px; height: 200px;">
-                                    <img class="img-fluid w-100" src="{{ asset('storage/' .$cheapProduct->main_image_path) }}" alt=""style="max-width: 100%; max-height: 100%; object-fit: contain; display: block; margin: auto;">
+                                    <img class="img-fluid w-100" src="{{ asset('storage/' .$product->main_image_path) }}" alt=""style="max-width: 100%; max-height: 100%; object-fit: contain; display: block; margin: auto;">
                                 </div>
                                 <div class="text-center p-4">
-                                    <a class="d-block h5 mb-2" href="{{ route('product.show', ['id' => $cheapProduct->id]) }}">{{ $cheapProduct->name }}</a>
-                                    <span class="text-primary me-1 formatted-number">{{ $cheapProduct->discount_price }}</span>
-                                    <span class="text-body text-decoration-line-through formatted-number">{{ $cheapProduct->original_price }}</span>
+                                    <a class="d-block h5 mb-2" href="{{ route('product.show', ['id' => $product->id]) }}">{{ $product->name }}</a>
+                                    <span class="text-primary me-1 formatted-number">{{ $product->discount_price }}</span>
+                                    <span class="text-body text-decoration-line-through formatted-number">{{ $product->original_price }}</span>
                                 </div>
                                 <div class="d-flex border-top">
                                     <small class="w-50 text-center border-end py-2">
-                                        <a class="text-body" href="{{ route('product.show', ['id' => $cheapProduct->id]) }}"><i class="fa fa-eye text-primary me-2"></i>View detail</a>
+                                        <a class="text-body" href="{{ route('product.show', ['id' => $product->id]) }}"><i class="fa fa-eye text-primary me-2"></i>View detail</a>
                                     </small>
                                     <small class="w-50 text-center py-2">
-                                        <a class="text-body" href=""><i class="fa fa-shopping-bag text-primary me-2"></i>Add to cart</a>
+                                      <span class="text-body" href="">
+                                        <i class="fa fa-shopping-bag text-primary me-2"></i>
+                                        <button class="submit-btn add-to-cart" data-product-id="{{ $product->id }}" data-user-id="{{ auth()->user()->id??'0' }}">Add to cart</button>
+                                        <meta name="csrf-token" content="{{ csrf_token() }}">
+                                      </span>
+                                      
                                     </small>
                                 </div>
                             </div>

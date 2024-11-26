@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AccountController;
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\AdminController;
@@ -48,7 +49,7 @@ Route::get('/test2', [HomeController::class, 'test2']);
 Route::get('/sosanh', [HomeController::class, 'sosanh'])->name('sosanh');
 
 
-Route::get('/shopping-cart', [HomeController::class, 'shopping_cart'])->name('shopping_cart')->middleware('auth');
+Route::get('/shopping-cart', [CartController::class, 'shopping_cart'])->name('shopping_cart')->middleware('auth');
 Route::get('/products',[ProductController::class, 'index']);
 Route::get('/brands/{name}', [ProductController::class, 'showProductsByBrandName']);
 Route::get('/categories/{name}', [ProductController::class, 'showProductsByCategory'])->name('category.products');
@@ -63,12 +64,14 @@ Route::get('/admin_manage_user', [AdminController::class, 'admin_manage_user'])-
 Route::get('/editproduct', [AdminController::class, 'editproduct'])->name('editproduct');
 Route::get('/add_product', [AdminController::class, 'add_product'])->name('add_product');
 
-Route::get('/register', [AccountController::class, 'showRegistrationForm'])->name('register')->middleware('login');
+Route::get('/register', [AccountController::class, 'showRegistrationForm'])->name('register')->middleware('notlogin');
 Route::post('/register', [AccountController::class, 'register']);
 
-Route::get('/login',[AccountController::class,'showLoginForm'])->name("login")->middleware('login');
+Route::get('/login',[AccountController::class,'showLoginForm'])->name("login")->middleware('notlogin');
 Route::post('/login',[AccountController::class,'login']);
 
-Route::get('/logout',[AccountController::class,'logout']);
+Route::get('/logout',[AccountController::class,'logout'])->name('logout');
+
+Route::post('/add-to-cart',[CartController::class,'addToCart'])->name('cart.add')->middleware('auth');
 
 

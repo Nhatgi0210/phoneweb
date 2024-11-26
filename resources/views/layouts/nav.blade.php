@@ -1,4 +1,16 @@
  <!-- Navbar Start -->
+
+ @php
+                if (auth()->check()) {
+                    $link = "#";
+                    $username = auth()->user()->name;
+                }
+                else{
+                    $link = route('login');
+                    $username = "Chưa đăng nhập";
+                }
+@endphp
+
  <div class="container-fluid fixed-top px-0 wow fadeIn" data-wow-delay="0.1s">
     <div class="top-bar row gx-0 align-items-center d-none d-lg-flex">
         <div class="col-lg-6 px-5 text-start">
@@ -75,9 +87,11 @@
                 </a>
                 
             </div>
+            
+            
             <div class="d-none d-lg-flex ms-2">
                 {{-- {{ route('register') }} --}}
-                <a class="btn-sm-square bg-white rounded-circle ms-3"id="menuu">
+                <a class="btn-sm-square bg-white rounded-circle ms-3"id="menuu" href="{{ $link }}">
                     <small class="fa fa-user text-body"></small>
                 </a>
                 <a class="btn-sm-square bg-white rounded-circle ms-3" href="">
@@ -89,13 +103,15 @@
 </div>
 <!-- Navbar End -->
 
+
+
 <div class="user-menu" id="userMenu">
-   
+ 
     <ul>
-        <li><a href="#"><i class="fas fa-user icon"></i>Xem thông tin</a></li>
-        <li><a href="#"><i class="fas fa-exchange-alt icon"></i>Chuyển đổi tài khoản</a></li>
+        <li><a href="{{ route('login') }}"><i class="fas fa-user icon"></i>{{ $username}}</a></li>
+        <li><a href="#"><i class="fas fa-exchange-alt icon"></i>Xem thông tin</a></li>
         {{-- <li><a href="#"><i class="fas fa-file-invoice icon"></i>Đơn hàng</a></li> --}}
-        <li><a href="#"><i class="fas fa-sign-out-alt icon"></i>Đăng xuất</a></li>
+        <li><a href="{{ route('logout') }}"><i class="fas fa-sign-out-alt icon"></i>Đăng xuất</a></li>
     </ul>
 </div>
 
@@ -104,7 +120,6 @@
     // Show/Hide user menu when clicking on user avatar
     document.getElementById('menuu').addEventListener('click', function () {
        const userMenu = document.getElementById('userMenu');
-       
        // Nếu menu đang hiển thị, thu vào
        if (userMenu.style.display === 'block') {
            userMenu.style.animation = 'slideOut 0.3s forwards'; // Hiệu ứng thu vào

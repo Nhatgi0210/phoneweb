@@ -23,187 +23,50 @@
     <!-- test1 -->
     <table style="width: 100%; border-collapse: collapse;">
        
-        <tbody>
-            <tr>
-               <!-- Sản phẩm 1 -->
-<tr>
-    <td style="padding: 8px;">
-        <div class="cart-img">
-            <img src="img/14.jpg" alt="" style="width: 150px; height: 150px;">
-        </div>
-    </td>
+        <tbody>       
+            @foreach ($cart as $product)
+                <tr>
+                    <td style="padding: 8px;">
+                        <div class="cart-img">
+                            <img src="{{ asset('storage/' .$product->main_image_path) }}" alt="" style="width: 150px; height: 150px;">
+                        </div>
+                    </td>
 
-    <td style="padding: 8px; ">
-        <div class="cart-desc">
-            <h3>Samsung Galaxy S24 Ultra</h3>
-        </div>
-    </td>
+                    <td style="padding: 8px; ">
+                        <div class="cart-desc">
+                            <h3>{{ $product->name }}</h3>
+                        </div>
+                    </td>
 
-    <td style="padding: 8px; ">
-        <div class="cart-quantity">
-            <input type="number" id="quantity" min="0" value="1">
-        </div>
-    </td>
+                    <td style="padding: 8px; ">
+                        <div class="cart-quantity">
+                            <input type="number" id="quantity" min="0" value="{{ $product->pivot->quantity }}">
+                        </div>
+                    </td>
 
-    <td style="padding: 8px; ">
-        <div class="cart-price">
-            <p >giá sale <i class="fas fa-check-circle"></i></p>
-            <h4 style="color: #08d062;">28.000.000</h4>
-        </div>
-    </td>
+                    <td style="padding: 8px; ">
+                        <div class="cart-price">
+                            <p >giá sale <i class="fas fa-check-circle"></i></p>
+                            <h4 style="color: #08d062;">{{ $product->discount_price }}</h4>
+                        </div>
+                    </td>
 
-    <td style="padding: 8px;">
-        <div class="cart-total">
-            <p>giá gốc</p>
-            <h4><s style="color: #f53a14;">30.999.990</s></h4>
-        </div>
-    </td>
+                    <td style="padding: 8px;">
+                        <div class="cart-total">
+                            <p>giá gốc</p>
+                            <h4><s style="color: #f53a14;"> {{ $product->original_price }} </s></h4>
+                        </div>
+                    </td>
 
-    <td style="padding: 8px; ">
-        <div class="cart-remove">
-            <button class="remove-btn">
-                <i class="fas fa-trash-alt"></i> 
-            </button>
-        </div>
-    </td>
-</tr>
-<!-- Hết sản phẩm 1 -->
- 
-<!-- sản phâmr 2 -->
-<tr>
-    <td style="padding: 8px;">
-        <div class="cart-img">
-            <img src="img/13prm.jpg" alt="" style="width: 150px; height: 150px;">
-        </div>
-    </td>
-
-    <td style="padding: 8px; ">
-        <div class="cart-desc">
-            <h3> iPhone 13 Pro Max</h3>
-        </div>
-    </td>
-
-    <td style="padding: 8px; ">
-        <div class="cart-quantity">
-            <input type="number" id="quantity" min="0" value="1">
-        </div>
-    </td>
-
-    <td style="padding: 8px; ">
-        <div class="cart-price">
-            <p >giá sale <i class="fas fa-check-circle"></i></p>
-            <h4 style="color: #08d062;">28.000.000</h4>
-        </div>
-    </td>
-
-    <td style="padding: 8px;">
-        <div class="cart-total">
-            <p>giá gốc</p>
-            <h4><s style="color: #f53a14;">30.999.990</s></h4>
-        </div>
-    </td>
-
-    <td style="padding: 8px; ">
-        <div class="cart-remove">
-            <button class="remove-btn">
-                <i class="fas fa-trash-alt"></i> 
-            </button>
-        </div>
-    </td>
-</tr>
-<!-- hết sp2 -->
-
-<!-- sản phẩm 3 -->
-<tr>
-    <td style="padding: 8px;">
-        <div class="cart-img">
-            <img src="img/14.jpg" alt="" style="width: 150px; height: 150px;">
-        </div>
-    </td>
-
-    <td style="padding: 8px; ">
-        <div class="cart-desc">
-            <h3>Samsung Galaxy S24 Ultra</h3>
-            <button id="myButton">Click Me</button>
-        </div>
-    </td>
-
-    <td style="padding: 8px; ">
-        <div class="cart-quantity">
-            <input type="number" id="quantity" min="0" value="1">
-        </div>
-    </td>
-
-    <td style="padding: 8px; ">
-        <div class="cart-price">
-            <p >giá sale <i class="fas fa-check-circle"></i></p>
-            <h4 style="color: #08d062;">28.000.000</h4>
-        </div>
-    </td>
-
-    <td style="padding: 8px;">
-        <div class="cart-total">
-            <p>giá gốc</p>
-            <h4><s style="color: #f53a14;">30.999.990</s></h4>
-        </div>
-    </td>
-
-    <td style="padding: 8px; ">
-        <div class="cart-remove">
-            <button class="remove-btn">
-                <i class="fas fa-trash-alt"></i> 
-            </button>
-        </div>
-    </td>
-</tr>
-<!-- hết sản phẩm 3 -->
-
-<!-- spham4 -->
-<tr>
-    <td style="padding: 8px;">
-        <div class="cart-img">
-            <img src="img/14.jpg" alt="" style="width: 150px; height: 150px;">
-        </div>
-    </td>
-
-    <td style="padding: 8px; ">
-        <div class="cart-desc">
-            <h3>Samsung Galaxy S24 Ultra</h3>
-        </div>
-    </td>
-
-    <td style="padding: 8px; ">
-        <div class="cart-quantity">
-            <input type="number" id="quantity" min="0" value="1">
-        </div>
-    </td>
-
-    <td style="padding: 8px; ">
-        <div class="cart-price">
-            <p >giá sale <i class="fas fa-check-circle"></i></p>
-            <h4 style="color: #08d062;">28.000.000</h4>
-        </div>
-    </td>
-
-    <td style="padding: 8px;">
-        <div class="cart-total">
-            <p>giá gốc</p>
-            <h4><s style="color: #f53a14;">30.999.990</s></h4>
-        </div>
-    </td>
-
-    <td style="padding: 8px; ">
-        <div class="cart-remove">
-            <button class="remove-btn">
-                <i class="fas fa-trash-alt"></i> 
-            </button>
-        </div>
-    </td>
-
-   
-</tr>
-<!-- hép spham 4 -->
-         <hr>
+                    <td style="padding: 8px; ">
+                        <div class="cart-remove">
+                            <button class="remove-btn">
+                                <i class="fas fa-trash-alt"></i> 
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            @endforeach
         </tbody>
     </table>
     
@@ -219,8 +82,8 @@
                     <table>
                         <tr>
                             <td>
-                                Mã Hóa Đơn: <strong>123456</strong><br>
-                                Ngày Tạo: <strong>21/11/2024</strong>
+                                Mã Hóa Đơn: <strong>HD5234</strong><br>
+                                Ngày Tạo: <strong>{{ date('d-m-20y') }}</strong>
                             </td>
                             <td>
                                 <span>Địa chỉ giao hàng:</span> 123 Đường ABC, Thành phố XYZ, Việt Nam<br>
@@ -239,36 +102,30 @@
                     Giá
                 </td>
             </tr>
+            @php
+                $price = 0;
+            @endphp
+            @foreach ($cart as $product )
             <tr class="item">
                 <td>
-                    Tên sản phẩm 1
+                    {{ $product->name }}
                 </td>
-                <td>
-                    10,000,000 VND
-                </td>
-            </tr>
-            <tr class="item">
-                <td>
-                    Tên sản phẩm 2
-                </td>
-                <td>
-                    5,000,000 VND
+                <td class="formatted-number">
+                    {{ $product->discount_price }}
                 </td>
             </tr>
-            <tr class="item last">
-                <td>
-                    Tên sản phẩm 3
-                </td>
-                <td>
-                    2,000,000 VND
-                </td>
-            </tr>
+                @php
+                    $price += $product->discount_price;
+                @endphp
+            @endforeach
+            
+    
             <tr class="item">
                 <td>
                     <b>Tổng tiền hàng:</b>
                 </td>
                 <td>
-                  <b>17.000.000 VND</b>
+                  <b class="formatted-number">{{ $price}}</b>
                 </td>
             </tr>
             <tr class="item">
@@ -284,13 +141,13 @@
                      <b>Giảm giá (Voucher) </b>
                 </td>
                 <td>
-                    <b> -1,000,000 VND </b>
+                    <b> -1.000.000 VND </b>
                 </td>
             </tr>
             <tr class="total">
                 <td></td>
                 <td>
-                    Tổng cộng: 16,050,000 VND
+                    Tổng cộng: <span class="formatted-number">{{ $total = $price - 1000000 - 50000 }}</span> VND
                 </td>
             </tr>
         </table>
@@ -303,7 +160,7 @@
      
     <div class="cart-summary">
         <div class="product-total">
-            <h2>Tổng tiền (VNĐ) : <span id="total">39.980.000.000 </span></h2>
+            <h2>Tổng tiền (VNĐ) : <span id="total" class="formatted-number">{{ $total }}</span></h2>
         </div>
         <div class="product-actions">
             <a href="#hoadon" class="checkout">Xem hóa đơn</a>

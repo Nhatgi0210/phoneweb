@@ -42,4 +42,8 @@ class Product extends Model
     {
         return $this->hasOne(PhoneConfig::class);
     }
+
+    public function user(){
+        return $this->belongsToMany(User::class,'product_on_carts','product_id','user_id')->withPivot('quantity');
+    }
 }

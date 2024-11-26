@@ -1,5 +1,7 @@
 @extends('layouts.app')
 @section('main_content')
+
+
 <div class="container-fluid page-header mb-5 wow fadeIn" data-wow-delay="0.1s" style="margin-top: -130px; height: 550px;">
     <div class="container">
         <div style="margin-top: 20px"></div>
@@ -60,7 +62,11 @@
                                         <a class="text-body" href="{{ route('product.show',['id'=>$product->id ]) }}"><i class="fa fa-eye text-primary me-2"></i>View detail</a>
                                     </small>
                                     <small class="w-50 text-center py-2">
-                                        <a class="text-body" href=""><i class="fa fa-shopping-bag text-primary me-2"></i>Add to cart</a>
+                                        <span class="text-body" href="">
+                                            <i class="fa fa-shopping-bag text-primary me-2"></i>
+                                            <button class="submit-btn add-to-cart" data-product-id="{{ $product->id }}" data-user-id="{{ auth()->user()->id??'0' }}">Add to cart</button>
+                                            <meta name="csrf-token" content="{{ csrf_token() }}">
+                                        </span>
                                     </small>
                                 </div>
                             </div>
@@ -76,5 +82,5 @@
         </div>
     </div>
     {{-- cheap product --}}
-    
+   
 @endsection

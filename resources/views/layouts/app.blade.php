@@ -229,6 +229,38 @@
       });
       
           </script>
+    <script>
+        document.querySelectorAll('.add-to-cart').forEach(button => {
+            button.addEventListener('click', function () {
+            
+                const productId = this.getAttribute('data-product-id');
+                const userId = this.getAttribute('data-user-id');
+                const routeUrl = "{{ route('cart.add') }}";
+                
+                const xhr = new XMLHttpRequest();
+                xhr.open('POST', `${routeUrl}`, true);
+
+            
+                xhr.setRequestHeader('Content-Type', 'application/json');
+                xhr.setRequestHeader('X-CSRF-TOKEN', document.querySelector('meta[name="csrf-token"]').getAttribute('content')); // CSRF Token
+                xhr.onreadystatechange = function () {
+                    if (xhr.readyState === 4) {
+                        alert(xhr.responseText);
+                    };
+                };
+
+                xhr.onerror = function () {
+                    alert('Không thể kết nối đến server.');
+                };
+                const data = JSON.stringify({
+                    product_id: productId,
+                    user_id: userId
+                });
+                xhr.send(data);
+            });
+        });
+
+    </script>
 
 </body>
 
