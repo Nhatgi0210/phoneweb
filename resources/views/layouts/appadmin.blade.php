@@ -2,6 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Dashboard</title>
     <link rel="stylesheet" href="styles.css">
@@ -25,6 +27,13 @@ body {
 .container {
     display: flex;
     width: 100%;
+}
+.table-custom select {
+    width: 100%;
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    background-color: #f9f9f9;
 }
 
 .sidebar {
@@ -183,7 +192,7 @@ td {
 /* User menu styles */
 #userMenu {
     position: absolute;
-    top: 10%; /* Đặt menu cách avatar 50px */
+    top: 30px; /* Đặt menu cách avatar 50px */
     right: 0;
     background-color: #fff;
     width: 250px;
@@ -458,7 +467,7 @@ td {
             <ul class="menu-list">
    <a href="{{ route('admin_thongtin') }}" style="text-decoration: none;color: inherit;">   <li><i class="fas fa-user"></i> Xem thông tin cá nhân</li></a>
    <a href="{{ route('admin') }}" style="text-decoration: none;color: inherit;"><li><i class="fas fa-tachometer-alt"></i> Bảng theo dõi</li>     </a>
-   <a href="{{ route('admin_manage_user') }}" style="text-decoration: none;color: inherit;">     <li><i class="fas fa-users"></i> Quản lý người dùng</li></a>
+   <a href="{{ route('adminthongtin') }}" style="text-decoration: none;color: inherit;">     <li><i class="fas fa-users"></i> Quản lý người dùng</li></a>
    <a href="{{ route('admin_manage_product') }}" style="text-decoration: none;color: inherit;">     <li><i class="fas fa-chart-line"></i>Quản lý sản phẩm </li> </a>
    <li><i class="fas fa-sign-out-alt"></i> Quản lý đơn</li>
    <li><i class="fas fa-sign-out-alt"></i> Đăng xuất</li>

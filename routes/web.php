@@ -59,19 +59,60 @@ Route::get('compare',[ProductController::class,'compare'])->name('compare.phone'
 Route::get('/appadmin', [AdminController::class, 'appadmin'])->name('appadmin');
 Route::get('/admin-thongtin', [AdminController::class, 'admin_thongtin'])->name('admin_thongtin');
 Route::get('/admin', [AdminController::class, 'admin'])->name('admin')->middleware('role:admin');
-Route::get('/admin_manage_product', [AdminController::class, 'admin_manage_product'])->name('admin_manage_product');
+// Route::get('/admin_manage_product', [AdminController::class, 'admin_manage_product'])->name('admin_manage_product');
+Route::get('/adminthongtin', [AdminController::class, 'adminthongtin'])->name('adminthongtin');
 Route::get('/admin_manage_user', [AdminController::class, 'admin_manage_user'])->name('admin_manage_user');
-Route::get('/editproduct', [AdminController::class, 'editproduct'])->name('editproduct');
+Route::get('/edit_product', [AdminController::class, 'edit_product'])->name('edit_product');
 Route::get('/add_product', [AdminController::class, 'add_product'])->name('add_product');
+Route::post('/add_product', [ProductController::class, 'store'])->name('add_product.store');
 
-Route::get('/register', [AccountController::class, 'showRegistrationForm'])->name('register')->middleware('notlogin');
+
+Route::put('/edit_product/{id}', [ProductController::class, 'update'])->name('edit_product.update');
+
+
+
+// // Route GET để hiển thị form thêm sản phẩm
+// Route::get('/add_product', [ProductController::class, 'create'])->name('add_product');
+
+// // Route POST để lưu sản phẩm
+// Route::post('/add_product', [ProductController::class, 'store'])->name('add_product');
+
+
+
+Route::get('/register', [AccountController::class, 'showRegistrationForm'])->name('register')->middleware('login');
 Route::post('/register', [AccountController::class, 'register']);
 
 Route::get('/login',[AccountController::class,'showLoginForm'])->name("login")->middleware('notlogin');
 Route::post('/login',[AccountController::class,'login']);
 
-Route::get('/logout',[AccountController::class,'logout'])->name('logout');
+// Route::get('/logout',[AccountController::class,'logout']);
+Route::post('/logout', [AccountController::class, 'logout'])
+    ->middleware('auth')
+    ->name('logout');
 
+    Route::get('/admin_manage_product', [AdminController::class, 'admin_manage_product'])->name('admin_manage_product');
+
+Route::get('showsearch',[ProductController::class,'showsearch'])->name('showsearch');
+Route::get('/edit_user/{id}', [AdminController::class, 'edit_user'])->name('edit_user');
+Route::post('/update_user/{id}', [AdminController::class, 'update_user'])->name('update_user');
+Route::post('/update_avatar/{id}', [AdminController::class, 'update_avatar'])->name('update_avatar');
+Route::post('/update-user-and-avatar', [AdminController::class, 'updateUserAndAvatar'])->name('update_user_and_avatar');
+
+Route::get('/delete_user', [AdminController::class, 'delete_user'])->name('delete_user');
+Route::get('/admin-thongtin2/{id}', [AdminController::class, 'admin_thongtin2'])->name('admin_thongtin2');
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [AdminController::class, 'profile'])->name('profile');
+    // Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+});
+
+Route::delete('/user/{userId}', [AdminController::class, 'destroy'])->name('user.delete');
+Route::get('/admin/users', [AdminController::class, 'adminthongtin'])->name('adminthongtin');
+Route::put('/admin/users/{id}/update-position', [AdminController::class, 'updatePosition'])->name('admin.update_position');
+Route::post('/add-product', [ProductController::class, 'store'])->name('product.store');
+Route::post('/admin/store-product', [ProductController::class, 'store'])->name('storeproduct');
+Route::get('/admin/products/create', [ProductController::class, 'create'])->name('products.create');
+
+Route::get('/edit_product/{id}', [AdminController::class, 'edit_product2'])->name('edit_product');
+Route::post('/update-product/{id}', [AdminController::class, 'update_product'])->name('update_product.store');
+Route::delete('/product/{id}', [ProductController::class, 'delete_product2'])->name('product.delete2');
 Route::post('/add-to-cart',[CartController::class,'addToCart'])->name('cart.add')->middleware('auth');
-
-

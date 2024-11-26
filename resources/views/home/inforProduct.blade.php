@@ -221,11 +221,56 @@ table tr:nth-child(even) td {
                         <td>Camera sau</td>
                         <td>{{$config->camera_sau}}</td>
                     </tr>
-              
+                    <tr>
+                        <td>Hãng</td>
+                        <td>{{$product->brand->name}}</td>
+                    </tr>
             </tbody>
         </table>
     </div>
+    {{--  --}}
+    <br>
+
+
+    
+    
+
+    {{--  --}}
     @endisset
+    <br>
+    <div class=" text-start mb-5 wow fadeInUp " data-wow-delay="0.1s" style="max-width: 500px;">
+        <h1 class="display-5 mb-3">Các sản phẩm liên quan </h1>
+    
+    </div>
+    <br>
+    <div class="row g-4">
+        @foreach ($relatedProducts as $relatedProduct)
+        <div class="col-xl-3 col-lg-4 col-md-6">
+            <div class="product-item">
+                <div class="position-relative bg-light overflow-hidden" style="width: 300px; height: 200px;">
+                    <img class="img-fluid" src="{{ asset('storage/' .$relatedProduct->main_image_path) }}" alt=""
+                         style="max-width: 100%; max-height: 100%; object-fit: contain; display: block; margin: auto;">
+                </div>
+                <div class="text-center p-4">
+                    <a class="d-block h5 mb-2" href="{{ route('product.show', ['id' => $relatedProduct->id]) }}">{{ $relatedProduct->name }}</a>
+                    <span class="text-primary me-1 formatted-number">{{ $relatedProduct->discount_price }}</span>
+                    <span class="text-body text-decoration-line-through formatted-number">{{ $relatedProduct->original_price }}</span>
+                </div>
+                <div class="d-flex border-top">
+                    <small class="w-50 text-center border-end py-2">
+                        <a class="text-body" href="{{ route('product.show', ['id' => $relatedProduct->id]) }}"><i class="fa fa-eye text-primary me-2"></i>View detail</a>
+                    </small>
+                    <small class="w-50 text-center py-2">
+                        <a class="text-body" href=""><i class="fa fa-shopping-bag text-primary me-2"></i>Add to cart</a>
+                    </small>
+                </div>
+            </div>
+        </div>
+        @endforeach
+    </div>
+    >
+    
+    
 </div>
 
    

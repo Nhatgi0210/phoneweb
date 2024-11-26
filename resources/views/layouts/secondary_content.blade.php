@@ -1,99 +1,40 @@
 
-
-
-<!-- Testimonial Start -->
-<div class="container-fluid bg-light bg-icon py-6 mb-5">
-    <div class="container">
-        <div class="section-header text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 500px;">
-            <h1 class="display-5 mb-3">Customer Review</h1>
-            <p>Tempor ut dolore lorem kasd vero ipsum sit eirmod sit. Ipsum diam justo sed rebum vero dolor duo.</p>
-        </div>
-        <div class="owl-carousel testimonial-carousel wow fadeInUp" data-wow-delay="0.1s">
-            <div class="testimonial-item position-relative bg-white p-5 mt-4">
-                <i class="fa fa-quote-left fa-3x text-primary position-absolute top-0 start-0 mt-n4 ms-5"></i>
-                <p class="mb-4">Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit diam amet diam et eos. Clita erat ipsum et lorem et sit.</p>
-                <div class="d-flex align-items-center">
-                    <img class="flex-shrink-0 rounded-circle" src="{{ asset('frontend/img/testimonial-1.jpg') }}" alt="">
-                    <div class="ms-3">
-                        <h5 class="mb-1">Client Name</h5>
-                        <span>Profession</span>
-                    </div>
-                </div>
-            </div>
-            <div class="testimonial-item position-relative bg-white p-5 mt-4">
-                <i class="fa fa-quote-left fa-3x text-primary position-absolute top-0 start-0 mt-n4 ms-5"></i>
-                <p class="mb-4">Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit diam amet diam et eos. Clita erat ipsum et lorem et sit.</p>
-                <div class="d-flex align-items-center">
-                    <img class="flex-shrink-0 rounded-circle" src="{{ asset('frontend/img/testimonial-2.jpg') }}" alt="">
-                    <div class="ms-3">
-                        <h5 class="mb-1">Client Name</h5>
-                        <span>Profession</span>
-                    </div>
-                </div>
-            </div>
-            <div class="testimonial-item position-relative bg-white p-5 mt-4">
-                <i class="fa fa-quote-left fa-3x text-primary position-absolute top-0 start-0 mt-n4 ms-5"></i>
-                <p class="mb-4">Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit diam amet diam et eos. Clita erat ipsum et lorem et sit.</p>
-                <div class="d-flex align-items-center">
-                    <img class="flex-shrink-0 rounded-circle" src="{{ asset('frontend/img/testimonial-3.jpg') }}" alt="">
-                    <div class="ms-3">
-                        <h5 class="mb-1">Client Name</h5>
-                        <span>Profession</span>
-                    </div>
-                </div>
-            </div>
-            <div class="testimonial-item position-relative bg-white p-5 mt-4">
-                <i class="fa fa-quote-left fa-3x text-primary position-absolute top-0 start-0 mt-n4 ms-5"></i>
-                <p class="mb-4">Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit diam amet diam et eos. Clita erat ipsum et lorem et sit.</p>
-                <div class="d-flex align-items-center">
-                    <img class="flex-shrink-0 rounded-circle" src="{{ asset('frontend/img/testimonial-4.jpg') }}" alt="">
-                    <div class="ms-3">
-                        <h5 class="mb-1">Client Name</h5>
-                        <span>Profession</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
 <!-- Testimonial End -->
 
 
 <!-- Blog Start -->
 <div class="container-xxl py-5">
     <div class="container">
-        <div class="section-header text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 500px;">
-            <h1 class="display-5 mb-3">Latest Blog</h1>
-            <p>Tempor ut dolore lorem kasd vero ipsum sit eirmod sit. Ipsum diam justo sed rebum vero dolor duo.</p>
+        <div class=" text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 500px;">
+            
+            <h1 class="display-5 mb-3">Thông tin nổi bật</h1>
+            <p>dưới đây là một số thông tin nổi bật trong thời gian vừa qua</p>
         </div>
         <div class="row g-4">
             <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
-                <img class="img-fluid" src="{{ asset('frontend/img/blog-1.jpg') }}" alt="">
+                <img class="img-fluid" src="{{ asset('frontend/img/ramatip16.png') }}" alt="">
                 <div class="bg-light p-4">
-                    <a class="d-block h5 lh-base mb-4" href="">How to cultivate organic fruits and vegetables in own firm</a>
+                    <a class="d-block h5 lh-base mb-4" href="">Apple ra mắt iPhone 16 Pro và iPhone 16 Pro Max.Được trang bị chip A18 Pro mạnh mẽ với hiệu năng CPU hàng đầu ngành</a>
                     <div class="text-muted border-top pt-4">
-                        <small class="me-3"><i class="fa fa-user text-primary me-2"></i>Admin</small>
-                        <small class="me-3"><i class="fa fa-calendar text-primary me-2"></i>01 Jan, 2045</small>
+                      
                     </div>
                 </div>
             </div>
             <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
-                <img class="img-fluid" src="{{ asset('frontend/img/blog-2.jpg') }}" alt="">
+                <img class="img-fluid" src="{{ asset('frontend/img/x200.png') }}" alt="">
                 <div class="bg-light p-4">
-                    <a class="d-block h5 lh-base mb-4" href="">How to cultivate organic fruits and vegetables in own firm</a>
+                    <a class="d-block h5 lh-base mb-4" href="">X200 có zoom 10x, chụp tele tốt hơn; Vivo chia sẻ mẫu ảnh chụp đầu tiên của thiết bị</a>
                     <div class="text-muted border-top pt-4">
-                        <small class="me-3"><i class="fa fa-user text-primary me-2"></i>Admin</small>
-                        <small class="me-3"><i class="fa fa-calendar text-primary me-2"></i>01 Jan, 2045</small>
+                        
                     </div>
                 </div>
             </div>
             <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
-                <img class="img-fluid" src="{{ asset('frontend/img/blog-3.jpg') }}" alt="">
+                <img class="img-fluid" src="{{ asset('frontend/img/ggio.png') }}" alt="">
                 <div class="bg-light p-4">
-                    <a class="d-block h5 lh-base mb-4" href="">How to cultivate organic fruits and vegetables in own firm</a>
+                    <a class="d-block h5 lh-base mb-4" href="">Google I/O-Dành cho các nhà phát triển, sự kiện này là nơi Google giới thiệu các sản phẩm và dịch vụ mới, với trọng tâm là Android, Chrome và AI</a>
                     <div class="text-muted border-top pt-4">
-                        <small class="me-3"><i class="fa fa-user text-primary me-2"></i>Admin</small>
-                        <small class="me-3"><i class="fa fa-calendar text-primary me-2"></i>01 Jan, 2045</small>
+                     
                     </div>
                 </div>
             </div>

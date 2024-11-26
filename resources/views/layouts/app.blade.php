@@ -4,6 +4,8 @@
 <head>
     <meta charset="utf-8">
     <title>SMART PHONE</title>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
@@ -35,6 +37,27 @@
     {{-- css của inforProduct --}}
     @yield('cssin4')
     <style>
+         .suggestion-item {
+        padding: 5px;
+        cursor: pointer;
+    }
+
+    .suggestion-item:hover {
+        background: #f0f0f0;
+    }
+    .suggestion-list {
+        position: absolute;
+        top:calc(100% + 35px);
+        max-height: 180px;
+        overflow-y: auto;
+        background-color: white;
+        border: 1px solid #ccc;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        padding: 0;
+        margin: 0;
+        list-style-type: none;
+        z-index: 10; 
+    }
         @keyframes slideIn {
     from {
         transform: translateX(100%); /* Bắt đầu từ bên phải ngoài màn hình */
@@ -55,26 +78,28 @@
         opacity: 0;
     }
 }
-        #userMenu {
-    position: absolute;
-    top: 20%; /* Đặt menu cách avatar 50px */
-    right: 0;
+#userMenu {
+    position: fixed; /* Đặt vị trí menu cố định trên màn hình */
+    top: 120px; /* Khoảng cách từ viền trên màn hình */
+    right: 20px; /* Khoảng cách từ viền phải màn hình */
     background-color: #fff;
     width: 220px;
     border-radius: 10px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
     display: none;
     opacity: 0;
-    z-index: 100;
+    z-index: 1000;
     transform: translateX(80%); /* Bắt đầu ở ngoài màn hình */
+    color: #333 !important; /* Sửa lại cú pháp */
 }
-
 
 #userMenu.show {
     display: block;
-    opacity: 1; /* Khi hiển thị, opacity = 1 */
-    transform: translateY(0); /* Vị trí ban đầu khi hiển thị */
+    opacity: 1;
+    transform: translateX(0); /* Hiển thị menu */
 }
+
+
 
 #userMenu ul {
     list-style: none;
@@ -164,8 +189,8 @@
     <!-- Footer End -->
 
 
-    <!-- Back to Top -->
-    <a href="#" class="btn btn-lg btn-primary btn-lg-square rounded-circle back-to-top"><i class="bi bi-arrow-up"></i></a>
+   
+    
 {{-- menu logout --}}
 {{-- <div class="user-menu" id="userMenu">
     <div class="profile">

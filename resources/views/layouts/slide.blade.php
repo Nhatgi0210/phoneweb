@@ -10,7 +10,8 @@
                         <div class="row justify-content-start">
                             <div class="col-lg-7">
                                 <h1 class="display-2 mb-5 animated slideInDown" style="color:white;">SamSung S24 Ultra</h1>
-                                <a href="" class="btn btn-primary rounded-pill py-sm-3 px-sm-5">Xem sản phẩm </a>
+                                <a href="" class="btn btn-primary rounded-pill py-sm-3 px-sm-5" style="background-color: #007bff; border-color: #007bff;">Xem sản phẩm</a>
+
                                 <!-- <a href="" class="btn btn-secondary rounded-pill py-sm-3 px-sm-5 ms-3">Services</a> -->
                             </div>
                         </div>
@@ -26,7 +27,7 @@
                         <div class="row justify-content-start">
                             <div class="col-lg-7">
                                 <h1 class="display-2 mb-5 animated slideInDown" style="color:white;">iPhone 16 ProMax</h1>
-                                <a href="" class="btn btn-primary rounded-pill py-sm-3 px-sm-5">Xem sản phẩm </a>
+                                <a href="" class="btn btn-primary rounded-pill py-sm-3 px-sm-5" style="background-color: #4891df; border-color: #007bff;">Xem sản phẩm</a>
                                 <!-- <a href="" class="btn btn-secondary rounded-pill py-sm-3 px-sm-5 ms-3">Services</a> -->
                             </div>
                         </div>
@@ -36,12 +37,12 @@
         </div>
         <button class="carousel-control-prev" type="button" data-bs-target="#header-carousel"
             data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="" aria-hidden="true"></span>
             <span class="visually-hidden">Previous</span>
         </button>
         <button class="carousel-control-next" type="button" data-bs-target="#header-carousel"
             data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="" aria-hidden="true"></span>
             <span class="visually-hidden">Next</span>
         </button>
     </div>

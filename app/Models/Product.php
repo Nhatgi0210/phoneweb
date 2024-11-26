@@ -12,6 +12,9 @@ class Product extends Model
     use HasFactory;
     public $timestamps = null; 
     // <!--Tag  -->
+    protected $fillable = [
+        'name', 'original_price', 'discount_price', 'brand_id', 'category_id', 'main_image_path'
+    ];
     public function Tag(){
         return $this->belongsToMany(Tag::class,'product_tag','product_id','tag_id')->withPivot('end_date');
     }
@@ -42,8 +45,8 @@ class Product extends Model
     {
         return $this->hasOne(PhoneConfig::class);
     }
-
     public function user(){
         return $this->belongsToMany(User::class,'product_on_carts','product_id','user_id')->withPivot('quantity');
     }
 }
+

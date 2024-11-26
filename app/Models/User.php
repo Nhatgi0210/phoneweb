@@ -21,6 +21,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'phone'
     ];
 
     /**
@@ -45,8 +46,6 @@ class User extends Authenticatable
     public function Position(){
         return $this->belongsTo(Position::class);
     }
-
-   
     public function Product(){
         return $this->belongsToMany(Product::class,'product_on_carts','user_id','product_id')->withPivot('quantity');
     }

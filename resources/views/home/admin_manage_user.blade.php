@@ -107,43 +107,82 @@
         </tr>
     </thead>
     <tbody>
-        <tr>
-            <td>1</td>
-            <td>Nguyễn Văn A</td>
-            <td>nguyenvana@gmail.com</td>
-            <td>0901234567</td>
-            <td>Quản trị viên</td>
+        @foreach ($users as $index => $user)
+        <tr id="user-{{ $user->id }}">
+            <td>{{ $index + 1 }}</td>
+            <td>{{ $user->name }}</td>
+            <td>{{ $user->email }}</td>
+            <td>{{ $user->phone }}</td>
             <td>
-                <a href="">   <button class="btn-custom btn-view">Xem</button></a>
-                <button class="btn-custom btn-edit">Sửa</button>
-                <button class="btn-custom btn-delete">Xóa</button>
+                <form action="{{ route('admin.update_position', $user->id) }}" method="POST">
+                    @csrf
+                    @method('PUT')
+                    <select name="position_id" onchange="this.form.submit()" class="form-control">
+                        @foreach ($positions as $position)
+                            <option value="{{ $position->id }}" {{ $user->position_id == $position->id ? 'selected' : '' }}>
+                                {{ $position->name }}
+                            </option>
+                        @endforeach
+                    </select>
+                </form>
+            </td>
+            <td>
+                <a href="{{ route('admin_thongtin2', $user->id) }}" style="text-decoration: none;">
+                    <button class="btn-custom btn-view">Xem</button>
+                </a>
+                
+                <a href="{{ route('edit_user', $user->id) }}" style="text-decoration: none;">
+                    <button class="btn-custom btn-edit">Sửa</button>
+                </a>
+        
+                <!-- Hiển thị nút Xóa nếu không phải admin -->
+                @if ($user->position->id != 3) 
+                    <form action="{{ route('user.delete', $user->id) }}" method="POST" style="display:inline;">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn-custom btn-delete" onclick="return confirm('Are you sure you want to delete this user?')">Xóa</button>
+                    </form>
+                @endif
             </td>
         </tr>
-        <tr>
-            <td>2</td>
-            <td>Trần Thị B</td>
-            <td>tranthib@gmail.com</td>
-            <td>0912345678</td>
-            <td>Nhân viên</td>
-            <td>
-                <button class="btn-custom btn-view">Xem</button>
-                <button class="btn-custom btn-edit">Sửa</button>
-                <button class="btn-custom btn-delete">Xóa</button>
-            </td>
-        </tr>
-        <tr>
-            <td>3</td>
-            <td>Phạm Minh C</td>
-            <td>phamminhc@gmail.com</td>
-            <td>0923456789</td>
-            <td>Quản lý</td>
-            <td>
-                <button class="btn-custom btn-view">Xem</button>
-                <button class="btn-custom btn-edit">Sửa</button>
-                <button class="btn-custom btn-delete">Xóa</button>
-            </td>
-        </tr>
-        <!-- Add more rows here -->
+        @endforeach
     </tbody>
 </table>
+
+<script>
+ <script>
+  function deleteUser(userId) {
+    // Hiển thị cảnh báo xác nhận xóa
+    if (confirm("Are you sure you want to delete this user?")) {
+        // Gửi yêu cầu AJAX DELETE tới server
+        fetch(`/user/${userId}`, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log(data);  // Log phản hồi để kiểm tra
+            if (data.success) {
+                alert("User deleted successfully!");
+                document.getElementById(`user-${userId}`).remove(); // Xóa người dùng khỏi DOM
+            } else {
+                alert("Error deleting user!");
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert("There was an error deleting the user!");
+        });
+    }
+}
+</script>
+</script>
+
+
+
+
+
 @endsection

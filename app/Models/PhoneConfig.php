@@ -7,9 +7,14 @@ use Illuminate\Database\Eloquent\Model;
 
 class PhoneConfig extends Model
 {
+    public $timestamps = false;
     use HasFactory;
     public function product()
     {
         return $this->belongsTo(Product::class);
     }
+   // PhoneConfig.php
+protected $fillable = ['product_id', 'ManHinh', 'Chip', 'RAM', 'ROM', 'Pin'];
+
+    
 }
