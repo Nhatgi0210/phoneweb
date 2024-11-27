@@ -63,7 +63,7 @@ class AccountController extends Controller
                  return redirect()->route('home');
             }
             else{
-                 return redirect()->route('admin');
+                 return redirect()->route('home');
             }
         }
 

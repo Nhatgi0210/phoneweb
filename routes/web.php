@@ -115,4 +115,6 @@ Route::get('/admin/products/create', [ProductController::class, 'create'])->name
 Route::get('/edit_product/{id}', [AdminController::class, 'edit_product2'])->name('edit_product');
 Route::post('/update-product/{id}', [AdminController::class, 'update_product'])->name('update_product.store');
 Route::delete('/product/{id}', [ProductController::class, 'delete_product2'])->name('product.delete2');
-Route::post('/add-to-cart',[CartController::class,'addToCart'])->name('cart.add')->middleware('auth');
+Route::post('/add-to-cart', [CartController::class, 'addToCart'])->name('cart.add')->middleware('auth');
+Route::get('/customers', [AdminController::class, 'listCustomers'])->name('customers.list');
+Route::get('/customer-list', [AdminController::class, 'listCustomers'])->name('customer.list');
