@@ -230,10 +230,33 @@ table tr:nth-child(even) td {
     </div>
     {{--  --}}
     <br>
+    @if(auth()->check())
+    <form action="{{ route('comments.store2') }}" method="POST">
+        @csrf
+        <input type="hidden" name="product_id" value="{{ $product->id }}">
+        <textarea name="content" placeholder="Nhập bình luận của bạn..." required></textarea>
+        <button type="submit">Gửi bình luận</button>
+    </form>
+@else
+    <p>Bạn cần <a href="{{ route('login') }}">đăng nhập</a> để bình luận.</p>
+@endif
+
+{{--  --}}
+
+@if($comments->isEmpty())
+    <p>Chưa có bình luận nào.</p>
+@else
+    <!-- Lặp qua các bình luận để hiển thị -->
+    @foreach($comments as $comment)
+        <div class="comment">
+            <strong>{{ $comment->user->name }}</strong> <!-- Hiển thị tên người dùng -->
+            <p>{{ $comment->content }}</p>
+            <small>{{ $comment->created_at->format('d/m/Y H:i') }}</small> <!-- Thời gian bình luận -->
+        </div>
+    @endforeach
+@endif
 
 
-    
-    
 
     {{--  --}}
     @endisset
@@ -268,7 +291,9 @@ table tr:nth-child(even) td {
         </div>
         @endforeach
     </div>
-    >
+   
+
+
     
     
 </div>

@@ -270,7 +270,12 @@
                 xhr.setRequestHeader('X-CSRF-TOKEN', document.querySelector('meta[name="csrf-token"]').getAttribute('content')); // CSRF Token
                 xhr.onreadystatechange = function () {
                     if (xhr.readyState === 4) {
-                        alert(xhr.responseText);
+                        if(xhr.responseText.length < 50)
+                            alert(xhr.responseText);
+                        else{
+                            window.location.href = "{{ route('login') }}";
+
+                        }
                     };
                 };
 

@@ -540,9 +540,15 @@ td {
         </div>
         <ul>
             <li><a href="#"><i class="fas fa-user icon"></i>Xem thông tin</a></li>
-            <li><a href="#"><i class="fas fa-exchange-alt icon"></i>Chuyển đổi tài khoản</a></li>
+          
             <li><a href="#"><i class="fas fa-file-invoice icon"></i>Đơn hàng</a></li>
-            <li><a href="#"><i class="fas fa-sign-out-alt icon"></i>Đăng xuất</a></li>
+            <form id="logout-form2" action="{{ route('logout') }}" method="POST" style="display: none;">
+                @csrf
+            </form>
+            
+            <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form2').submit();">
+                <li><i class="fas fa-sign-out-alt"></i> Đăng xuất</li>
+            </a>
         </ul>
     </div>
 

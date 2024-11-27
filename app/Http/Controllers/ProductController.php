@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 use App\Models\PhoneConfig;  // Thêm dòng này
 use App\Models\Brand; 
 use Illuminate\Support\Facades\Log;
-
+use App\Models\Comment; // Thêm dòng này vào đầu file controller
 use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
@@ -42,28 +42,32 @@ class ProductController extends Controller
 
     public function show($id)
     {   
-        // Lấy tất cả các thương hiệu và danh mục (có thể dùng để hiển thị các lựa chọn cho người dùng)
+        // Lấy tất cả các thương hiệu và danh mục
         $brands = Brand::all();
         $categories = Category::all();
-    
-        // Lấy sản phẩm theo ID hoặc trả về lỗi nếu không tìm thấy
+        
+        // Lấy sản phẩm theo ID
         $product = Product::findOrFail($id);
+        
+        // Lấy các bình luận của sản phẩm, giả sử cột 'product_id' trong bảng 'comments'
+        $comments = Comment::where('product_id', $id)->get();  // Sửa lại điều kiện này để đúng
     
         // Lấy thông tin cấu hình của sản phẩm (nếu có)
         $config = $product->phoneConfig;
-    
+        
         // Lấy thông tin thương hiệu của sản phẩm
         $brand = $product->brand;
-    
+        
         // Lấy các sản phẩm liên quan cùng thương hiệu và danh mục, loại trừ sản phẩm hiện tại
         $relatedProducts = Product::where('brand_id', $product->brand_id)
             ->where('category_id', $product->category_id)
             ->where('id', '!=', $product->id)  // Loại bỏ sản phẩm hiện tại
             ->get();
-    
+        
         // Trả về view với tất cả các dữ liệu cần thiết
-        return view('home.inforProduct', compact('product', 'brands', 'categories', 'config', 'relatedProducts'));
+        return view('home.inforProduct', compact('product', 'brands', 'categories', 'config', 'relatedProducts', 'comments'));
     }
+    
     
     public function searchProducts(Request $request)
     {
