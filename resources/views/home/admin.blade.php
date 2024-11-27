@@ -43,17 +43,43 @@
     
     <div class="data-table" style="margin-top: 10px;">
         <h3>Danh sách khách hàng</h3>
-        <table>
-            <tr>
-                <th>ID</th>
-                <th>Name</th>
-                <th>Email</th>
-            </tr>
-            <tr>
-                <td>1</td>
-                <td>Phan Văn Sơn</td>
-                <td>phanvson05@gmail.com</td>
-            </tr>
+        <table class="table-custom">
+            <thead>
+                <tr>
+                    <th>Số Thứ Tự</th>
+                    <th>Họ và Tên</th>
+                    <th>Email</th>
+                    <th>Số Điện Thoại</th>
+                    <th>Thao Tác</th>
+                </tr>
+            </thead>
+            <tbody>
+                @forelse ($users as $index => $user)
+                <tr id="user-{{ $user->id }}">
+                    <td>{{ $index + 1 }}</td>
+                    <td>{{ $user->name }}</td>
+                    <td>{{ $user->email }}</td>
+                    <td>{{ $user->phone ?? 'N/A' }}</td>
+                    <td>
+                        <a href="{{ route('admin_thongtin2', $user->id) }}" style="text-decoration: none;">
+                            <button class="btn-custom btn-view">Xem</button>
+                        </a>
+                        <a href="{{ route('edit_user', $user->id) }}" style="text-decoration: none;">
+                            <button class="btn-custom btn-edit">Sửa</button>
+                        </a>
+                        <form action="{{ route('user.delete', $user->id) }}" method="POST" style="display:inline;">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn-custom btn-delete" onclick="return confirm('Bạn có chắc chắn muốn xóa người dùng này?')">Xóa</button>
+                        </form>
+                    </td>
+                </tr>
+                @empty
+                <tr>
+                    <td colspan="6" class="text-center">Không có khách hàng nào.</td>
+                </tr>
+                @endforelse
+            </tbody>
         </table>
     </div>
 </div>

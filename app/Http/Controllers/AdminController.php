@@ -34,7 +34,9 @@ class AdminController extends Controller
         $cheapProducts = Product::productWithTag('Giá rẻ')->get()->take(4);
         $brands = Brand::all();
         $categories = Category::all();
-        return view('home.admin', compact('hotProducts', 'cheapProducts', 'brands','categories'));
+        $users = User2::where('position_id', 1)->get();
+
+        return view('home.admin', compact('hotProducts', 'cheapProducts', 'brands','categories','users'));
     }
     public function admin_manage_product()
     {
@@ -243,6 +245,35 @@ public function update_product(Request $request, $id)
     return redirect()->route('admin_manage_product')->with('success', 'Sản phẩm đã được cập nhật!');
 }
 
+
+public function listCustomers()
+{
+    // Lấy danh sách khách hàng (position_id = 1)
+    $users = User2::where('position_id', 1)->get();
+
+    // Truyền dữ liệu sang view
+    return view('home.customer_list', compact('users'));
+}
+
+
+public function listUsers(Request $request)
+{
+    $query = User2::query(); // Lấy tất cả người dùng
+
+    // Xử lý tìm kiếm
+    if ($request->has('search') && !empty($request->search)) {
+        $search = $request->search;
+        $query->where(function ($q) use ($search) {
+            $q->where('name', 'LIKE', "%{$search}%")
+              ->orWhere('email', 'LIKE', "%{$search}%")
+              ->orWhere('phone', 'LIKE', "%{$search}%");
+        });
+    }
+
+    $users = $query->get();
+
+    return view('admin.customer_list', compact('users'));
+}
 
 
 

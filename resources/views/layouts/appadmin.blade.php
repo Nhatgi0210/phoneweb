@@ -450,6 +450,20 @@ td {
             display: inline-block;
             margin-right: 5px;
         }
+        .btn-view {
+    background-color: #5bc0de;
+    color: white;
+}
+
+.btn-edit {
+    background-color: #f0ad4e;
+    color: white;
+}
+
+.btn-delete {
+    background-color: #d9534f;
+    color: white;
+}
 
   @yield('cssthongtincanhan');
   @yield('cssmanageproduct');
@@ -459,6 +473,7 @@ td {
     </style>
 </head>
 <body>
+ 
     <div class="container">
         <!-- Sidebar -->
         <div class="sidebar">
