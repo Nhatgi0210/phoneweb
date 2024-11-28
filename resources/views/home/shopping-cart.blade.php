@@ -82,13 +82,13 @@
                     <table>
                         <tr>
                             <td>
-                                Mã Hóa Đơn: <strong>HD5234</strong><br>
+                                Mã Hóa Đơn: <strong>{{ $orderCode }}</strong><br>
                                 Ngày Tạo: <strong>{{ date('d-m-20y') }}</strong>
                             </td>
                             <td>
-                                <span>Địa chỉ giao hàng:</span> 123 Đường ABC, Thành phố XYZ, Việt Nam<br>
-                                <span>Tên khách hàng:</span> <b>Nguyễn Linh</b><br>
-                                <span>Số điện thoại:</span> <b> 1234567890</b><br>
+                                <span>Địa chỉ giao hàng:</span>{{ $user->adress ??''}}<br>
+                                <span>Tên khách hàng:</span> <b>{{ $user->name }} </b><br>
+                                <span>Số điện thoại:</span> <b> {{ $user->phone }}</b><br>
                             </td>
                         </tr>
                     </table>
@@ -141,13 +141,13 @@
                      <b>Giảm giá (Voucher) </b>
                 </td>
                 <td>
-                    <b> -1.000.000 VND </b>
+                    <b> 0 VND </b>
                 </td>
             </tr>
             <tr class="total">
                 <td></td>
                 <td>
-                    Tổng cộng: <span class="formatted-number">{{ $total = $price - 1000000 - 50000 }}</span> VND
+                    Tổng cộng: <span class="formatted-number">{{ $total = $price  }}</span> VND
                 </td>
             </tr>
         </table>

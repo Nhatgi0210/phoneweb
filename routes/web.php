@@ -128,6 +128,11 @@ Route::get('/product/{id}/comments', [ProductController::class, 'showCmt']);
 // Xóa bình luận
 // Route xóa bình luận với AJAX
 Route::delete('/comment/{comment}', [CommentController::class, 'destroy2'])->name('comments.destroy2');
+// routes/web.php
+// routes/web.php
+// Route::put('product/{id}/update-tag', [ProductController::class, 'updateTag'])->name('product.update_tag');
+Route::put('/product/{product}/update-tag', [ProductController::class, 'updateTag'])->name('product.update_tag');
+
 
 
 

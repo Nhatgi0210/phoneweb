@@ -15,6 +15,10 @@ class RenameProductIdToIdInCommentsTable extends Migration
         Schema::table('comments', function (Blueprint $table) {
             $table->renameColumn('product_id', 'id');
         });
+      
+        Schema::table('product_tag', function (Blueprint $table) {
+            $table->timestamp('end_date')->nullable()->default(null)->change();
+        });
     }
 
     /**
@@ -26,6 +30,10 @@ class RenameProductIdToIdInCommentsTable extends Migration
     {
         Schema::table('comments', function (Blueprint $table) {
             $table->renameColumn('id', 'product_id');
+        });
+       
+        Schema::table('product_tag', function (Blueprint $table) {
+            $table->timestamp('end_date')->nullable(false)->change();
         });
     }
 }

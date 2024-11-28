@@ -8,7 +8,7 @@ use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Models\User2;
 use Illuminate\Support\Facades\Storage;
-
+use App\Models\Tag;
 class AdminController extends Controller
 {
     //
@@ -48,7 +48,8 @@ class AdminController extends Controller
         $categories = Category::all();
         $products = Product::all();
         $user = auth()->user(); // Lấy thông tin người dùng đã đăng nhập
-        return view('home.admin_manage_product', compact('hotProducts', 'cheapProducts', 'brands','categories','products','user'));
+        $tags = Tag::all();
+        return view('home.admin_manage_product', compact('hotProducts', 'cheapProducts', 'brands','categories','products','user','tags'));
     }
     public function admin_manage_user()
     {
@@ -92,7 +93,7 @@ class AdminController extends Controller
         $user = User2::findOrFail($id);
     
         // Truyền dữ liệu qua view (ví dụ, tạo form để sửa thông tin)
-        return view('home.edit_user', compact('user'));
+        return view('home.profile', compact('user'));
     }
     public function update_user(Request $request, $id)
 {
@@ -107,7 +108,7 @@ class AdminController extends Controller
     $user->save();
 
     // Chuyển hướng về trang thông tin người dùng với thông báo thành công
-    return redirect()->route('adminthongtin')->with('success', 'Cập nhật thông tin người dùng thành công!');
+    return redirect()->route('profile')->with('success', 'Cập nhật thông tin người dùng thành công!');
 }
 public function admin_thongtin2($id)
 {
