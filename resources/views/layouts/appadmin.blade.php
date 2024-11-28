@@ -480,27 +480,47 @@ td {
             <button class="toggle-btn">☰</button>
             <h2 class="menu-title">Menu</h2>
             <ul class="menu-list">
-   <a href="{{ route('profile') }}" style="text-decoration: none;color: inherit;">   <li><i class="fas fa-user"></i> Xem thông tin cá nhân</li></a>
-   <a href="{{ route('admin') }}" style="text-decoration: none;color: inherit;"><li><i class="fas fa-tachometer-alt"></i> Bảng theo dõi</li>     </a>
-   <a href="{{ route('adminthongtin') }}" style="text-decoration: none;color: inherit;">     <li><i class="fas fa-users"></i> Quản lý người dùng</li></a>
-   <a href="{{ route('admin_manage_product') }}" style="text-decoration: none;color: inherit;">     <li><i class="fas fa-chart-line"></i>Quản lý sản phẩm </li> </a>
-   <li><i class="fas fa-sign-out-alt"></i> Quản lý đơn</li>
-  
-    <a href="{{ route('home') }}" style="text-decoration: none;color: inherit;">
-        <li>   <i class="fas fa-home"></i> Về trang chủ</li>
-    </a>
-
-
-   <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-    @csrf
-</form>
-
-<a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-    <li><i class="fas fa-sign-out-alt"></i> Đăng xuất</li>
-</a>
-</ul>
-
+                <a href="{{ route('profile') }}" style="text-decoration: none; color: inherit;">
+                    <li><i class="fas fa-user"></i> Xem thông tin cá nhân</li>
+                </a>
+        
+                @if(auth()->user()->position_id == 2 || auth()->user()->position_id == 3) 
+                    <!-- Nhân viên và Admin -->
+                    <a href="{{ route('admin') }}" style="text-decoration: none; color: inherit;">
+                        <li><i class="fas fa-tachometer-alt"></i> Bảng theo dõi</li>
+                    </a>
+                @endif
+        
+                @if(auth()->user()->position_id == 3) 
+                    <!-- Chỉ Admin -->
+                    <a href="{{ route('adminthongtin') }}" style="text-decoration: none; color: inherit;">
+                        <li><i class="fas fa-users"></i> Quản lý người dùng</li>
+                    </a>
+                @endif
+        
+                @if(auth()->user()->position_id == 2 || auth()->user()->position_id == 3) 
+                    <!-- Nhân viên và Admin -->
+                    <a href="{{ route('admin_manage_product') }}" style="text-decoration: none; color: inherit;">
+                        <li><i class="fas fa-chart-line"></i> Quản lý sản phẩm</li>
+                    </a>
+                    <li><i class="fas fa-sign-out-alt"></i> Quản lý đơn</li>
+                @endif
+        
+                <!-- Ai cũng thấy -->
+                <a href="{{ route('home') }}" style="text-decoration: none; color: inherit;">
+                    <li><i class="fas fa-home"></i> Về trang chủ</li>
+                </a>
+        
+                <!-- Logout -->
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                    @csrf
+                </form>
+                <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                    <li><i class="fas fa-sign-out-alt"></i> Đăng xuất</li>
+                </a>
+            </ul>
         </div>
+        
         
         <!-- Main content -->
         <div class="main-content">

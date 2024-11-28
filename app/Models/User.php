@@ -53,5 +53,19 @@ class User extends Authenticatable
 {
     return $this->hasMany(Comment::class);
 }
+public function isAdmin()
+{
+    return $this->position_id == 3;
+}
+
+public function isStaff()
+{
+    return $this->position_id == 2;
+}
+
+public function isGuest()
+{
+    return $this->position_id == 1;
+}
 
 }
