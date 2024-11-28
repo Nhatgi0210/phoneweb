@@ -89,20 +89,20 @@
                                     <span class="text-primary me-1 formatted-number">{{ $product->discount_price }}</span>
                                     <span class="text-body text-decoration-line-through formatted-number">{{ $product->original_price }}</span>
                                 </div>
-                                 {{-- <div style="text-align: center">
-                                <b>Màn hình: </b> 6.5 in <br>
-                                <b>Chip:</b> Snapdragon 8 gen 3 <br>
-                                <b>Pin:</b> 5000 mAh
-                                 </div> --}}
+                                 <div style="text-align: center">
+                                <b>Màn hình: </b>{{ $product->phoneConfig->man_hinh  }}<br>
+                                <b>Chip:</b> {{ $product->phoneConfig->chip }} <br>
+                                <b>Pin:</b>  {{ $product->phoneConfig->pin }} 
+                                 </div>
                                 <div class="d-flex border-top">
                                     <small class="w-50 text-center border-end py-2">
                                       
-                                        <a class="text-body" href="{{ route('product.show', ['id' => $product->id]) }}"><i class="fa fa-eye text-primary me-2"></i>View detail</a>
+                                        <a class="text-body" href="{{ route('product.show', ['id' => $product->id]) }}"><i class="fa fa-eye text-primary me-2"></i>Xem sản phẩm </a>
                                     </small>
                                     <small class="w-50 text-center py-2">
                                       <span class="text-body" href="">
-                                        <i class="fa fa-shopping-bag text-primary me-2"></i>
-                                        <button class="submit-btn add-to-cart" data-product-id="{{ $product->id }}" data-user-id="{{ auth()->user()->id??'0' }}">Add to cart</button>
+                                        <i class="fa fa-shopping-cart text-primary me-2"></i>
+                                        <button class="submit-btn add-to-cart" data-product-id="{{ $product->id }}" data-user-id="{{ auth()->user()->id??'0' }}">Thêm giỏ hàng </button>
                                         <meta name="csrf-token" content="{{ csrf_token() }}">
                                       </span>
                                       

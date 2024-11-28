@@ -146,7 +146,7 @@ table td {
         <tr>
             <td>{{ $index + 1 }}</td>
             <td> <img src="{{ asset('storage/' . $product->main_image_path) }}" 
-                alt="{{ $product->name }}" 
+                alt="{{$product->main_image_path}}" 
                 width="100" 
                 height="auto"></td>
             <td>{{ $product->name }}</td>

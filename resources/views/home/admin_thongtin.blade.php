@@ -3,7 +3,7 @@
 <div class="container2">
     <!-- Left section: Service Info -->
     <div class="service-info">
-        <img src="{{ asset('img/13.jpg') }}" alt="Profile Picture" class="profile-picture">
+        <img src="{{ asset('img/user.png') }}" alt="Profile Picture" class="profile-picture">
         <h3>{{ old('name', $user->name) }}  </h3>
          <p>Tham gia ngày : <strong>10/10/2024</strong></p>
 

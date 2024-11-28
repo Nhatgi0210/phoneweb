@@ -28,7 +28,7 @@
                 <tr>
                     <td style="padding: 8px;">
                         <div class="cart-img">
-                            <img src="{{ asset('storage/' .$product->main_image_path) }}" alt="" style="width: 150px; height: 150px;">
+                       <a href="{{ route('product.show', ['id' => $product->id]) }}"> <img src="{{ asset('storage/' .$product->main_image_path) }}" alt="" style="width: 150px; height: 150px;"></a>    
                         </div>
                     </td>
 

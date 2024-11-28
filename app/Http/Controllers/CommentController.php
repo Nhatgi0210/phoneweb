@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Comment;
+
 use Illuminate\Http\Request;
 
 class CommentController extends Controller
@@ -59,13 +61,32 @@ public function showCmt($product_id)
     // Lấy sản phẩm theo ID
     $product = Product::findOrFail($product_id);
 
-    // Lấy tất cả bình luận của sản phẩm này (có thể sắp xếp theo thời gian tạo)
-    $comments = Comment::where('product_id', $product_id)
-                       ->orderBy('created_at', 'desc') // Sắp xếp theo thời gian tạo
-                       ->get();
+    $comments = Comment::where('product_id', $product->id)
+    ->orderBy('created_at', 'desc') // Sắp xếp bình luận mới nhất lên đầu
+    ->get();
+
+
+
 
     // Trả về view với thông tin sản phẩm và bình luận
     return view('home.inforProduct', compact('product', 'comments'));
+}
+public function destroy2($id)
+{
+    // Kiểm tra bình luận có tồn tại không
+    $comment = Comment::findOrFail($id);
+
+    // Kiểm tra quyền của người dùng
+    if (auth()->user()->id == $comment->user_id || auth()->user()->role == 'admin') {
+        // Xóa bình luận
+        $comment->delete();
+
+        // Trả về thông báo thành công và quay lại trang cũ
+        return redirect()->back()->with('success', 'Bình luận đã được xóa.');
+    }
+
+    // Nếu không có quyền xóa bình luận
+    return redirect()->back()->with('error', 'Bạn không có quyền xóa bình luận này.');
 }
 
 

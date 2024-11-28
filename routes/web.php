@@ -125,5 +125,9 @@ Route::post('/products/{id}/comments', [CommentController::class, 'store'])
 // Route để hiển thị bình luận của sản phẩm
 // web.php
 Route::get('/product/{id}/comments', [ProductController::class, 'showCmt']);
+// Xóa bình luận
+// Route xóa bình luận với AJAX
+Route::delete('/comment/{comment}', [CommentController::class, 'destroy2'])->name('comments.destroy2');
+
 
 

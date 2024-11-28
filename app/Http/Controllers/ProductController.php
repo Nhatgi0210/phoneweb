@@ -16,6 +16,7 @@ class ProductController extends Controller
         $brands = Brand::all();
         $products = Product::all();
         $categories = Category::all();
+        
         return view('home.product',compact('brands','products','categories'));
     }
     public function showProductsByBrandName($brandName)
@@ -25,8 +26,9 @@ class ProductController extends Controller
         $brands = Brand::all();
         $categories = Category::all();
         $products = ($brand->products)->where('category_id',1);
+        $config = $products->phoneConfig;
         if (isset($brand)) {
-           return view('home.product', compact('products','brands','brand','categories') );
+           return view('home.product', compact('products','brands','brand','categories','config') );
         } 
     }
     public function showProductsByCategory($name)
@@ -47,7 +49,8 @@ class ProductController extends Controller
         $categories = Category::all();
         
         // Lấy sản phẩm theo ID
-        $product = Product::findOrFail($id);
+        $product = Product::with('phoneConfig')->findOrFail($id);
+
         
         // Lấy các bình luận của sản phẩm, giả sử cột 'product_id' trong bảng 'comments'
         $comments = Comment::where('product_id', $id)->get();  // Sửa lại điều kiện này để đúng
@@ -127,7 +130,7 @@ class ProductController extends Controller
     {
         // Lấy tất cả sản phẩm từ cơ sở dữ liệu
         $products = Product::all();
-    
+       
         // Kiểm tra dữ liệu
         dd($products); // Để kiểm tra dữ liệu trước khi truyền vào view
     

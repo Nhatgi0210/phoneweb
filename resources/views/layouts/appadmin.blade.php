@@ -485,11 +485,11 @@ td {
    <a href="{{ route('adminthongtin') }}" style="text-decoration: none;color: inherit;">     <li><i class="fas fa-users"></i> Quản lý người dùng</li></a>
    <a href="{{ route('admin_manage_product') }}" style="text-decoration: none;color: inherit;">     <li><i class="fas fa-chart-line"></i>Quản lý sản phẩm </li> </a>
    <li><i class="fas fa-sign-out-alt"></i> Quản lý đơn</li>
-   <li>
+  
     <a href="{{ route('home') }}" style="text-decoration: none;color: inherit;">
-        <i class="fas fa-home"></i> Về trang chủ
+        <li>   <i class="fas fa-home"></i> Về trang chủ</li>
     </a>
-</li>
+
 
    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
     @csrf
@@ -515,7 +515,7 @@ td {
                     <span class="notification-bell">🔔</span>
                     <!-- User avatar icon -->
                     <span class="user-profile" id="userAvatar"><div class="icons">
-                        <img id="userAvatar" src="{{ asset('img/gai.jpg') }}" alt="User Avatar" class="user-avatar">
+                        <img id="userAvatar" src="{{ asset('img/user.png') }}" alt="User Avatar" class="user-avatar">
                     </div>
                     </span>
                 </div>
@@ -534,9 +534,9 @@ td {
     <!-- User Profile Menu -->
     <div class="user-menu" id="userMenu">
         <div class="profile">
-            <img src="{{ asset('img/gai.jpg') }}" alt="Profile Picture" style="object-fit: cover;">
-            <div class="name">Nguyễn Văn A</div>
-            <div class="email"> <p style="color: #8d8a7f;">NguyenVanA@gmail.com</p></div>
+            <img src="{{ asset('img/user.png') }}" alt="Profile Picture" style="object-fit: cover;">
+            <div class="name">{{ $user->name }}</div>
+        <div class="email"> <p style="color: #f3efe2;">{{ $user->email }}</p></div>
         </div>
         <ul>
             <li><a href="#"><i class="fas fa-user icon"></i>Xem thông tin</a></li>
