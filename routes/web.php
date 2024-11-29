@@ -118,3 +118,7 @@ Route::delete('/product/{id}', [ProductController::class, 'delete_product2'])->n
 Route::post('/add-to-cart', [CartController::class, 'addToCart'])->name('cart.add')->middleware('auth');
 Route::get('/customers', [AdminController::class, 'listCustomers'])->name('customers.list');
 Route::get('/customer-list', [AdminController::class, 'listCustomers'])->name('customer.list');
+
+Route::post('/update-quantity', [CartController::class, 'updateQuantity'])->name('cart.quantity');
+Route::delete('/delete-on-cart',[CartController::class,'delete'])->name('cart.delete');
+

@@ -222,6 +222,15 @@
             let number = parseInt(element.textContent, 10); 
             element.textContent = number.toLocaleString('vi-VN'); 
         });
+        function getNumberFromFormattedElement(element) {
+            let formattedText = element.textContent; // Lấy nội dung đã format
+            let plainNumber = parseInt(formattedText.replace(/\./g, ''), 10); // Loại bỏ dấu chấm và chuyển thành số
+        return plainNumber;
+        }
+        function formatNumber(element){
+            let number = parseInt(element.textContent, 10); 
+            element.textContent = number.toLocaleString('vi-VN'); 
+        }
     </script>
      <script>
         document.querySelector('.confirm-btn').addEventListener('click', function() {
@@ -270,7 +279,12 @@
                 xhr.setRequestHeader('X-CSRF-TOKEN', document.querySelector('meta[name="csrf-token"]').getAttribute('content')); // CSRF Token
                 xhr.onreadystatechange = function () {
                     if (xhr.readyState === 4) {
-                        alert(xhr.responseText);
+                        if(xhr.responseText.length < 50)
+                            alert(xhr.responseText);
+                        else{
+                            window.location.href = "{{ route('login') }}";
+
+                        }
                     };
                 };
 

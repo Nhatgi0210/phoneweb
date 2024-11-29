@@ -28,4 +28,43 @@ class CartController extends Controller
         $cart = auth()->user()->Product;
         return view('home.shopping-cart', compact( 'brands','categories','cart'));
     }
+    public function updateQuantity(Request $request){
+      
+
+        // Validate dữ liệu từ AJAX
+        $request->validate([
+            'poc_id' => 'required|integer|exists:product_on_carts,id',
+            'quantity' => 'required|integer|min:0',
+        ]);
+
+        try {
+        
+            $productOnCart = ProductOnCart::findOrFail($request->poc_id);
+
+        
+            $productOnCart->quantity = $request->quantity;
+            $productOnCart->save();
+
+        
+            return response()->json([
+                'success' => true,
+                'message' => 'Số lượng đã được cập nhật thành công!'
+            ]);
+            } catch (\Exception $e) {
+            // Trả về phản hồi lỗi
+            return response()->json([
+                'success' => false,
+                'message' => 'Có lỗi xảy ra khi cập nhật số lượng!'
+            ], 500);
+        
+        }
+
+    }
+    public function delete(Request $request){
+        
+        $poc = ProductOnCart::find($request->poc_id);
+        $poc->delete();
+
+        return back()->with('poc',$request->poc_id);
+    }
 }
