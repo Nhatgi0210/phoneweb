@@ -49,4 +49,23 @@ class User extends Authenticatable
     public function Product(){
         return $this->belongsToMany(Product::class,'product_on_carts','user_id','product_id')->withPivot('id','quantity');
     }
+    public function comments()
+{
+    return $this->hasMany(Comment::class);
+}
+public function isAdmin()
+{
+    return $this->position_id == 3;
+}
+
+public function isStaff()
+{
+    return $this->position_id == 2;
+}
+
+public function isGuest()
+{
+    return $this->position_id == 1;
+}
+
 }

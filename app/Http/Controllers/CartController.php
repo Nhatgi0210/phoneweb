@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Str;
 use App\Models\Brand;
 use App\Models\Category;
 use App\Models\ProductOnCart;
@@ -23,10 +23,13 @@ class CartController extends Controller
     }
     public function shopping_cart()
     {
+        $now = now(); // Lấy thời gian hiện tại (bao gồm ngày, giờ, phút, giây)
+        $orderCode = Str::random(6);
         $brands = Brand::all();
         $categories = Category::all();
         $cart = auth()->user()->Product;
-        return view('home.shopping-cart', compact( 'brands','categories','cart'));
+        $user = auth()->user(); // Lấy thông tin người dùng đã đăng nhập
+        return view('home.shopping-cart', compact( 'brands','categories','cart','user','now','orderCode'));
     }
     public function updateQuantity(Request $request){
       

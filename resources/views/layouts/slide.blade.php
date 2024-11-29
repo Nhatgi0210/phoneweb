@@ -10,7 +10,7 @@
                         <div class="row justify-content-start">
                             <div class="col-lg-7">
                                 <h1 class="display-2 mb-5 animated slideInDown" style="color:white;">SamSung S24 Ultra</h1>
-                                <a href="" class="btn btn-primary rounded-pill py-sm-3 px-sm-5" style="background-color: #007bff; border-color: #007bff;">Xem sản phẩm</a>
+                                <a href="{{ route('product.show', ['id' => 10]) }}" class="btn btn-primary rounded-pill py-sm-3 px-sm-5" style="background-color: #007bff; border-color: #007bff;">Xem sản phẩm</a>
 
                                 <!-- <a href="" class="btn btn-secondary rounded-pill py-sm-3 px-sm-5 ms-3">Services</a> -->
                             </div>

@@ -17,8 +17,8 @@ class HomeController extends Controller
 {
     
     public function index(){
-        $hotProducts = Product::productWithTag('Hot')->get()->take(4);                                                                                                                                                                                                                                                                                                                                                      
-        $cheapProducts = Product::productWithTag('Giá rẻ')->get()->take(4);
+        $hotProducts = Product::productWithTag('Hot')->get()->take(20);                                                                                                                                                                                                                                                                                                                                                      
+        $cheapProducts = Product::productWithTag('Giá rẻ')->get()->take(20);
         $brands = Brand::all();
         $categories = Category::all();
         return view("home.index",compact('hotProducts','cheapProducts','brands','categories'));

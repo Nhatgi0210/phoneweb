@@ -120,7 +120,18 @@ table td {
     transform: translateY(-3px); /* Nâng nút lên khi hover */
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Làm đậm bóng khi hover */
 }
+.form-control {
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+    width: 150px;
+}
 
+.form-control:focus {
+    border-color: #007bff;
+    outline: none;
+}
 
 @endsection
 
@@ -131,13 +142,14 @@ table td {
 </div>
 <h2>Danh Sách Sản Phẩm</h2> <br>
  <a href=" {{ route('add_product') }}"><button class="nutthem">Thêm sản phẩm </button> </a>
-
  <table>
     <thead>
         <tr>
             <th>Số Thứ Tự</th>
             <th>Ảnh</th>
             <th>Tên Sản Phẩm</th>
+            <th>Giá thành</th>
+            <th>Tag</th>
             <th>Hành Động</th>
         </tr>
     </thead>
@@ -145,11 +157,35 @@ table td {
         @foreach ($products as $index => $product)
         <tr>
             <td>{{ $index + 1 }}</td>
-            <td> <img src="{{ asset('storage/' . $product->main_image_path) }}" 
-                alt="{{ $product->name }}" 
-                width="100" 
-                height="auto"></td>
+            <td> 
+                <img src="{{ asset('storage/' . $product->main_image_path) }}" 
+                     alt="{{$product->main_image_path}}" 
+                     width="100" 
+                     height="auto">
+            </td>
             <td>{{ $product->name }}</td>
+            <td><p class="formatted-number">{{ number_format($product->discount_price, 0, ',', '.') }}</p> </td>
+
+            <!-- Dropdown để chọn tag cho sản phẩm -->
+            <td>
+                <form action="{{ route('product.update_tag', $product->id) }}" method="POST" class="tag-form">
+                    @csrf
+                    @method('PUT')
+                    <select name="tag_id" onchange="this.form.submit()" class="form-control">
+                        <option value="">Chọn tag</option>
+                        @foreach ($tags as $tag)
+                            <option value="{{ $tag->id }}" {{ $product->tags->contains($tag->id) ? 'selected' : '' }}>
+                                {{ $tag->name }}
+                            </option>
+                        @endforeach
+                    </select>
+                </form>
+                
+                
+            </td>
+            
+            
+
             <td>
                 <a href="{{ route('edit_product', $product->id) }}" class="btn btn-edit">Sửa</a>
                 <form action="{{ route('product.delete2', $product->id) }}" method="POST" onsubmit="return confirm('Bạn có chắc chắn muốn xóa sản phẩm này không?');">
@@ -157,13 +193,13 @@ table td {
                     @method('DELETE')
                     <button type="submit" class="btn btn-danger">Xóa</button>
                 </form>
-                
-
             </td>
         </tr>
         @endforeach
     </tbody>
 </table>
+
+
 <script>
     function deleteProduct(id) {
         if (confirm("Bạn có chắc chắn muốn xóa sản phẩm này?")) {

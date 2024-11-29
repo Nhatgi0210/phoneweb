@@ -32,7 +32,7 @@
                 <tr>
                     <td style="padding: 8px;">
                         <div class="cart-img">
-                            <img src="{{ asset('storage/' .$product->main_image_path) }}" alt="" style="width: 150px; height: 150px;">
+                       <a href="{{ route('product.show', ['id' => $product->id]) }}"> <img src="{{ asset('storage/' .$product->main_image_path) }}" alt="" style="width: 150px; height: 150px;"></a>    
                         </div>
                     </td>
 
@@ -92,7 +92,7 @@
                     <table>
                         <tr>
                             <td>
-                                Mã Hóa Đơn: <strong>HD5234</strong><br>
+                                Mã Hóa Đơn: <strong>{{ $orderCode }}</strong><br>
                                 Ngày Tạo: <strong>{{ date('d-m-20y') }}</strong>
                             </td>
                             <td>

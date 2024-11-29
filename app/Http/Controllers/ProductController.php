@@ -4,11 +4,11 @@ namespace App\Http\Controllers;
 use App\Models\PhoneConfig;  // Thêm dòng này
 use App\Models\Brand; 
 use Illuminate\Support\Facades\Log;
-
+use App\Models\Comment; // Thêm dòng này vào đầu file controller
 use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
-
+use App\Models\Tag;
 class ProductController extends Controller
 {
     //
@@ -16,6 +16,7 @@ class ProductController extends Controller
         $brands = Brand::all();
         $products = Product::all();
         $categories = Category::all();
+        
         return view('home.product',compact('brands','products','categories'));
     }
     public function showProductsByBrandName($brandName)
@@ -25,8 +26,9 @@ class ProductController extends Controller
         $brands = Brand::all();
         $categories = Category::all();
         $products = ($brand->products)->where('category_id',1);
+        $config = $products->phoneConfig;
         if (isset($brand)) {
-           return view('home.product', compact('products','brands','brand','categories') );
+           return view('home.product', compact('products','brands','brand','categories','config') );
         } 
     }
     public function showProductsByCategory($name)
@@ -42,28 +44,33 @@ class ProductController extends Controller
 
     public function show($id)
     {   
-        // Lấy tất cả các thương hiệu và danh mục (có thể dùng để hiển thị các lựa chọn cho người dùng)
+        // Lấy tất cả các thương hiệu và danh mục
         $brands = Brand::all();
         $categories = Category::all();
-    
-        // Lấy sản phẩm theo ID hoặc trả về lỗi nếu không tìm thấy
-        $product = Product::findOrFail($id);
+        
+        // Lấy sản phẩm theo ID
+        $product = Product::with('phoneConfig')->findOrFail($id);
+
+        
+        // Lấy các bình luận của sản phẩm, giả sử cột 'product_id' trong bảng 'comments'
+        $comments = Comment::where('product_id', $id)->get();  // Sửa lại điều kiện này để đúng
     
         // Lấy thông tin cấu hình của sản phẩm (nếu có)
         $config = $product->phoneConfig;
-    
+        
         // Lấy thông tin thương hiệu của sản phẩm
         $brand = $product->brand;
-    
+        
         // Lấy các sản phẩm liên quan cùng thương hiệu và danh mục, loại trừ sản phẩm hiện tại
         $relatedProducts = Product::where('brand_id', $product->brand_id)
             ->where('category_id', $product->category_id)
             ->where('id', '!=', $product->id)  // Loại bỏ sản phẩm hiện tại
             ->get();
-    
+        
         // Trả về view với tất cả các dữ liệu cần thiết
-        return view('home.inforProduct', compact('product', 'brands', 'categories', 'config', 'relatedProducts'));
+        return view('home.inforProduct', compact('product', 'brands', 'categories', 'config', 'relatedProducts', 'comments'));
     }
+    
     
     public function searchProducts(Request $request)
     {
@@ -93,21 +100,42 @@ class ProductController extends Controller
         return view('home.compare_result', compact('config1','config2','phone1','phone2','brands','categories'));
     }
 
-    public function showsearch(Request $request){
+    public function showsearch(Request $request) {
         $brands = Brand::all();
         $categories = Category::all();
-        $product = Product::where('name',$request->input('phonea'))->first();
-        // $product = Product::findOrFail($id); 
+    
+        // Tìm sản phẩm theo tên từ request
+        $product = Product::where('name', $request->input('phonea'))->first();
+    
+        // Nếu sản phẩm không tồn tại, trả về trang lỗi hoặc thông báo
+        if (!$product) {
+            return redirect()->back()->with('error', 'Sản phẩm không tồn tại.');
+        }
+    
+        // Lấy các comment liên quan đến sản phẩm
+        $comments = Comment::where('product_id', $product->id)->get();
+    
+        // Lấy cấu hình và thương hiệu của sản phẩm
         $config = $product->phoneConfig;
-        $brand = $product->brand;  // Truy cập thông tin thương hiệu của sản phẩm
-
-        // $relatedProducts = $brand->products->where('id', '!=', $id); // Loại trừ sản phẩm hiện tại
+        $brand = $product->brand;
+    
+        // Lấy các sản phẩm liên quan cùng thương hiệu và danh mục, trừ sản phẩm hiện tại
         $relatedProducts = Product::where('brand_id', $product->brand_id)
             ->where('category_id', $product->category_id)
-            ->where('id', '!=', $product->id)  // Loại bỏ sản phẩm hiện tại
+            ->where('id', '!=', $product->id)
             ->get();
-        return view('home.inforProduct', compact('config','product','brands','categories','relatedProducts'));
+    
+        // Truyền dữ liệu vào view
+        return view('home.inforProduct', compact(
+            'config',
+            'product',
+            'brands',
+            'categories',
+            'relatedProducts',
+            'comments'
+        ));
     }
+    
     public function brand()
     {
         return $this->belongsTo(Brand::class, 'brand_id');
@@ -123,12 +151,14 @@ class ProductController extends Controller
     {
         // Lấy tất cả sản phẩm từ cơ sở dữ liệu
         $products = Product::all();
-    
+       
         // Kiểm tra dữ liệu
-        dd($products); // Để kiểm tra dữ liệu trước khi truyền vào view
-    
+        // dd($products); // Để kiểm tra dữ liệu trước khi truyền vào view
+        $tags = Tag::all(); // Lấy tất cả các tag
+        // dd($tags); // Xem dữ liệu của $tags trước khi truyền vào view
+
         // Truyền danh sách sản phẩm vào view
-        return view('home.admin_manage_product', compact('products'));
+        return view('home.admin_manage_product', compact('products','tags'));
     }
     
     public function store(Request $request)
@@ -212,12 +242,21 @@ class ProductController extends Controller
 
 
     public function edit($id)
-{
-    $product = Product::find($id);  // Lấy sản phẩm theo ID
-    $categories = Category::all();  // Lấy danh sách các danh mục
-    $brands = Brand::all();         // Lấy danh sách các hãng
-    return view('edit_product', compact('product', 'categories', 'brands'));
-}
+    {
+        // Lấy tất cả các tag từ bảng tags
+        $tags = Tag::all();
+        
+        // Lấy sản phẩm theo ID
+        $product = Product::find($id);  
+        
+        // Lấy danh sách các danh mục và hãng
+        $categories = Category::all();  
+        $brands = Brand::all();         
+        
+        // Trả về view và truyền các dữ liệu vào
+        return view('home.edit_product', compact('product', 'categories', 'brands', 'tags'));
+    }
+    
 
 
 public function delete_product2($id)
@@ -238,6 +277,18 @@ public function delete_product2($id)
         // Trả về thông báo lỗi nếu có vấn đề
         return redirect()->route('admin_manage_product')->with('error', 'Có lỗi xảy ra khi xóa sản phẩm.');
     }
+}
+
+// Controller
+public function updateTag(Request $request, Product $product)
+{
+    $tagId = $request->input('tag_id'); // Lấy tag_id từ request
+
+    if ($tagId) {
+        $product->tags()->attach($tagId, ['end_date' => now()->addDays(30)]);
+    }
+
+    return back()->with('success', 'Tag đã được cập nhật!');
 }
 
 

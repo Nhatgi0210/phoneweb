@@ -155,6 +155,9 @@
     font-size: 14px;
     color: #ddd;
 }
+
+/* footer */
+
     </style>
    
    

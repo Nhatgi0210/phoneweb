@@ -15,15 +15,20 @@ class Product extends Model
     protected $fillable = [
         'name', 'original_price', 'discount_price', 'brand_id', 'category_id', 'main_image_path'
     ];
-    public function Tag(){
-        return $this->belongsToMany(Tag::class,'product_tag','product_id','tag_id')->withPivot('end_date');
-    }
-    public function scopeProductWithTag($query, $tag_name){
-        return $query->whereHas('Tag',function($query) use($tag_name){
-            $query->where('tags.name', $tag_name)
-            ->where("product_tag.end_date",">",Carbon::now());
-        });
-    }
+   // Trong mô hình Product
+   public function tags()
+   {
+       return $this->belongsToMany(Tag::class, 'product_tag', 'product_id', 'tag_id')->withPivot('end_date');
+   }
+
+   public function scopeProductWithTag($query, $tag_name)
+   {
+       return $query->whereHas('tags', function($query) use($tag_name) {
+           $query->where('tags.name', $tag_name)
+                 ->where('product_tag.end_date', '>', Carbon::now());
+       });
+   }
+   
 
     //<!--Image-->
     public function Image(){

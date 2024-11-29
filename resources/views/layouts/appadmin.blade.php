@@ -480,27 +480,47 @@ td {
             <button class="toggle-btn">☰</button>
             <h2 class="menu-title">Menu</h2>
             <ul class="menu-list">
-   <a href="{{ route('profile') }}" style="text-decoration: none;color: inherit;">   <li><i class="fas fa-user"></i> Xem thông tin cá nhân</li></a>
-   <a href="{{ route('admin') }}" style="text-decoration: none;color: inherit;"><li><i class="fas fa-tachometer-alt"></i> Bảng theo dõi</li>     </a>
-   <a href="{{ route('adminthongtin') }}" style="text-decoration: none;color: inherit;">     <li><i class="fas fa-users"></i> Quản lý người dùng</li></a>
-   <a href="{{ route('admin_manage_product') }}" style="text-decoration: none;color: inherit;">     <li><i class="fas fa-chart-line"></i>Quản lý sản phẩm </li> </a>
-   <li><i class="fas fa-sign-out-alt"></i> Quản lý đơn</li>
-   <li>
-    <a href="{{ route('home') }}" style="text-decoration: none;color: inherit;">
-        <i class="fas fa-home"></i> Về trang chủ
-    </a>
-</li>
-
-   <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-    @csrf
-</form>
-
-<a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-    <li><i class="fas fa-sign-out-alt"></i> Đăng xuất</li>
-</a>
-</ul>
-
+                <a href="{{ route('profile') }}" style="text-decoration: none; color: inherit;">
+                    <li><i class="fas fa-user"></i> Xem thông tin cá nhân</li>
+                </a>
+        
+                @if(auth()->user()->position_id == 2 || auth()->user()->position_id == 3) 
+                    <!-- Nhân viên và Admin -->
+                    <a href="{{ route('admin') }}" style="text-decoration: none; color: inherit;">
+                        <li><i class="fas fa-tachometer-alt"></i> Bảng theo dõi</li>
+                    </a>
+                @endif
+        
+                @if(auth()->user()->position_id == 3) 
+                    <!-- Chỉ Admin -->
+                    <a href="{{ route('adminthongtin') }}" style="text-decoration: none; color: inherit;">
+                        <li><i class="fas fa-users"></i> Quản lý người dùng</li>
+                    </a>
+                @endif
+        
+                @if(auth()->user()->position_id == 2 || auth()->user()->position_id == 3) 
+                    <!-- Nhân viên và Admin -->
+                    <a href="{{ route('admin_manage_product') }}" style="text-decoration: none; color: inherit;">
+                        <li><i class="fas fa-chart-line"></i> Quản lý sản phẩm</li>
+                    </a>
+                    <li><i class="fas fa-sign-out-alt"></i> Quản lý đơn</li>
+                @endif
+        
+                <!-- Ai cũng thấy -->
+                <a href="{{ route('home') }}" style="text-decoration: none; color: inherit;">
+                    <li><i class="fas fa-home"></i> Về trang chủ</li>
+                </a>
+        
+                <!-- Logout -->
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                    @csrf
+                </form>
+                <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                    <li><i class="fas fa-sign-out-alt"></i> Đăng xuất</li>
+                </a>
+            </ul>
         </div>
+        
         
         <!-- Main content -->
         <div class="main-content">
@@ -515,7 +535,7 @@ td {
                     <span class="notification-bell">🔔</span>
                     <!-- User avatar icon -->
                     <span class="user-profile" id="userAvatar"><div class="icons">
-                        <img id="userAvatar" src="{{ asset('img/gai.jpg') }}" alt="User Avatar" class="user-avatar">
+                        <img id="userAvatar" src="{{ asset('img/user.png') }}" alt="User Avatar" class="user-avatar">
                     </div>
                     </span>
                 </div>
@@ -534,15 +554,21 @@ td {
     <!-- User Profile Menu -->
     <div class="user-menu" id="userMenu">
         <div class="profile">
-            <img src="{{ asset('img/gai.jpg') }}" alt="Profile Picture" style="object-fit: cover;">
-            <div class="name">Nguyễn Văn A</div>
-            <div class="email"> <p style="color: #8d8a7f;">NguyenVanA@gmail.com</p></div>
+            <img src="{{ asset('img/user.png') }}" alt="Profile Picture" style="object-fit: cover;">
+            <div class="name">{{ $user->name }}</div>
+        <div class="email"> <p style="color: #f3efe2;">{{ $user->email }}</p></div>
         </div>
         <ul>
             <li><a href="#"><i class="fas fa-user icon"></i>Xem thông tin</a></li>
-            <li><a href="#"><i class="fas fa-exchange-alt icon"></i>Chuyển đổi tài khoản</a></li>
+          
             <li><a href="#"><i class="fas fa-file-invoice icon"></i>Đơn hàng</a></li>
-            <li><a href="#"><i class="fas fa-sign-out-alt icon"></i>Đăng xuất</a></li>
+            <form id="logout-form2" action="{{ route('logout') }}" method="POST" style="display: none;">
+                @csrf
+            </form>
+            
+            <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form2').submit();">
+                <li><i class="fas fa-sign-out-alt"></i> Đăng xuất</li>
+            </a>
         </ul>
     </div>
 

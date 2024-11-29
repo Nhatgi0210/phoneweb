@@ -129,6 +129,97 @@ table tr:nth-child(even) td {
     transform: translateY(-3px);
 }
 
+.comment-form {
+        margin: 20px 0;
+        padding: 15px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        background-color: #f9f9f9;
+        max-width: 65%; /* Thay đổi chiều rộng tối đa */
+    }
+
+    .textarea {
+        width: 100%;
+        height: 100px;
+        margin-bottom: 10px;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        resize: none;
+    }
+
+    .btn-submit {
+        padding: 10px 15px;
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    .btn-submit:hover {
+        background-color: #45a049;
+    }
+
+    .login-prompt {
+        color: #555;
+        font-style: italic;
+    }
+
+    .no-comments {
+        color: #888;
+        text-align: center;
+    }
+
+    .comments-container {
+        margin-top: 20px;
+        max-width: 60%; /* Thay đổi chiều rộng tối đa cho container */
+        max-height: 500px; /* Giới hạn chiều cao tối đa */
+        overflow-y: auto;  /* Thêm thanh cuộn dọc khi nội dung vượt quá chiều cao */
+    }
+
+    .comment {
+        padding: 10px;
+        border: 1px solid #7576e9;
+        border-radius: 5px;
+        margin-bottom: 10px;
+        background-color: #fff;
+    }
+
+    .comment-author {
+        font-weight: bold;
+        color: #333;
+    }
+
+    .comment-content {
+        margin: 5px 0;
+        color: #444;
+    }
+
+    .comment-time {
+        color: #999;
+        font-size: 0.8em;
+    }
+    /* Nút xóa nhỏ và nằm bên phải */
+.btn-delete-cmt {
+    background-color: #ff4d4d; /* Màu đỏ */
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    font-size: 12px;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-left: 10%px;
+}
+
+/* Thêm hiệu ứng khi di chuột qua */
+.btn-delete-cmt:hover {
+    background-color: #e60000; /* Màu đỏ đậm hơn khi hover */
+}
+
+/* Đảm bảo form không bị lệch */
+
 
         </style>
 @endsection
@@ -176,9 +267,10 @@ table tr:nth-child(even) td {
             <p class="special-offer">Đang trong thời gian giảm giá</p>
             <div class="actions">
               
-                <button class="cart-button">
+                {{-- <button class="cart-button">
                     <i class="fas fa-shopping-cart"></i> Add to Cart
-                </button>
+                </button> --}}
+                <button class="submit-btn add-to-cart fas fa-shopping-cart" data-product-id="{{ $product->id }}" data-user-id="{{ auth()->user()->id??'0' }}">Thêm giỏ hàng </button>
             </div>
         </div>
     </div>
@@ -230,10 +322,50 @@ table tr:nth-child(even) td {
     </div>
     {{--  --}}
     <br>
+    @if(auth()->check())
+    <form action="{{ route('comments.store2') }}" method="POST" class="comment-form">
+        @csrf
+        <input type="hidden" name="product_id" value="{{ $product->id }}">
+        <textarea name="content" placeholder="Nhập bình luận của bạn..." required class="textarea"></textarea>
+        <button type="submit" class="btn-submit">Gửi bình luận</button>
+    </form>
+@else
+    <p class="login-prompt">Bạn cần <a href="{{ route('login') }}">đăng nhập</a> để bình luận.</p>
+@endif
+
+@if($comments->isEmpty())
+    <p class="no-comments">Chưa có bình luận nào.</p>
+@else
+    <div class="comments-container">
+        <div class="comments-list">
+            @foreach($comments as $comment)
+                <div class="comment" id="comment-{{ $comment->id }}">
+                    <strong class="comment-author">{{ $comment->user->name }}</strong>
+                    <p class="comment-content">{{ $comment->content }}</p>
+                    <small class="comment-time">{{ $comment->created_at->format('d/m/Y H:i') }}</small>
+
+                    <!-- Form xóa bình luận -->
+                    @if(auth()->check() && (auth()->user()->id == $comment->user_id || auth()->user()->role == 'admin'))
+                    <form action="{{ route('comments.destroy2', $comment->id) }}" method="POST" style="display:inline;">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn-delete-cmt">Xóa</button>
+                    </form>
+                @endif
+                
+                </div>
+            @endforeach
+        </div>
+    </div>
+@endif
 
 
-    
-    
+
+
+
+
+
+
 
     {{--  --}}
     @endisset
@@ -268,10 +400,43 @@ table tr:nth-child(even) td {
         </div>
         @endforeach
     </div>
-    >
+   
+
+
     
     
 </div>
 
-   
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const deleteButtons = document.querySelectorAll('.btn-delete');
+
+    deleteButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            const commentId = this.getAttribute('data-comment-id');
+            
+            fetch(`/comment/${commentId}`, {
+                method: 'DELETE',  // Đảm bảo phương thức là DELETE
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    const commentElement = document.getElementById(`comment-${commentId}`);
+                    commentElement.remove();
+                    alert(data.message);
+                } else {
+                    alert(data.message);
+                }
+            })
+            .catch(error => console.error('Error:', error));
+        });
+    });
+});
+
+</script>
+
 @endsection

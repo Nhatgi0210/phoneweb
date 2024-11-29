@@ -1,55 +1,41 @@
 <footer>
-
-<div class="container-fluid bg-dark footer mt-5 pt-5 wow fadeIn" data-wow-delay="0.1s">
-    <div class="container py-5">
-        <div class="row g-5">
-            <div class="col-lg-3 col-md-6">
-                <h1 class="fw-bold text-primary mb-4"><span class="text-secondary" ><p style="color: rgb(92, 153, 233);">BIG WHALE</p></span></h1>
-                <p>Diam dolor diam ipsum sit. Aliqu diam amet diam et eos. Clita erat ipsum et lorem et sit, sed stet lorem sit clita</p>
-                <div class="d-flex pt-2">
-                    <a class="btn btn-square btn-outline-light rounded-circle me-1" href=""><i class="fab fa-twitter"></i></a>
-                    <a class="btn btn-square btn-outline-light rounded-circle me-1" href=""><i class="fab fa-facebook-f"></i></a>
-                    <a class="btn btn-square btn-outline-light rounded-circle me-1" href=""><i class="fab fa-youtube"></i></a>
-                    <a class="btn btn-square btn-outline-light rounded-circle me-0" href=""><i class="fab fa-linkedin-in"></i></a>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6">
-                <h4 class="text-light mb-4">Address</h4>
-                <p><i class="fa fa-map-marker-alt me-3"></i>123 Street, New York, USA</p>
-                <p><i class="fa fa-phone-alt me-3"></i>+012 345 67890</p>
-                <p><i class="fa fa-envelope me-3"></i>info@example.com</p>
-            </div>
-            <div class="col-lg-3 col-md-6">
-                <h4 class="text-light mb-4">Quick Links</h4>
-                <a class="btn btn-link" href="">About Us</a>
-                <a class="btn btn-link" href="">Contact Us</a>
-                <a class="btn btn-link" href="">Our Services</a>
-                <a class="btn btn-link" href="">Terms & Condition</a>
-                <a class="btn btn-link" href="">Support</a>
-            </div>
-            <div class="col-lg-3 col-md-6">
-                <h4 class="text-light mb-4">Newsletter</h4>
-                <p>Dolor amet sit justo amet elitr clita ipsum elitr est.</p>
-                <div class="position-relative mx-auto" style="max-width: 400px;">
-                    <input class="form-control bg-transparent w-100 py-3 ps-4 pe-5" type="text" placeholder="Your email">
-                    <button type="button" class="btn btn-primary py-2 position-absolute top-0 end-0 mt-2 me-2">SignUp</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="container-fluid copyright">
+    <div class="container-fluid" style="background-color: #0d47a1; color: #ffffff; padding: 50px 0;">
         <div class="container">
-            <div class="row">
-                <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
-                    &copy; <a href="#">Your Site Name</a>, All Right Reserved.
+            <div class="row g-4">
+                <div class="col-lg-4 col-md-6">
+                    <h2 class="fw-bold text-white mb-3">Big Whale</h2>
+                    <p class="small">
+                        Big Whale là công ty hàng đầu chuyên cung cấp các sản phẩm công nghệ hiện đại, đảm bảo chất lượng và sự đổi mới không ngừng. Chúng tôi cam kết mang đến cho khách hàng những giải pháp công nghệ tối ưu, góp phần nâng cao hiệu quả và trải nghiệm cuộc sống.
+                    </p>
+                    <div class="d-flex gap-3">
+                        <a class="btn btn-outline-light btn-sm rounded-circle" href="#"><i class="fab fa-twitter"></i></a>
+                        <a class="btn btn-outline-light btn-sm rounded-circle" href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a class="btn btn-outline-light btn-sm rounded-circle" href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
                 </div>
-                <div class="col-md-6 text-center text-md-end">
-                    <!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
-                    Designed By <a href="https://htmlcodex.com">HTML Codex</a>
-                    <br>Distributed By: <a href="https://themewagon.com" target="_blank">ThemeWagon</a>
+                <div class="col-lg-4 col-md-6">
+                    <h4 class="text-white mb-3">Quick Links</h4>
+                    <ul class="list-unstyled small">
+                        <li><a class="text-white text-decoration-none" href="#">Trang chủ</a></li>
+                        <li><a class="text-white text-decoration-none" href="#">So Sánh</a></li>
+                        <li><a class="text-white text-decoration-none" href="#">Giỏ hàng</a></li>
+                        <li><a class="text-white text-decoration-none" href="#">Đăng nhập</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-4 col-md-12">
+                    <h4 class="text-white mb-3">Liên hệ chúng tôi qua</h4>
+                    <p class="small">
+                      Số điện thoại : 0909090909 <br>
+                      Gmail : bigwhale88@gmail.com  <br>
+                      Instagram : @big_whale88_  <br>
+ 
+                    </p>
+                   
                 </div>
             </div>
         </div>
     </div>
-</div>
+    <div class="container-fluid text-center py-3" style="background-color: #002171; color: #ffffff;">
+        <p class="mb-0 small">&copy;bản quyền thuộc công ty TNHH BIG WHALE <a href="#" class="text-white text-decoration-none"></a>.</p>
+    </div>
 </footer>

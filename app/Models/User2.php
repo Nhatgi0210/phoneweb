@@ -15,4 +15,9 @@ class User2 extends Model
     {
         return $this->belongsTo(Position::class, 'position_id', 'id');
     }
+    public function comments()
+{
+    return $this->hasMany(Comment::class);
+}
+
 }
