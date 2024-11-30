@@ -47,14 +47,14 @@
                     <td style="padding: 8px; ">
                         <div class="cart-price">
                             <p >giá sale <i class="fas fa-check-circle"></i></p>
-                            <h4 style="color: #08d062;">{{ $product->discount_price }}</h4>
+                            <h4 style="color: #08d062;">{{ number_format($product->discount_price, 0, ',', '.') }} VNĐ</h4>
                         </div>
                     </td>
 
                     <td style="padding: 8px;">
                         <div class="cart-total">
                             <p>giá gốc</p>
-                            <h4><s style="color: #f53a14;"> {{ $product->original_price }} </s></h4>
+                            <h4><s style="color: #f53a14;">  {{ number_format($product->original_price, 0, ',', '.') }} VNĐ</s></h4>
                         </div>
                     </td>
 

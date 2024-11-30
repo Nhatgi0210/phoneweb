@@ -199,7 +199,7 @@ a .to-home{
         <button type="submit">Sign Up</button>
         
         <!-- Nút Sign In dưới dạng liên kết -->
-        <p class="signup-link">You already have an account <a href="{{ route('login') }}">Sign Up</a></p>
+        <p class="signup-link">You already have an account <a href="{{ route('login') }}">Sign In</a></p>
     </form>
     
       {{-- <a href="{{ route('login') }}"><button class="signin-btn">Sign In</button></a> --}}

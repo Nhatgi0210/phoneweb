@@ -73,7 +73,9 @@ class AdminController extends Controller
         $cheapProducts = Product::productWithTag('Giá rẻ')->get()->take(4);
         $brands = Brand::all();
         $categories = Category::all();
-        return view('home.add_product', compact('hotProducts', 'cheapProducts', 'brands','categories'));
+        $user = auth()->user(); // Lấy thông tin người dùng đã đăng nhập
+
+        return view('home.add_product', compact('hotProducts', 'cheapProducts', 'brands','categories','user'));
     }
     public function adminthongtin()
 {
@@ -209,10 +211,10 @@ public function edit_product2($id)
     $product = Product::with('brand', 'category', 'phoneConfig')->findOrFail($id);
     $brands = Brand::all();
     $categories = Category::all();
-
+    $user = auth()->user(); // Lấy thông tin người dùng đã đăng nhập
     // \Log::info('Product Details:', $product->toArray()); // Debug dữ liệu sản phẩm
 
-    return view('home.edit_product', compact('product', 'brands', 'categories'));
+    return view('home.edit_product', compact('product', 'brands', 'categories','user'));
 }
 
 

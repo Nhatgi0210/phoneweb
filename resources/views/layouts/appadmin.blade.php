@@ -484,7 +484,7 @@ td {
                     <li><i class="fas fa-user"></i> Xem thông tin cá nhân</li>
                 </a>
         
-                @if(auth()->user()->position_id == 2 || auth()->user()->position_id == 3) 
+                @if(auth()->user()->position_id == 3) 
                     <!-- Nhân viên và Admin -->
                     <a href="{{ route('admin') }}" style="text-decoration: none; color: inherit;">
                         <li><i class="fas fa-tachometer-alt"></i> Bảng theo dõi</li>

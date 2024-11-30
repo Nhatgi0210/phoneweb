@@ -26,9 +26,9 @@ class ProductController extends Controller
         $brands = Brand::all();
         $categories = Category::all();
         $products = ($brand->products)->where('category_id',1);
-        $config = $products->phoneConfig;
+        // $config = $products->phoneConfig;
         if (isset($brand)) {
-           return view('home.product', compact('products','brands','brand','categories','config') );
+           return view('home.product', compact('products','brands','brand','categories') );
         } 
     }
     public function showProductsByCategory($name)

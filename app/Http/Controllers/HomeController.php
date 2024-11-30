@@ -21,6 +21,7 @@ class HomeController extends Controller
         $cheapProducts = Product::productWithTag('Giá rẻ')->get()->take(20);
         $brands = Brand::all();
         $categories = Category::all();
+        
         return view("home.index",compact('hotProducts','cheapProducts','brands','categories'));
     }
     public function upImage(Request $request){

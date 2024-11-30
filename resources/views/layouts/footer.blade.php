@@ -28,7 +28,8 @@
                       Số điện thoại : 0909090909 <br>
                       Gmail : bigwhale88@gmail.com  <br>
                       Instagram : @big_whale88_  <br>
- 
+                      Địa chỉ : <a href="https://www.google.com/maps/place/Vietnam+-+Korea+University+of+Information+and+Communication+Technology/@15.9752603,108.2506521,17z/data=!3m1!4b1!4m6!3m5!1s0x3142108997dc971f:0x1295cb3d313469c9!8m2!3d15.9752603!4d108.253227!16s%2Fg%2F1yjg80dyy?entry=ttu&g_ep=EgoyMDI0MTEyNC4xIKXMDSoJLDEwMjExMjM0SAFQAw%3D%3D" target="_blank">Xem trên Google Maps</a>
+
                     </p>
                    
                 </div>
