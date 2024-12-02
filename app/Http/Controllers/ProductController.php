@@ -168,12 +168,14 @@ class ProductController extends Controller
         $validated = $request->validate([
             'TenSP' => 'required|string|max:255',
             'DonGia' => 'required|numeric',
-            'ManHinh' => 'required|string',
+            'man_hinh' => 'required|string',
             'Chip' => 'required|string',
             'RAM' => 'required|string',
             'ROM' => 'required|string',
             'Pin' => 'required|string',
             'HinhAnh1' => 'image|nullable',
+            'camera_truoc' => 'required|string',
+            'camera_sau' => 'required|string',
         ]);
     
         try {
@@ -194,7 +196,9 @@ class ProductController extends Controller
                 'ram' => $request->RAM,
                 'rom' => $request->ROM,
                 'pin' => $request->Pin,
-                'man_hinh' => $request->ManHinh,
+                'man_hinh' => $request->man_hinh,
+                'camera_truoc' => $request->camera_truoc,
+                'camera_sau' => $request->camera_sau,
             ]);
     
             // Nếu tất cả thành công, chuyển hướng về trang danh sách sản phẩm với thông báo thành công

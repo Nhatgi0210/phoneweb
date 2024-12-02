@@ -14,7 +14,7 @@ class PhoneConfig extends Model
         return $this->belongsTo(Product::class);
     }
    // PhoneConfig.php
-protected $fillable = ['product_id', 'ManHinh', 'Chip', 'RAM', 'ROM', 'Pin'];
+protected $fillable = ['product_id', 'man_hinh', 'Chip', 'RAM', 'ROM', 'Pin','camera_truoc','camera_sau'];
 
     
 }

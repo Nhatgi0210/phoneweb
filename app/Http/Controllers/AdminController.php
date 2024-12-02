@@ -239,7 +239,10 @@ public function update_product(Request $request, $id)
         ['product_id' => $product->id],
         [
             // 'ManHinh' => $request->ManHinh,
-            'man_hinh' => $request->ManHinh, // Đổi ManHinh thành man_hinh
+            'man_hinh' => $request->man_hinh, // Đổi ManHinh thành man_hinh
+            'camera_truoc' => $request->camera_truoc,
+
+            'camera_sau' => $request->camera_sau,
 
             'Chip' => $request->Chip,
             'ROM' => $request->ROM,

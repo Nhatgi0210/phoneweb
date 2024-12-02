@@ -55,8 +55,8 @@
 
     <!-- Màn hình -->
     <div class="form-group">
-        <label for="ManHinh">Màn hình:</label>
-        <input type="text" id="ManHinh" name="ManHinh" class="form-control" value="{{ $product->phoneConfig->man_hinh ?? '' }}">
+        <label for="man_hinh">Màn hình:</label>
+        <input type="text" id="man_hinh" name="man_hinh" class="form-control" value="{{ $product->phoneConfig->man_hinh??'lỗi' }}">
     </div>
 
     <!-- Chip -->
@@ -76,7 +76,17 @@
         <label for="ROM">ROM:</label>
         <input type="text" id="ROM" name="ROM" class="form-control" value="{{ $product->phoneConfig->rom }}">
     </div>
+{{--  --}}
+<div class="form-group">
+    <label for="camera_truoc">Camera trước:</label>
+    <input type="text" id="camera_truoc" name="camera_truoc" class="form-control" value="{{ $product->phoneConfig->camera_truoc}}">
+</div>
+{{--  --}}
 
+<div class="form-group">
+    <label for="camera_sau">Camera sau:</label>
+    <input type="text" id="camera_sau" name="camera_sau" class="form-control" value="{{ $product->phoneConfig->camera_sau }}">
+</div>
     <!-- Pin -->
     <div class="form-group">
         <label for="Pin">Pin:</label>

@@ -52,8 +52,8 @@
 
     <!-- Các thông số cấu hình -->
     <div class="form-group">
-        <label for="ManHinh">Màn hình:</label>
-        <input type="text" id="ManHinh" name="ManHinh" class="form-control" placeholder="Nhập thông số màn hình">
+        <label for="man_hinh">Màn hình:</label>
+        <input type="text" id="man_hinh" name="man_hinh" class="form-control" placeholder="Nhập thông số màn hình">
     </div>
 
     <div class="form-group">
@@ -69,6 +69,14 @@
     <div class="form-group">
         <label for="ROM">ROM:</label>
         <input type="text" id="ROM" name="ROM" class="form-control" placeholder="Nhập dung lượng ROM">
+    </div>
+    <div class="form-group">
+        <label for="camera_truoc">Camera truoc:</label>
+        <input type="text" id="camera_truoc" name="camera_truoc" class="form-control" placeholder="Nhập thông số camera trước">
+    </div>
+    <div class="form-group">
+        <label for="camera_sau">Camera sau:</label>
+        <input type="text" id="camera_sau" name="camera_sau" class="form-control" placeholder="Nhập thông số camera sau">
     </div>
 
     <div class="form-group">
