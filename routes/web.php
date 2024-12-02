@@ -132,7 +132,5 @@ Route::delete('/comment/{comment}', [CommentController::class, 'destroy2'])->nam
 // routes/web.php
 // Route::put('product/{id}/update-tag', [ProductController::class, 'updateTag'])->name('product.update_tag');
 Route::put('/product/{product}/update-tag', [ProductController::class, 'updateTag'])->name('product.update_tag');
-
-
-
-
+Route::post('/update-quantity', [CartController::class, 'updateQuantity'])->name('cart.quantity');
+Route::delete('/delete-on-cart',[CartController::class,'delete'])->name('cart.delete');

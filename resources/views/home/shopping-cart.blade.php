@@ -18,12 +18,16 @@
 <!-- giỏ hàng -->
 {{-- <div style="height: 120px"></div> --}}
 <div class="container">
-   
+    @isset($poc)
+                 {{ $poc }}  
+            @endisset  
 
     <!-- test1 -->
     <table style="width: 100%; border-collapse: collapse;">
        
-        <tbody>       
+        <tbody>   
+            
+           
             @foreach ($cart as $product)
                 <tr>
                     <td style="padding: 8px;">
@@ -40,29 +44,39 @@
 
                     <td style="padding: 8px; ">
                         <div class="cart-quantity">
-                            <input type="number" id="quantity" min="0" value="{{ $product->pivot->quantity }}">
+                            <input type="number" class="quantity-js" data-pocID="{{ $product->pivot->id }}" data-price="{{ $product->discount_price }}" min="1" value="{{ $product->pivot->quantity }}">
                         </div>
                     </td>
 
                     <td style="padding: 8px; ">
                         <div class="cart-price">
                             <p >giá sale <i class="fas fa-check-circle"></i></p>
+
                             <h4 style="color: #08d062;">{{ number_format($product->discount_price, 0, ',', '.') }} VNĐ</h4>
+
                         </div>
                     </td>
 
                     <td style="padding: 8px;">
                         <div class="cart-total">
                             <p>giá gốc</p>
+
                             <h4><s style="color: #f53a14;">  {{ number_format($product->original_price, 0, ',', '.') }} VNĐ</s></h4>
+
                         </div>
                     </td>
 
                     <td style="padding: 8px; ">
                         <div class="cart-remove">
-                            <button class="remove-btn">
+                            <form action="{{ route('cart.delete') }}" method="post">
+                                @csrf
+                                @method('delete')
+                                <input type="hidden" name="poc_id" value="{{ $product->pivot->id }} ">
+                                <button class="remove-btn">
                                 <i class="fas fa-trash-alt"></i> 
-                            </button>
+                                </button>
+                            </form>
+                            
                         </div>
                     </td>
                 </tr>
@@ -76,9 +90,9 @@
     <div class="invoice-box">
         <h2 >Hóa Đơn Mua Hàng</h2>
         <h3 style="color: rgb(29, 146, 223);">BIG WHALE</h3>
-        <table cellpadding="0" cellspacing="0">
+        <table cellpadding="0" cellspacing="0"  id="hoadon-js">
             <tr class="top">
-                <td colspan="2">
+                <td colspan="3">
                     <table>
                         <tr>
                             <td>
@@ -86,9 +100,9 @@
                                 Ngày Tạo: <strong>{{ date('d-m-20y') }}</strong>
                             </td>
                             <td>
-                                <span>Địa chỉ giao hàng:</span>{{ $user->adress ??''}}<br>
-                                <span>Tên khách hàng:</span> <b>{{ $user->name }} </b><br>
-                                <span>Số điện thoại:</span> <b> {{ $user->phone }}</b><br>
+                                <span>Địa chỉ giao hàng:</span> {{ auth()->user()->adress }}<br>
+                                <span>Tên khách hàng:</span> <b>{{ auth()->user()->name }}</b><br>
+                                <span>Số điện thoại:</span> <b> {{ auth()->user()->phone }}</b><br>
                             </td>
                         </tr>
                     </table>
@@ -99,6 +113,9 @@
                     Sản phẩm
                 </td>
                 <td>
+                    Số lượng
+                </td>
+                <td style="text-align: right">
                     Giá
                 </td>
             </tr>
@@ -106,16 +123,19 @@
                 $price = 0;
             @endphp
             @foreach ($cart as $product )
-            <tr class="item">
+            <tr class="item" data-pocID="{{ $product->pivot->id }}">
                 <td>
-                    {{ $product->name }}
+                    <b>{{ $product->name }}</b>
                 </td>
-                <td class="formatted-number">
-                    {{ $product->discount_price }}
+                <td>
+                    <b>{{ $product->pivot->quantity }}</b>
+                </td>
+                <td class="formatted-number" style="text-align: right; font-weight: 700;" >
+                    <b>{{ $price_one = $product->discount_price*$product->pivot->quantity }}</b>
                 </td>
             </tr>
                 @php
-                    $price += $product->discount_price;
+                    $price += $price_one;
                 @endphp
             @endforeach
             
@@ -124,15 +144,15 @@
                 <td>
                     <b>Tổng tiền hàng:</b>
                 </td>
-                <td>
-                  <b class="formatted-number">{{ $price}}</b>
+                <td colspan="2">
+                  <b id="total-price" class="formatted-number reformat" >{{ $price}}</b>
                 </td>
             </tr>
             <tr class="item">
                 <td>
                    <b>Phí vận chuyển</b>
                 </td>
-                <td>
+                <td colspan="2">
                   <b>    50.000 VND</b>
                 </td>
             </tr>
@@ -140,14 +160,14 @@
                 <td>
                      <b>Giảm giá (Voucher) </b>
                 </td>
-                <td>
-                    <b> 0 VND </b>
+                <td colspan="2">
+                    <b> -1.000.000 VND </b>
                 </td>
             </tr>
             <tr class="total">
                 <td></td>
-                <td>
-                    Tổng cộng: <span class="formatted-number">{{ $total = $price  }}</span> VND
+                <td colspan="2">
+                    Tổng cộng: <span class="formatted-number total-js reformat" >{{ $total = ($price - 1000000 + 50000) < 0 ? 0 : ($price - 1000000 - 50000) }}</span> VND
                 </td>
             </tr>
         </table>
@@ -160,7 +180,7 @@
      
     <div class="cart-summary">
         <div class="product-total">
-            <h2>Tổng tiền (VNĐ) : <span id="total" class="formatted-number">{{ $total }}</span></h2>
+            <h2>Tổng tiền (VNĐ) : <span id="total"  class="formatted-number total-js reformat">{{ $total }}</span></h2>
         </div>
         <div class="product-actions">
             <a href="#hoadon" class="checkout">Xem hóa đơn</a>
@@ -173,7 +193,70 @@
     
     
 </div>
+<script>
+    document.querySelectorAll('.quantity-js').forEach(input => {
+        input.addEventListener('change', function () {
+            const quantity = this.value; 
+            const pocID = this.dataset.pocid; 
+            const price = this.dataset.price;
+            if (quantity < 0) {
+                alert("Số lượng không được nhỏ hơn 0");
+                this.value = 0; 
+                return;
+            }
+
+      
+            const xhr = new XMLHttpRequest();
+            xhr.open('POST', '{{ route('cart.quantity') }}', true);
+            xhr.setRequestHeader('Content-Type', 'application/json');
+            xhr.setRequestHeader('X-CSRF-TOKEN', document.querySelector('meta[name="csrf-token"]').getAttribute('content')); // CSRF Token
+
+
+        // Gửi dữ liệu
+            const data = JSON.stringify({
+                poc_id: pocID,
+                quantity: quantity
+            });
+            xhr.send(data);
+
+            // Cập nhật số lượng và giá trong hóa đơn
+            const invoiceRow = document.querySelector(`#hoadon-js tr[data-pocID="${pocID}"]`);
+            if (invoiceRow) {
+                beforequantity = invoiceRow.children[1].textContent;
+                invoiceRow.children[1].textContent = quantity; 
+                invoiceRow.children[2].textContent = price*quantity; 
+                
+                
+                
+                //cap nhat tổng giá: 
+                var totalPrice = document.querySelector('#total-price');
+                totalPrice.textContent = getNumberFromFormattedElement(totalPrice) + price*(quantity-beforequantity);
+                
+                var total = document.querySelectorAll('.total-js');
+                
+                var ttconten = getNumberFromFormattedElement(totalPrice) +50000 - 1000000; 
+            
+                total.forEach(function(tt) {
+                    tt.textContent = ttconten < 0 ? 0 : ttconten;
+                });
+
+                var formatedNumber = document.querySelectorAll('.reformat').forEach(function(element) {
+                    formatNumber(element);
+                });
+            }
+
+            //cap nhat gia cuoi
+            
+
+        });
+    });
+   
+
+</script>
 @endsection
+
+
+
 
 @section('css')
 <style>

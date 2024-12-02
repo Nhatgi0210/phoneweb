@@ -47,31 +47,7 @@ class AccountController extends Controller
     public function showLoginForm(){
         return view('home.formdangnhap');
     }
-    // public function login(Request $request){
-    //     $request->validate([
-    //         'email' => 'required|email',
-    //         'password' => 'required|string',
-    //     ]);
-    //     $user = User::where('email',$request->email)->first();
-
-    //     // Kiểm tra mật khẩu
-    //     if ($user && (md5($request->password) === $user->password)) {
-    //         auth()->login($user);
-    //         $positionName = $user->Position->name;
-    //         session(['position' => $positionName]);
-    //         if($positionName === 'khach_hang'){
-    //              return redirect()->route('home');
-    //         }
-    //         else{
-    //              return redirect()->route('home');
-    //         }
-    //     }
-
-       
-    //     return back()->withErrors([
-    //         'email' => 'Email hoặc mật khẩu không đúng.',
-    //     ]);
-    // }
+ 
     public function login(Request $request)
 {
     $request->validate([

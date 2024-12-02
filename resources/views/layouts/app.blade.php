@@ -225,6 +225,15 @@
             let number = parseInt(element.textContent, 10); 
             element.textContent = number.toLocaleString('vi-VN'); 
         });
+        function getNumberFromFormattedElement(element) {
+            let formattedText = element.textContent; // Lấy nội dung đã format
+            let plainNumber = parseInt(formattedText.replace(/\./g, ''), 10); // Loại bỏ dấu chấm và chuyển thành số
+        return plainNumber;
+        }
+        function formatNumber(element){
+            let number = parseInt(element.textContent, 10); 
+            element.textContent = number.toLocaleString('vi-VN'); 
+        }
     </script>
      <script>
         document.querySelector('.confirm-btn').addEventListener('click', function() {
