@@ -101,9 +101,11 @@
                                     Ngày Tạo: <strong>{{ date('d-m-20y') }}</strong>
                                 </td>
                                 <td>
-                                    <span>Địa chỉ giao hàng:</span> {{ auth()->user()->adress }}<br>
+                                    
+                                    <span>Địa chỉ giao hàng:</span> {{ session('address', auth()->user()->address) }}<br>
+                                    <span><a href="{{ route('address') }}">Thay đổi địa chỉ</a></span><br>
                                     <span>Tên khách hàng:</span> <b>{{ auth()->user()->name }}</b><br>
-                                    <span>Số điện thoại:</span> <b>{{ auth()->user()->phone }}</b><br>
+                                    <span>Số điện thoại:</span> <b>{{ session('phone',auth()->user()->phone) }}</b><br>
                                 </td>
                             </tr>
                         </table>
@@ -133,7 +135,7 @@
                         <!-- Thêm trường ẩn để gửi số lượng -->
                         <input type="hidden" name="quantities[{{ $product->id }}]" value="{{ $product->pivot->quantity }}">
                     </td>
-                    <td class="formatted-number" style="text-align: right; font-weight: 700;">
+                    <td class="formatted-number reformat" style="text-align: right; font-weight: 700;">
                         <b>{{ $price_one = $product->discount_price * $product->pivot->quantity }}</b>
                     </td>
                 </tr>
@@ -171,12 +173,13 @@
                     <td colspan="2">
                         Tổng cộng: <span class="formatted-number total-js reformat">{{ $total = ($price - 1000000 + 50000) < 0 ? 0 : ($price - 1000000 - 50000) }}</span> VND
                     </td>
+                    {{-- <input type="hidden" name > --}}
                 </tr>
             </table>
         </div>
         
         <!-- Các trường ẩn khác -->
-        <input type="hidden" name="total" value="{{ $total }}">
+        <input type="hidden" name="total" value="{{ $total }}" class="total-js">
         <input type="hidden" name="cart" value="{{ json_encode($cart) }}">
     
         <div class="cart-summary">

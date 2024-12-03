@@ -14,7 +14,7 @@ class ProductController extends Controller
     //
     public function index(){
         $brands = Brand::all();
-        $products = Product::all();
+        $products = Product::all()->where('isShow',1);
         $categories = Category::all();
         
         return view('home.product',compact('brands','products','categories'));
@@ -25,7 +25,7 @@ class ProductController extends Controller
         $brand = Brand::where('name', $brandName)->with('products')->first();
         $brands = Brand::all();
         $categories = Category::all();
-        $products = ($brand->products)->where('category_id',1);
+        $products = ($brand->products)->where('category_id',1)->where('isShow',1);
         // $config = $products->phoneConfig;
         if (isset($brand)) {
            return view('home.product', compact('products','brands','brand','categories') );
@@ -36,7 +36,7 @@ class ProductController extends Controller
     
         $category = Category::where('name', $name)->firstOrFail();
         $brands = Brand::all();
-        $products = $category->products;
+        $products = $category->products->where('isShow',1);
         $categories = Category::all();
         return view('home.product', compact('products','brands','categories','category') );
         

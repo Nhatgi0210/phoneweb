@@ -6,6 +6,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\LocationController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -150,3 +151,9 @@ Route::get('/admin/orders', [AdminController::class, 'showOrders'])->name('admin
 Route::patch('/orders/{id}/approve', [CartController::class, 'approve'])->name('orders.approve');
 Route::patch('/orders/{id}/reject', [CartController::class, 'reject'])->name('orders.reject');
 Route::get('/test-email', [CartController::class, 'sendTestEmail']);
+
+Route::get('/address', [LocationController::class, 'address'])->name('address');
+Route::post('/districts', [LocationController::class, 'getDistricts'])->name('district');
+Route::post('/wards', [LocationController::class, 'getwards'])->name('ward');
+Route::post('/address-add',[LocationController::class,'addAddress'])->name('address.add');
+Route::post('/addresstocart',[LocationController::class,'addressToCart'])->name('address.cart');

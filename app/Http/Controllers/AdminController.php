@@ -11,7 +11,8 @@ use Illuminate\Support\Facades\Storage;
 use App\Models\Tag;
 use App\Models\Order;
 use App\Models\OrderItem;
-
+use App\Models\Province;
+use App\Models\District;
 class AdminController extends Controller
 {
     //
@@ -347,5 +348,5 @@ public function showOrders()
 }
 
 
-    
+  
 }

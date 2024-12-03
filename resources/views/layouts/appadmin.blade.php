@@ -508,9 +508,14 @@ td {
                     <a href="{{ route('admin_duyet') }}" style="text-decoration: none; color: inherit;">
                         <li><i class="fas fa-chart-line"></i> Quản lý đơn hàng</li>
                     </a>
+                @else
+
+                <a href="{{ route('address') }}" style="text-decoration: none; color: inherit;">
+                    <li><i class="fas fa-home"></i> Thông tin giao hàng</li>
+                </a>
                 @endif
-        
                 <!-- Ai cũng thấy -->
+              
                 <a href="{{ route('home') }}" style="text-decoration: none; color: inherit;">
                     <li><i class="fas fa-home"></i> Về trang chủ</li>
                 </a>
@@ -659,5 +664,107 @@ td {
              }
          });
      </script>
+     <script>
+        
+        document.getElementById('province').addEventListener('change', function() {
+          
+             const provinceCode = this.value;
+             const districtSelect = document.getElementById('district');
+            
+            
+             if (!provinceCode) {
+                 districtSelect.innerHTML = '<option value="">Chọn quận, huyện</option>';
+                 return;
+             }
+    
+            
+             const xhr = new XMLHttpRequest();
+             xhr.open('post', "{{ route('district') }}", true);
+             xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
+             xhr.setRequestHeader("X-CSRF-TOKEN", document.querySelector('meta[name="csrf-token"]').getAttribute('content'));
+
+             xhr.onreadystatechange = function() {
+                 if (xhr.readyState === 4 ) {
+                    // alert(xhr.responseText);
+                     const districts = JSON.parse(xhr.responseText);
+
+                   
+                     let options = '<option value="">Chọn quận, huyện</option>';
+                     
+                     districts.forEach(function(district) {
+                       
+                         options += `<option value="${district.code}">${district.full_name}</option>`;
+                      
+                     });
+                
+                     districtSelect.innerHTML = options;
+                 } else if (xhr.readyState === 4) {
+                     alert('Đã xảy ra lỗi khi tải danh sách huyện!');
+                 }
+             };
+             xhr.send(JSON.stringify({ code: provinceCode }));
+    
+        });
+        //lay xa phuong
+    document.getElementById('district').addEventListener('change', function() {
+          
+          const districtCode = this.value;
+          const wardSelect = document.getElementById('ward');
+         
+         
+          if (!districtCode) {
+              wardSelect.innerHTML = '<option value="">Chọn quận, huyện</option>';
+              return;
+          }
+ 
+         
+          const xhr = new XMLHttpRequest();
+          xhr.open('post', "{{ route('ward') }}", true);
+          xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
+          xhr.setRequestHeader("X-CSRF-TOKEN", document.querySelector('meta[name="csrf-token"]').getAttribute('content'));
+
+          xhr.onreadystatechange = function() {
+              if (xhr.readyState === 4 ) {
+                 // alert(xhr.responseText);
+                  const wards = JSON.parse(xhr.responseText);
+
+                
+                  let options = '<option value="">Chọn Phường, xã</option>';
+                  
+                  wards.forEach(function(ward) {
+                    
+                      options += `<option value="${ward.code}">${ward.full_name}</option>`;
+                   
+                  });
+             
+                  wardSelect.innerHTML = options;
+              } else if (xhr.readyState === 4) {
+                  alert('Đã xảy ra lỗi khi tải danh sách huyện!');
+              }
+          };
+          xhr.send(JSON.stringify({ code: districtCode }));
+ 
+     });
+    const provinceSelect = document.getElementById('province');
+    const districtSelect = document.getElementById('district');
+    const wardSelect = document.getElementById('ward');
+    const addressvl = document.getElementById('address');
+    
+     document.getElementById('road').addEventListener('change', function() {
+        
+
+        const province = provinceSelect.options[provinceSelect.selectedIndex].text;
+        const district = districtSelect.options[districtSelect.selectedIndex].text;
+        const ward = wardSelect.options[wardSelect.selectedIndex].text;
+        const road = this.value;
+        // Ghép các thông tin và gán vào ô input
+        const address = [road,province, district, ward]
+            .filter(item => item)  // Lọc các giá trị không trống
+            .join(', ');  // Ghép các thông tin bằng dấu phẩy
+
+        addressvl.value = address;  // Cập nhật giá trị cho input
+    });     
+    </script> 
+
 </body>
 </html>

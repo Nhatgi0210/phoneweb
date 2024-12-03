@@ -95,12 +95,12 @@ class CartController extends Controller
 
     if (is_array($cart) && !empty($cart)) {
         // Tính tổng tiền cho đơn hàng
-        $quantities = $request->input('quantities'); 
-        $totalPrice = 0;
-        foreach ($cart as $product) {
-            // Tổng tiền đơn hàng dựa trên giá giảm và số lượng
-            $totalPrice += $product['discount_price'] * $product['pivot']['quantity']; 
-        }
+        // $quantities = $request->input('quantities'); 
+        $totalPrice = $request->input('total');
+        // foreach ($cart as $product) {
+        //     // Tổng tiền đơn hàng dựa trên giá giảm và số lượng
+        //     $totalPrice += $product['discount_price'] * $product['pivot']['quantity']; 
+        // }
 
         // Lưu đơn hàng vào bảng orders
         $order = new Order();
@@ -125,7 +125,7 @@ class CartController extends Controller
 
         // Gửi email thông báo cho khách hàng
         // Tạo đối tượng mailable và gửi email
-        Mail::to($order->email)->send(new OrderStatusUpdated($order));
+        // Mail::to($order->email)->send(new OrderStatusUpdated($order));
 
         // Chuyển hướng hoặc trả về phản hồi
         return redirect()->route('home')->with('success', 'Đặt hàng thành công! Chúng tôi đã gửi thông báo qua email cho bạn.');
