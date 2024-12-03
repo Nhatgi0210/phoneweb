@@ -184,5 +184,22 @@ public function createOrder(Request $request)
     return redirect()->route('admin.orders.index')->with('message', 'Đơn hàng đã được tạo và chờ duyệt!');
 }
 
+public function approve($id)
+    {
+        $order = Order::findOrFail($id);
+        $order->status = 'approved'; // Cập nhật trạng thái thành "đã duyệt"
+        $order->save();
+
+        return redirect()->back()->with('success', 'Đơn hàng đã được duyệt.');
+    }
+
+    public function reject($id)
+    {
+        $order = Order::findOrFail($id);
+        $order->status = 'rejected'; // Cập nhật trạng thái thành "không duyệt"
+        $order->save();
+
+        return redirect()->back()->with('success', 'Đơn hàng đã bị từ chối.');
+    }
     
 }

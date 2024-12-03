@@ -144,3 +144,7 @@ Route::post('/place-order', [CartController::class, 'placeOrder'])->name('placeO
 
 // Route để admin xem danh sách đơn hàng
 Route::get('/admin/orders', [AdminController::class, 'showOrders'])->name('admin.orders');
+
+
+Route::patch('/orders/{id}/approve', [CartController::class, 'approve'])->name('orders.approve');
+Route::patch('/orders/{id}/reject', [CartController::class, 'reject'])->name('orders.reject');
