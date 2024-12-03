@@ -9,6 +9,8 @@ use Illuminate\Http\Request;
 use App\Models\User2;
 use Illuminate\Support\Facades\Storage;
 use App\Models\Tag;
+use App\Models\Order;
+use App\Models\OrderItem;
 
 class AdminController extends Controller
 {
@@ -52,6 +54,29 @@ class AdminController extends Controller
         $tags = Tag::all();
         return view('home.admin_manage_product', compact('hotProducts', 'cheapProducts', 'brands','categories','products','user','tags'));
     }
+    public function admin_duyet()
+{
+    $hotProducts = Product::productWithTag('Hot')->get()->take(4);
+    $cheapProducts = Product::productWithTag('Giá rẻ')->get()->take(4);
+    $brands = Brand::all();
+    $categories = Category::all();
+    $products = Product::all();
+    $user = auth()->user(); // Lấy thông tin người dùng đã đăng nhập
+    $tags = Tag::all();
+    $orders = Order::all();  // Lấy tất cả đơn hàng từ cơ sở dữ liệu
+    
+    // Truyền biến vào view bằng phương thức `with()`
+    return view('home.admin_duyet')
+        ->with('orders', $orders)
+        ->with('hotProducts', $hotProducts)
+        ->with('cheapProducts', $cheapProducts)
+        ->with('brands', $brands)
+        ->with('categories', $categories)
+        ->with('products', $products)
+        ->with('user', $user)
+        ->with('tags', $tags);
+}
+
     public function admin_manage_user()
     {
         $hotProducts = Product::productWithTag('Hot')->get()->take(4);
@@ -286,8 +311,40 @@ public function listUsers(Request $request)
 }
 
 
+public function orders()
+{
+    $orders = Order::where('status', 'pending')->with('items.product')->get();
+
+    return view('home.admin_duyet', compact('orders'));
+}
 
 
+public function updateOrderStatus(Request $request, $orderId)
+{
+    $order = Order::findOrFail($orderId);
+    $order->status = $request->status; // Chọn trạng thái: 'approved', 'rejected', v.v.
+    $order->save();
+
+    return redirect()->route('home.admin_duyet')->with('status', 'Đơn hàng đã được cập nhật!');
+}
+
+
+
+public function rejectOrder($orderId)
+{
+    $order = Order::findOrFail($orderId);
+    $order->status = 'rejected';
+    $order->save();
+
+    return redirect()->route('admin.orders');
+}
+public function showOrders()
+{
+    // Lấy tất cả các đơn hàng đang ở trạng thái "pending"
+    $orders = Order::where('status', 'pending')->get();
+    
+    return view('home.admin_duyet', compact('orders'));
+}
 
 
     

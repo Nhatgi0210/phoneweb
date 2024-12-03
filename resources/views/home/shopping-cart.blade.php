@@ -86,6 +86,7 @@
     
     <!-- endtesst1 -->
     {{-- hóa đơn --}}
+    
     <div id="hoadon"style="height: 80px"></div>
     <div class="invoice-box">
         <h2 >Hóa Đơn Mua Hàng</h2>
@@ -177,16 +178,23 @@
     
 
     
-     
     <div class="cart-summary">
         <div class="product-total">
-            <h2>Tổng tiền (VNĐ) : <span id="total"  class="formatted-number total-js reformat">{{ $total }}</span></h2>
+            <h2>Tổng tiền (VNĐ) : <span id="total" class="formatted-number total-js reformat">{{ $total }}</span></h2>
         </div>
         <div class="product-actions">
             <a href="#hoadon" class="checkout">Xem hóa đơn</a>
-            <button class="remove-all">Đặt hàng </button>
+            <form action="{{ route('placeOrder') }}" method="POST">
+                @csrf
+                <input type="hidden" name="total" value="{{ $total }}">
+                <input type="hidden" name="cart" value="{{ json_encode($cart) }}">
+                <button type="submit" class="btn btn-primary">Đặt Hàng</button>
+            </form>
         </div>
     </div>
+    
+    
+    
     
     
     

@@ -470,6 +470,8 @@ td {
   @yield('cssmanageuser');
   @yield('csseditproduct');
   @yield('cssaddproduct');
+  @yield('cssadminduyet');
+
     </style>
 </head>
 <body>
@@ -503,7 +505,9 @@ td {
                     <a href="{{ route('admin_manage_product') }}" style="text-decoration: none; color: inherit;">
                         <li><i class="fas fa-chart-line"></i> Quản lý sản phẩm</li>
                     </a>
-                    <li><i class="fas fa-sign-out-alt"></i> Quản lý đơn</li>
+                    <a href="{{ route('admin_duyet') }}" style="text-decoration: none; color: inherit;">
+                        <li><i class="fas fa-chart-line"></i> Quản lý đơn hàng</li>
+                    </a>
                 @endif
         
                 <!-- Ai cũng thấy -->
@@ -547,7 +551,7 @@ td {
            @yield('manageuser')
            @yield('editproduct')
            @yield('addproduct')
-           
+           @yield('admin_duyet');
         </div>
     </div>
 

@@ -91,7 +91,7 @@ Route::post('/logout', [AccountController::class, 'logout'])
     ->name('logout');
 
     Route::get('/admin_manage_product', [AdminController::class, 'admin_manage_product'])->name('admin_manage_product');
-
+    Route::get('/admin_duyet', [AdminController::class, 'admin_duyet'])->name('admin_duyet');
 Route::get('showsearch',[ProductController::class,'showsearch'])->name('showsearch');
 Route::get('/edit_user/{id}', [AdminController::class, 'edit_user'])->name('edit_user');
 Route::post('/update_user/{id}', [AdminController::class, 'update_user'])->name('update_user');
@@ -134,3 +134,13 @@ Route::delete('/comment/{comment}', [CommentController::class, 'destroy2'])->nam
 Route::put('/product/{product}/update-tag', [ProductController::class, 'updateTag'])->name('product.update_tag');
 Route::post('/update-quantity', [CartController::class, 'updateQuantity'])->name('cart.quantity');
 Route::delete('/delete-on-cart',[CartController::class,'delete'])->name('cart.delete');
+Route::get('/order/{order}', [CartController::class, 'show'])->name('order.success');
+// Route::get('/admin/orders', [AdminController::class, 'orders'])->name('admin.orders');
+Route::post('/order/place', [CartController::class, 'placeOrder'])->name('order.place');// routes/web.php
+Route::post('/order/create', [CartController::class, 'createOrder'])->name('order.create');
+// Route để khách hàng đặt hàng
+// Route::post('/place-order', [CartController::class, 'placeOrder'])->name('order.place');
+Route::post('/place-order', [CartController::class, 'placeOrder'])->name('placeOrder');
+
+// Route để admin xem danh sách đơn hàng
+Route::get('/admin/orders', [AdminController::class, 'showOrders'])->name('admin.orders');
