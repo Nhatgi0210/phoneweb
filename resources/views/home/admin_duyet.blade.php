@@ -8,6 +8,7 @@
         <tr>
             <th>Mã Đơn Hàng</th>
             <th>Khách Hàng</th>
+            <th>Ngày Đặt Hàng</th> <!-- Thêm cột Ngày Đặt Hàng -->
             <th>Tổng Tiền</th>
             <th>Trạng Thái</th>
             <th>Hành Động</th>
@@ -18,8 +19,9 @@
         <tr>
             <td>{{ $order->id }}</td>
             <td>{{ $order->user->name }}</td>
+            <td>{{ \Carbon\Carbon::parse($order->created_at)->format('d/m/Y H:i') }}</td> <!-- Hiển thị ngày đặt hàng -->
+
             <td>{{ number_format($order->total_price) }} VND</td>
-            {{-- <td>{{ $order->status }}</td> --}}
             <td>
                 @switch($order->status)
                     @case('pending')
@@ -35,7 +37,6 @@
                         Không xác định
                 @endswitch
             </td>
-            
             <td>
                 <form action="{{ route('orders.approve', $order->id) }}" method="POST" style="display:inline;">
                     @csrf

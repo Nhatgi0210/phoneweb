@@ -85,115 +85,110 @@
     </table>
     
     <!-- endtesst1 -->
-    {{-- hóa đơn --}}
-    
-    <div id="hoadon"style="height: 80px"></div>
-    <div class="invoice-box">
-        <h2 >Hóa Đơn Mua Hàng</h2>
-        <h3 style="color: rgb(29, 146, 223);">BIG WHALE</h3>
-        <table cellpadding="0" cellspacing="0"  id="hoadon-js">
-            <tr class="top">
-                <td colspan="3">
-                    <table>
-                        <tr>
-                            <td>
-                                Mã Hóa Đơn: <strong>{{ $orderCode }}</strong><br>
-                                Ngày Tạo: <strong>{{ date('d-m-20y') }}</strong>
-                            </td>
-                            <td>
-                                <span>Địa chỉ giao hàng:</span> {{ auth()->user()->adress }}<br>
-                                <span>Tên khách hàng:</span> <b>{{ auth()->user()->name }}</b><br>
-                                <span>Số điện thoại:</span> <b> {{ auth()->user()->phone }}</b><br>
-                            </td>
-                        </tr>
-                    </table>
-                </td>
-            </tr>
-            <tr class="heading">
-                <td>
-                    Sản phẩm
-                </td>
-                <td>
-                    Số lượng
-                </td>
-                <td style="text-align: right">
-                    Giá
-                </td>
-            </tr>
-            @php
-                $price = 0;
-            @endphp
-            @foreach ($cart as $product )
-            <tr class="item" data-pocID="{{ $product->pivot->id }}">
-                <td>
-                    <b>{{ $product->name }}</b>
-                </td>
-                <td>
-                    <b>{{ $product->pivot->quantity }}</b>
-                </td>
-                <td class="formatted-number" style="text-align: right; font-weight: 700;" >
-                    <b>{{ $price_one = $product->discount_price*$product->pivot->quantity }}</b>
-                </td>
-            </tr>
+    <form action="{{ route('placeOrder') }}" method="POST">
+        @csrf
+        <div id="hoadon" style="height: 80px"></div>
+        <div class="invoice-box">
+            <h2>Hóa Đơn Mua Hàng</h2>
+            <h3 style="color: rgb(29, 146, 223);">BIG WHALE</h3>
+            <table cellpadding="0" cellspacing="0" id="hoadon-js">
+                <tr class="top">
+                    <td colspan="3">
+                        <table>
+                            <tr>
+                                <td>
+                                    Mã Hóa Đơn: <strong>{{ $orderCode }}</strong><br>
+                                    Ngày Tạo: <strong>{{ date('d-m-20y') }}</strong>
+                                </td>
+                                <td>
+                                    <span>Địa chỉ giao hàng:</span> {{ auth()->user()->adress }}<br>
+                                    <span>Tên khách hàng:</span> <b>{{ auth()->user()->name }}</b><br>
+                                    <span>Số điện thoại:</span> <b>{{ auth()->user()->phone }}</b><br>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr class="heading">
+                    <td>
+                        Sản phẩm
+                    </td>
+                    <td>
+                        Số lượng
+                    </td>
+                    <td style="text-align: right">
+                        Giá
+                    </td>
+                </tr>
+                @php
+                    $price = 0;
+                @endphp
+                @foreach ($cart as $product)
+                <tr class="item" data-pocID="{{ $product->pivot->id }}">
+                    <td>
+                        <b>{{ $product->name }}</b>
+                    </td>
+                    <td>
+                        <b>{{ $product->pivot->quantity }}</b>
+                        <!-- Thêm trường ẩn để gửi số lượng -->
+                        <input type="hidden" name="quantities[{{ $product->id }}]" value="{{ $product->pivot->quantity }}">
+                    </td>
+                    <td class="formatted-number" style="text-align: right; font-weight: 700;">
+                        <b>{{ $price_one = $product->discount_price * $product->pivot->quantity }}</b>
+                    </td>
+                </tr>
                 @php
                     $price += $price_one;
                 @endphp
-            @endforeach
-            
+                @endforeach
     
-            <tr class="item">
-                <td>
-                    <b>Tổng tiền hàng:</b>
-                </td>
-                <td colspan="2">
-                  <b id="total-price" class="formatted-number reformat" >{{ $price}}</b>
-                </td>
-            </tr>
-            <tr class="item">
-                <td>
-                   <b>Phí vận chuyển</b>
-                </td>
-                <td colspan="2">
-                  <b>    50.000 VND</b>
-                </td>
-            </tr>
-            <tr class="item">
-                <td>
-                     <b>Giảm giá (Voucher) </b>
-                </td>
-                <td colspan="2">
-                    <b> -1.000.000 VND </b>
-                </td>
-            </tr>
-            <tr class="total">
-                <td></td>
-                <td colspan="2">
-                    Tổng cộng: <span class="formatted-number total-js reformat" >{{ $total = ($price - 1000000 + 50000) < 0 ? 0 : ($price - 1000000 - 50000) }}</span> VND
-                </td>
-            </tr>
-        </table>
-    </div>
-    <div style="height: 120px;"></div>
-    {{-- hết hóa đơn --}}
-    
-
-    
-    <div class="cart-summary">
-        <div class="product-total">
-            <h2>Tổng tiền (VNĐ) : <span id="total" class="formatted-number total-js reformat">{{ $total }}</span></h2>
+                <tr class="item">
+                    <td>
+                        <b>Tổng tiền hàng:</b>
+                    </td>
+                    <td colspan="2">
+                        <b id="total-price" class="formatted-number reformat">{{ $price }}</b>
+                    </td>
+                </tr>
+                <tr class="item">
+                    <td>
+                       <b>Phí vận chuyển</b>
+                    </td>
+                    <td colspan="2">
+                        <b>50.000 VND</b>
+                    </td>
+                </tr>
+                <tr class="item">
+                    <td>
+                         <b>Giảm giá (Voucher) </b>
+                    </td>
+                    <td colspan="2">
+                        <b>-1.000.000 VND</b>
+                    </td>
+                </tr>
+                <tr class="total">
+                    <td></td>
+                    <td colspan="2">
+                        Tổng cộng: <span class="formatted-number total-js reformat">{{ $total = ($price - 1000000 + 50000) < 0 ? 0 : ($price - 1000000 - 50000) }}</span> VND
+                    </td>
+                </tr>
+            </table>
         </div>
-        <div class="product-actions">
-            <a href="#hoadon" class="checkout">Xem hóa đơn</a>
-            <form action="{{ route('placeOrder') }}" method="POST">
-                @csrf
-                <input type="hidden" name="total" value="{{ $total }}">
-                <input type="hidden" name="cart" value="{{ json_encode($cart) }}">
+        
+        <!-- Các trường ẩn khác -->
+        <input type="hidden" name="total" value="{{ $total }}">
+        <input type="hidden" name="cart" value="{{ json_encode($cart) }}">
+    
+        <div class="cart-summary">
+            <div class="product-total">
+                <h2>Tổng tiền (VNĐ) : <span id="total" class="formatted-number total-js reformat">{{ $total }}</span></h2>
+            </div>
+            <div class="product-actions">
+                <a href="#hoadon" class="checkout">Xem hóa đơn</a>
                 <button type="submit" class="btn btn-primary">Đặt Hàng</button>
-            </form>
+            </div>
         </div>
-    </div>
-    
-    
+    </form>
     
     
     

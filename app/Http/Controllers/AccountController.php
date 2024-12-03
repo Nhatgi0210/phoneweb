@@ -30,12 +30,17 @@ class AccountController extends Controller
             'email' => $request->email,
             'phone' => $request->phone, 
             'password' => md5($request->password), 
+            'phone' => $request->phone, 
+            'password' => md5($request->password), 
         ]);
     
        
         $user->refresh();
+       
+        $user->refresh();
         auth()->login($user);
     
+        
         
         if ($user->Position) {
             $positionName = $user->Position->name;

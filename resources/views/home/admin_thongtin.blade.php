@@ -25,7 +25,7 @@
             <label>Gmail:</label>
             <input type="text" class="input2"name="email" id="email" value="{{ old('email', $user->email) }}" required>
 
-            <label>Địa chỉ :</label>
+            <label>Địa chỉ( Đây là địa chỉ mà bạn nhận hàng ) :</label>
             <input type="text"   class="input2" name="adress" id="adress" value="{{ old('adress', $user->adress) }}" required>
             <button type="submit" class="button2">Cập nhật thông tin</button>
            
