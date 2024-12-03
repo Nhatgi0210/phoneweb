@@ -294,7 +294,18 @@ public function updateTag(Request $request, Product $product)
 
     return back()->with('success', 'Tag đã được cập nhật!');
 }
-
+public function updateStatus(Request $request){
+    
+    $status = $request->input('isShow');
+    $id = $request->input('id');
+    $product = Product::findOrFail($request->input('id'));
+    if($product){
+        $product->isShow = $status;
+        $product->save();
+    }
+    
+    
+}
 
 
 

@@ -150,6 +150,7 @@ table td {
             <th>Tên Sản Phẩm</th>
             <th>Giá thành</th>
             <th>Tag</th>
+            <th>Hiển thị</th>
             <th>Hành Động</th>
         </tr>
     </thead>
@@ -185,7 +186,18 @@ table td {
             </td>
             
             
-
+            <td>
+               
+                
+                    <input 
+                        type="checkbox" 
+                        id="isShow" 
+                        data-id="{{ $product->id }}" 
+                        onchange="updateStatus(this)"
+                        <?php echo ($product->isShow == 1) ? 'checked' : ''; ?>
+                    >
+                
+            </td>
             <td>
                 <a href="{{ route('edit_product', $product->id) }}" class="btn btn-edit">Sửa</a>
                 <form action="{{ route('product.delete2', $product->id) }}" method="POST" onsubmit="return confirm('Bạn có chắc chắn muốn xóa sản phẩm này không?');">
@@ -225,5 +237,15 @@ table td {
     }
 </script>
     
-
+<script>
+    function updateStatus(checkbox) {
+        const isChecked = checkbox.checked ? 1 : 0; 
+        const productId = checkbox.getAttribute("data-id"); 
+        const xhr = new XMLHttpRequest();
+        xhr.open("POST", "{{ route('product.update_status') }}", true);
+        xhr.setRequestHeader("Content-Type", "application/json");
+        xhr.setRequestHeader("X-CSRF-TOKEN", "{{ csrf_token() }}"); 
+        xhr.send(JSON.stringify({ isShow: isChecked, id: productId }));
+    }
+</script>
 @endsection
