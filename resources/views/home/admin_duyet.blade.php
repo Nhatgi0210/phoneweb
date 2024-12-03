@@ -73,6 +73,19 @@
                         Không Duyệt
                     </button>
                 </form>
+                <button type="submit" style="
+                        background-color: blue; 
+                        color: white; 
+                        border: none; 
+                        padding: 8px 12px; 
+                        border-radius: 4px; 
+                        cursor: pointer; 
+                        transition: background-color 0.3s ease;
+                    " 
+                    onmouseover="this.style.backgroundColor='#109cd3'" 
+                    onmouseout="this.style.backgroundColor='blue'">
+                        Xem
+                    </button>
             </td>
         </tr>
         @endforeach

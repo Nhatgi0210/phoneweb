@@ -179,7 +179,7 @@
         </div>
         
         <!-- Các trường ẩn khác -->
-        <input type="hidden" name="total" value="{{ $total }}" class="total-js">
+        <input type="hidden" name="total" id="maintotal" >
         <input type="hidden" name="cart" value="{{ json_encode($cart) }}">
     
         <div class="cart-summary">
@@ -188,7 +188,7 @@
             </div>
             <div class="product-actions">
                 <a href="#hoadon" class="checkout">Xem hóa đơn</a>
-                <button type="submit" class="btn btn-primary">Đặt Hàng</button>
+                <button type="submit" id="order" class="btn btn-primary">Đặt Hàng</button>
             </div>
         </div>
     </form>
@@ -246,6 +246,7 @@
                     tt.textContent = ttconten < 0 ? 0 : ttconten;
                 });
 
+                document.getElementById('maintotal').value = ttconten;
                 var formatedNumber = document.querySelectorAll('.reformat').forEach(function(element) {
                     formatNumber(element);
                 });
@@ -257,7 +258,10 @@
         });
     });
    
-
+    // document.getElementById('order').addEventListener('click', function(event) {
+    //     var total = document.querySelectorAll('.total-js');
+    //     document.getElementById('maintotal').value = total;
+    // });
 </script>
 @endsection
 
