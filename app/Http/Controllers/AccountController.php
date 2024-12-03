@@ -28,13 +28,15 @@ class AccountController extends Controller
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
-            'phone' => $request->phone, // Thêm dòng này để lưu số điện thoại
-            'password' => bcrypt($request->password), // Mã hóa mật khẩu bằng bcrypt
+            'phone' => $request->phone, 
+            'password' => md5($request->password), 
         ]);
     
+       
+        $user->refresh();
         auth()->login($user);
     
-        // Nếu bạn dùng Position liên quan đến user, cần xử lý mối quan hệ này
+        
         if ($user->Position) {
             $positionName = $user->Position->name;
             session(['position' => $positionName]);
@@ -59,12 +61,8 @@ class AccountController extends Controller
 
     // Kiểm tra nếu người dùng tồn tại
     if ($user) {
-        // Kiểm tra mật khẩu nếu là MD5
-        if (strlen($user->password) == 32) {  // MD5 có độ dài là 32 ký tự
-            if (md5($request->password) === $user->password) {
-                // Nếu mật khẩu đúng, chuyển sang bcrypt và lưu lại
-                $user->password = bcrypt($request->password);
-                $user->save();
+        if (md5($request->password) === $user->password) {
+               
                 auth()->login($user);
                 
                 // Kiểm tra nếu có Position và lấy thông tin
@@ -77,27 +75,13 @@ class AccountController extends Controller
                 if (isset($positionName) && $positionName === 'khach_hang') {
                     return redirect()->route('home');
                 } else {
-                    return redirect()->route('home');
+                    return redirect()->route('admin');
                 }
-            }
         }
-        // Kiểm tra nếu mật khẩu đã được mã hóa bằng bcrypt
-        else if (Hash::check($request->password, $user->password)) {
-            auth()->login($user);
-
-            // Kiểm tra nếu có Position và lấy thông tin
-            if ($user->Position) {
-                $positionName = $user->Position->name;
-                session(['position' => $positionName]);
-            }
-
-            // Điều hướng dựa trên vị trí của người dùng
-            if (isset($positionName) && $positionName === 'khach_hang') {
-                return redirect()->route('home');
-            } else {
-                return redirect()->route('home');
-            }
-        }
+       
+            
+        
+       
     }
 
     // Nếu không đúng email hoặc mật khẩu
