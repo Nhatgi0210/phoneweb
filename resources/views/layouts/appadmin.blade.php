@@ -513,7 +513,7 @@ td {
                 <a href="{{ route('address') }}" style="text-decoration: none; color: inherit;">
                     <li><i class="fas fa-home"></i> Thông tin giao hàng</li>
                 </a>
-                <a href="#" style="text-decoration: none; color: inherit;">
+                <a href="{{ route('donhang') }}" style="text-decoration: none; color: inherit;">
                     <li><i class="fas fa-home"></i> Thông tin đơn hàng</li>
                 </a>
                 @endif

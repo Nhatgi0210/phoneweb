@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Position;
+use App\Models\OrderItem;
+use App\Models\Order;
 use App\Models\User;
 use Hash;
 use Illuminate\Http\Request;
@@ -101,5 +103,10 @@ class AccountController extends Controller
         session()->regenerateToken(); // Tạo lại token CSRF
         return redirect()->route('home'); // Chuyển hướng về trang chủ hoặc trang đăng nhập
     }
-    
+    public function showDonHang(){
+        $order = Order::where('user_id',auth()->user()->id)->first();
+        $orderItems = OrderItem::where('order_id',$order->id)->get();
+        $user = auth()->user();
+        return view('home.donhang',compact('order','orderItems','user'));
+    }
 }

@@ -157,3 +157,5 @@ Route::post('/districts', [LocationController::class, 'getDistricts'])->name('di
 Route::post('/wards', [LocationController::class, 'getwards'])->name('ward');
 Route::post('/address-add',[LocationController::class,'addAddress'])->name('address.add');
 Route::post('/addresstocart',[LocationController::class,'addressToCart'])->name('address.cart');
+
+Route::get('/donhang',[AccountController::class,'showDonHang'])->name('donhang');
