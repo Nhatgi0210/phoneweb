@@ -179,7 +179,7 @@
         </div>
         
         <!-- Các trường ẩn khác -->
-        <input type="hidden" name="total" id="maintotal" >
+        <input type="hidden" name="total" value="{{ $total }}" id="maintotal" >
         <input type="hidden" name="cart" value="{{ json_encode($cart) }}">
     
         <div class="cart-summary">

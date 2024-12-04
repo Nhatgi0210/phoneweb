@@ -5,21 +5,21 @@
         <div class="widget widget-aa">
             <div class="title">Tổng khách hàng</div>
             <div class="value">
-                <span class="amount">999</span>
+                <span class="amount">21</span>
                 <span class="currency">Khách</span>
             </div>
         </div>
         <div class="widget widget-bb">
             <div class="title">Đơn hàng chờ duyệt</div>
             <div class="value">
-                <span class="amount">120</span>
+                <span class="amount">6</span>
                 <span class="currency">Đơn</span>
             </div>
         </div>
         <div class="widget widget-cc">
             <div class="title">Đơn hàng đã duyệt</div>
             <div class="value">
-                <span class="amount">3499</span>
+                <span class="amount">3</span>
                 <span class="currency">Đơn</span>
             </div>
         </div>

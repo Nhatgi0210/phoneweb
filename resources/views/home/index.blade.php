@@ -90,9 +90,9 @@
                                     <span class="text-body text-decoration-line-through formatted-number">{{ $product->original_price }}</span>
                                 </div>
                                  <div style="text-align: center">
-                                <b>Màn hình: </b>{{ $product->phoneConfig->man_hinh  }}<br>
+                                {{-- <b>Màn hình: </b>{{ $product->phoneConfig->man_hinh  }}<br>
                                 <b>Chip:</b> {{ $product->phoneConfig->chip }} <br>
-                                <b>Pin:</b>  {{ $product->phoneConfig->pin }} 
+                                <b>Pin:</b>  {{ $product->phoneConfig->pin }}  --}}
                                  </div>
                                 <div class="d-flex border-top">
                                     <small class="w-50 text-center border-end py-2">

@@ -73,7 +73,7 @@
                         Không Duyệt
                     </button>
                 </form>
-                <button type="submit" style="
+                {{-- <button type="submit" style="
                         background-color: blue; 
                         color: white; 
                         border: none; 
@@ -85,7 +85,7 @@
                     onmouseover="this.style.backgroundColor='#109cd3'" 
                     onmouseout="this.style.backgroundColor='blue'">
                         Xem
-                    </button>
+                    </button> --}}
             </td>
         </tr>
         @endforeach
