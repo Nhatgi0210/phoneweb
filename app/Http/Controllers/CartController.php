@@ -128,7 +128,7 @@ class CartController extends Controller
         // Mail::to($order->email)->send(new OrderStatusUpdated($order));
 
         // Chuyển hướng hoặc trả về phản hồi
-        return redirect()->route('home')->with('success', 'Đặt hàng thành công! Chúng tôi đã gửi thông báo qua email cho bạn.');
+        return redirect()->route('donhang')->with('success', 'Đặt hàng thành công! Chúng tôi đã gửi thông báo qua email cho bạn.');
     }
 
     // Nếu giỏ hàng không hợp lệ
