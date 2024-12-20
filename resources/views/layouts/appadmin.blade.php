@@ -514,7 +514,7 @@ td {
                     <li><i class="fas fa-home"></i> Thông tin giao hàng</li>
                 </a>
                 <a href="{{ route('donhang') }}" style="text-decoration: none; color: inherit;">
-                    <li><i class="fas fa-home"></i> Thông tin đơn hàng</li>
+                    <li><i class="fas fa-file-invoice icon"></i> Thông tin đơn hàng</li>
                 </a>
                 @endif
                 <!-- Ai cũng thấy -->

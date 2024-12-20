@@ -14,7 +14,19 @@
         <h2>Thông tin đơn hàng</h2>
         <div class="invoice-box">
             
-            <h3 style="color: rgb(29, 146, 223);">BIG WHALE</h3>
+            {{-- <h3 style="color: rgb(29, 146, 223);">CHỜ DUYỆT</h3> --}}
+            <h3 style="color: rgb(29, 146, 223);">  @switch($order->status)
+                @case('pending')
+                    Chờ duyệt
+                    @break
+                @case('approved')
+                    Đã duyệt
+                    @break
+                @case('rejected')
+                    Không duyệt
+                    @break
+               
+            @endswitch</h3>
             <table cellpadding="0" cellspacing="0" id="hoadon-js">
                 <tr class="top">
                     <td colspan="3">
@@ -25,7 +37,7 @@
                                 </td>
                                 <td>
                                     
-                                    <span>Địa chỉ giao hàng:</span> {{ session('address', auth()->user()->address) }}<br>
+                                    {{-- <span>Địa chỉ giao hàng:</span> {{ session('address', auth()->user()->address) }}<br> --}}
                                     <span>Tên khách hàng:</span> <b>{{ auth()->user()->name }}</b><br>
                                     <span>Số điện thoại:</span> <b>{{ session('phone',auth()->user()->phone) }}</b><br>
                                 </td>
