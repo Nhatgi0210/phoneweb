@@ -32,8 +32,7 @@ class AccountController extends Controller
             'email' => $request->email,
             'phone' => $request->phone, 
             'password' => md5($request->password), 
-            'phone' => $request->phone, 
-            'password' => md5($request->password), 
+           
         ]);
     
        
@@ -103,10 +102,16 @@ class AccountController extends Controller
         session()->regenerateToken(); // Tạo lại token CSRF
         return redirect()->route('home'); // Chuyển hướng về trang chủ hoặc trang đăng nhập
     }
-    public function showDonHang(){
-        $order = Order::where('user_id',auth()->user()->id)->first();
-        $orderItems = OrderItem::where('order_id',$order->id)->get();
+    public function showDonHang() {
         $user = auth()->user();
-        return view('home.donhang',compact('order','orderItems','user'));
+        $orders = Order::where('user_id', $user->id)->get();
+        $orderItems = OrderItem::whereIn('order_id', $orders->pluck('id'))->get();
+        return view('home.donhang', compact('orders', 'orderItems', 'user'));
+    }
+    public function showHoaDon(Request $request) {
+        $user = auth()->user();
+        $order = Order::where('id', $request->ordID)->first();
+        $orderItems = OrderItem::where('order_id',$request->ordID)->get();
+        return view('home.hoadon', compact('order', 'orderItems', 'user'));
     }
 }

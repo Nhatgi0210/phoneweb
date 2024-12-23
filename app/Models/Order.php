@@ -7,15 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 class Order extends Model
 {
     use HasFactory;
-
-    // Các cột có thể điền
-    protected $fillable = [
-        'user_id',
-        'total_price',
-        'status',
-        'created_at',
-        'updated_at',
-    ];
     const PENDING = 0;
     const APPROVED = 1;
     const CANCELLED = 2;

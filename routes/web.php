@@ -159,3 +159,4 @@ Route::post('/address-add',[LocationController::class,'addAddress'])->name('addr
 Route::post('/addresstocart',[LocationController::class,'addressToCart'])->name('address.cart');
 
 Route::get('/donhang',[AccountController::class,'showDonHang'])->name('donhang');
+Route::get('/hoadon/{ordID}',[AccountController::class,'showHoaDon'])->name('hoadon');

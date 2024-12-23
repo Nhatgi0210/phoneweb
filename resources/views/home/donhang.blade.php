@@ -11,22 +11,27 @@
 
     <!-- Right section: Personal Information -->
     <div class="personal-info">
+        
+        @foreach ($orders as $order)
+            
         <h2>Thông tin đơn hàng</h2>
         <div class="invoice-box">
             
             {{-- <h3 style="color: rgb(29, 146, 223);">CHỜ DUYỆT</h3> --}}
-            <h3 style="color: rgb(29, 146, 223);">  @switch($order->status)
+            @switch($order->status)
+             
                 @case('pending')
-                    Chờ duyệt
+                    <h3 style="color: rgb(255, 238, 0);"> Chờ duyệt </h3>
                     @break
                 @case('approved')
-                    Đã duyệt
+                    <h3 style="color: rgb(0, 255, 106);"> Đã duyệt </h3>
                     @break
+                   
                 @case('rejected')
-                    Không duyệt
+                    <h3 style="color: rgb(236, 70, 70);"> Không duyệt </h3>
                     @break
                
-            @endswitch</h3>
+            @endswitch
             <table cellpadding="0" cellspacing="0" id="hoadon-js">
                 <tr class="top">
                     <td colspan="3">
@@ -39,7 +44,8 @@
                                     
                                     {{-- <span>Địa chỉ giao hàng:</span> {{ session('address', auth()->user()->address) }}<br> --}}
                                     <span>Tên khách hàng:</span> <b>{{ auth()->user()->name }}</b><br>
-                                    <span>Số điện thoại:</span> <b>{{ session('phone',auth()->user()->phone) }}</b><br>
+                                    <span>Số điện thoại:</span> <b>{{ $order->phone }}</b><br>
+                                    <span>Địa chỉ giao hàng:</span> <b>{{ $order->address }}</b><br>
                                 </td>
                             </tr>
                         </table>
@@ -59,7 +65,7 @@
                 @php
                     $price = 0;
                 @endphp
-                @foreach ($orderItems as $orderItem)
+                @foreach($orderItems->where('order_id', $order->id) as $orderItem)
                 <tr class="item">
                     <td>
                         <b>{{ $orderItem->product->name }}</b>
@@ -100,16 +106,16 @@
                     </td>
                 </tr>
                 <tr class="total">
-                    <td></td>
-                    <td colspan="2">
-                        Tổng cộng: <span class="formatted-number total-js reformat">{{ $total = ($order->total_price - 1000000 + 50000) < 0 ? 0 : ($order->total_price - 1000000 - 50000) }}</span> VND
+                    <td><b> Tổng cộng: </b></td>
+                    <td colspan="2" style="color: rgb(3, 202, 70); font-size: 20px; font-weight: 600">
+                       <span class="formatted-number total-js reformat">{{ $total = ($order->total_price - 1000000 + 50000) < 0 ? 0 : ($order->total_price - 1000000 - 50000) }}</span> VND
                     </td>
                     {{-- <input type="hidden" name > --}}
                 </tr>
             </table>
         </div>
             
-           
+        @endforeach   
       
     </div>
 </div>

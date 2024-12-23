@@ -34,13 +34,13 @@ class LocationController extends Controller
         $address = new Address(); 
         $address->user_id = $request->userId;
         $address->address = $request->address;
-        $address->sdt = $request->phone;
+        $address->phone = $request->phone;
         $address->save();
         return redirect()->route('address');
     }
     public function addressToCart(Request $request){
         session(['address' => $request->address]);
-        session(['sdt'=> $request->sdt ]);
+        session(['phone'=> $request->phone ]);
         return redirect()->route('shopping_cart');
     }
 }

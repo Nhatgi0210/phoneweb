@@ -11,62 +11,111 @@
 
     <!-- Right section: Personal Information -->
     <div class="personal-info">
-        <h2>Danh sách thông tin giao hàng</h2>
-        <table>
-            <thead>
-                <tr>
-                    <th>Địa chỉ</th>
-                    <th>SDT</th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach ($addresses as $address)
-                    <tr>
-                       <td>{{ $address->address }}</td>
-                       <td>{{ $address->phone }}</td>
-                       <td>
-                            <form action=" {{ route('address.cart') }}" method="POST">
-                                @csrf
-                                <input type="hidden" name="address" id="" value="{{ $address->address }}">
-                                <input type="hidden" name="phone" value="{{ $address->phone }}">
-                                <button class="btn-custom btn-add">Chọn</button>
-                            </form> 
-                        </td> 
-                    </tr>
-                @endforeach
-            </tbody>
-        </table>
-        <h2>Thêm địa chỉ mới</h2>
-        <form action="{{ route('address.add') }}" method="POST">
-            @csrf
-            <label for="province">Tỉnh,thành phố</label>
-            <select  id="province">
-                @foreach ($provinces as $province )
-                    <option value="{{ $province->code }}">{{ $province->full_name }}</option>
-                @endforeach
-            </select>
-            <label for="district">Quận, huyện</label>
-            <select  id="district">
-                <option value="">Chọn quận, huyện</option>
-            </select>
-            <label for="ward">Xã Phường</label>
-            <select  id="ward">
-                    <option value="">Chọn Xã, phường</option>
-            </select>
-            <label>Đường, số nhà:</label>
-            <input type="text" value=""  class="input2"  id="road">
-
-            <label for="address">Địa chỉ</label>
-            <input type="text" class="input2" name="address" id="address" required>
-            <label>Số điện thoại:</label>
-            <input type="text" class="input2"  name="phone" id="phone"  value="{{ old('phone', $user->phone) }}"required>
-
-            <input type="hidden" name="userId" id="" value="{{ $user->id }}">
-            <button type="submit" class="button2">Cập nhật thông tin</button>
-        </form>
+        
+        
             
-           
+        <h2>Thông tin đơn hàng</h2>
+        <div class="invoice-box">
+            
+            {{-- <h3 style="color: rgb(29, 146, 223);">CHỜ DUYỆT</h3> --}}
+            @switch($order->status)
+             
+                @case('pending')
+                    <h3 style="color: rgb(255, 238, 0);"> Chờ duyệt </h3>
+                    @break
+                @case('approved')
+                    <h3 style="color: rgb(0, 255, 106);"> Đã duyệt </h3>
+                    @break
+                   
+                @case('rejected')
+                    <h3 style="color: rgb(236, 70, 70);"> Không duyệt </h3>
+                    @break
+               
+            @endswitch
+            <table cellpadding="0" cellspacing="0" id="hoadon-js">
+                <tr class="top">
+                    <td colspan="3">
+                        <table>
+                            <tr>
+                                <td>
+                                    Ngày Tạo: <strong>{{ date('d-m-20y') }}</strong>
+                                </td>
+                                <td>
+                                    
+                                    {{-- <span>Địa chỉ giao hàng:</span> {{ session('address', auth()->user()->address) }}<br> --}}
+                                    <span>Tên khách hàng:</span> <b>{{ auth()->user()->name }}</b><br>
+                                    <span>Số điện thoại:</span> <b>{{ $order->phone }}</b><br>
+                                    <span>Địa chỉ giao hàng:</span> <b>{{ $order->address }}</b><br>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr class="heading">
+                    <td>
+                        Sản phẩm
+                    </td>
+                    <td>
+                        Số lượng
+                    </td>
+                    <td style="text-align: right">
+                        Giá
+                    </td>
+                </tr>
+                @php
+                    $price = 0;
+                @endphp
+                @foreach($orderItems as $orderItem)
+                <tr class="item">
+                    <td>
+                        <b>{{ $orderItem->product->name }}</b>
+                    </td>
+                    <td>
+                        <b>{{ $orderItem->quantity }}</b>
+                        
+                    </td>
+                    <td class="formatted-number reformat" style="text-align: right; font-weight: 700;">
+                        <b>{{ $orderItem->price }}</b>
+                    </td>
+                </tr>
+               
+                @endforeach
+    
+                <tr class="item">
+                    <td>
+                        <b>Tổng tiền hàng:</b>
+                    </td>
+                    <td colspan="2">
+                        <b id="total-price" class="formatted-number reformat">{{ $order->total_price }}</b>
+                    </td>
+                </tr>
+                <tr class="item">
+                    <td>
+                       <b>Phí vận chuyển</b>
+                    </td>
+                    <td colspan="2">
+                        <b>50.000 VND</b>
+                    </td>
+                </tr>
+                <tr class="item">
+                    <td>
+                         <b>Giảm giá (Voucher) </b>
+                    </td>
+                    <td colspan="2">
+                        <b>-1.000.000 VND</b>
+                    </td>
+                </tr>
+                <tr class="total">
+                    <td><b> Tổng cộng: </b></td>
+                    <td colspan="2" style="color: rgb(3, 202, 70); font-size: 20px; font-weight: 600">
+                       <span class="formatted-number total-js reformat">{{ $total = ($order->total_price - 1000000 + 50000) < 0 ? 0 : ($order->total_price - 1000000 - 50000) }}</span> VND
+                    </td>
+                    {{-- <input type="hidden" name > --}}
+                </tr>
+            </table>
+        </div>
+            
+      
       
     </div>
 </div>

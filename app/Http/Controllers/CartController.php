@@ -15,6 +15,7 @@ use App\Models\OrderItem;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\OrderStatusUpdated;
 use Illuminate\Support\Facades\Log;
+use Session;
 class CartController extends Controller
 {
     //
@@ -107,6 +108,8 @@ class CartController extends Controller
         $order->user_id = auth()->id();  // Lấy ID người dùng đã đăng nhập
         $order->email = auth()->user()->email; // Email của khách hàng
         $order->total_price = $totalPrice;
+        $order->address = session('address');
+        $order->phone = session('phone');
         $order->status = 'pending'; // Trạng thái đơn hàng là 'pending'
         $order->save();
 

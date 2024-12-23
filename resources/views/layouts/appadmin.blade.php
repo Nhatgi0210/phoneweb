@@ -5,7 +5,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Dashboard</title>
+    <title>Dashboard</title>
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
@@ -559,7 +559,7 @@ td {
            @yield('manageuser')
            @yield('editproduct')
            @yield('addproduct')
-           @yield('admin_duyet');
+           @yield('admin_duyet')
         </div>
     </div>
 
@@ -583,7 +583,21 @@ td {
             </a>
         </ul>
     </div>
-
+    <script>
+        document.querySelectorAll('.formatted-number').forEach(function(element) {
+            let number = parseInt(element.textContent, 10); 
+            element.textContent = number.toLocaleString('vi-VN'); 
+        });
+        function getNumberFromFormattedElement(element) {
+            let formattedText = element.textContent; // Lấy nội dung đã format
+            let plainNumber = parseInt(formattedText.replace(/\./g, ''), 10); // Loại bỏ dấu chấm và chuyển thành số
+        return plainNumber;
+        }
+        function formatNumber(element){
+            let number = parseInt(element.textContent, 10); 
+            element.textContent = number.toLocaleString('vi-VN'); 
+        }
+    </script>
     <script>
     document.addEventListener('DOMContentLoaded', function() {
     // Toggle sidebar
