@@ -97,12 +97,12 @@
                                 <div class="d-flex border-top">
                                     <small class="w-50 text-center border-end py-2">
                                       
-                                        <a class="text-body" href="{{ route('product.show', ['id' => $product->id]) }}"><i class="fa fa-eye text-primary me-2"></i>Xem sản phẩm </a>
+                                        <a class="text-body" href="{{ route('product.show', ['id' => $product->id]) }}"><i class="fa fa-eye text-primary me-2"></i>View detail </a>
                                     </small>
                                     <small class="w-50 text-center py-2">
                                       <span class="text-body" href="">
                                         <i class="fa fa-shopping-cart text-primary me-2"></i>
-                                        <button class="submit-btn add-to-cart" data-product-id="{{ $product->id }}" data-user-id="{{ auth()->user()->id??'0' }}">Thêm giỏ hàng </button>
+                                        <button class="submit-btn add-to-cart" data-product-id="{{ $product->id }}" data-user-id="{{ auth()->user()->id??'0' }}">Add to cart </button>
                                         <meta name="csrf-token" content="{{ csrf_token() }}">
                                       </span>
                                       

@@ -102,7 +102,7 @@
                                 </td>
                                 <td>
                                     
-                                    <span>Địa chỉ giao hàng:</span> {{ session('address', auth()->user()->address) }}<br>
+                                    <span>Địa chỉ giao hàng:</span> {{ session('address', auth()->user()->address)??" " }}<br>
                                     <span><a href="{{ route('address') }}">Thay đổi địa chỉ</a></span><br>
                                     <span>Tên khách hàng:</span> <b>{{ auth()->user()->name }}</b><br>
                                     <span>Số điện thoại:</span> <b>{{ session('phone',auth()->user()->phone) }}</b><br>

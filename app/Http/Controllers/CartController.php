@@ -93,7 +93,7 @@ class CartController extends Controller
 {
     // Giải mã dữ liệu giỏ hàng từ client
     $cart = json_decode($request->cart, true);
-
+    $quantities = $request->input('quantities', []);
     if (is_array($cart) && !empty($cart)) {
         // Tính tổng tiền cho đơn hàng
         // $quantities = $request->input('quantities'); 
@@ -118,7 +118,7 @@ class CartController extends Controller
             $orderItem = new OrderItem();  // Sử dụng bảng order_item
             $orderItem->order_id = $order->id;
             $orderItem->product_id = $product['id'];
-            $orderItem->quantity = $product['pivot']['quantity'];
+            $orderItem->quantity =$quantities[$product['id']] ?? 1;
             $orderItem->price = $product['discount_price']; // Lưu giá sản phẩm khi đặt hàng
             $orderItem->save();
         }
