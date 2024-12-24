@@ -103,7 +103,7 @@
 @endsection
 @section('sosanh') 
 <!-- so sánh -->
-<div style="height:100px"></div>
+<div style="height:50px"></div>
 <div style="text-align: center;">
     <form action="{{ route('compare.phone') }}" method="get">
          <div class="d-flex justify-content-center align-items-center border-animation-left" style="flex-wrap: nowrap;">

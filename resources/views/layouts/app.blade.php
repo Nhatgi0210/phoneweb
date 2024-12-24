@@ -157,6 +157,121 @@
 }
 
 /* footer */
+/* Bong bóng chat */
+#chat-bubble {
+  width: 50px;
+  height: 50px;
+  background-color: #6200ea;
+  color: white;
+  font-size: 24px;
+  text-align: center;
+  line-height: 50px;
+  border-radius: 50%;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  cursor: pointer;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* Hộp thoại chat */
+#chat-box {
+  display: none;
+  width: 300px;
+  height: 400px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  position: fixed;
+  bottom: 80px;
+  right: 20px;
+  background-color: #f9f9f9;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  font-family: Arial, sans-serif;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Header */
+#chat-header {
+  padding: 10px;
+  background-color: #6200ea;
+  color: white;
+  text-align: center;
+  font-weight: bold;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+/* Tin nhắn */
+#chat-messages {
+  flex-grow: 1;
+  padding: 10px;
+  overflow-y: auto;
+  border-bottom: 1px solid #ddd;
+}
+
+.bot-message {
+  margin-bottom: 10px;
+  text-align: left;
+  color: #555;
+}
+
+.user-message {
+  margin-bottom: 10px;
+  text-align: right;
+  color: #000;
+}
+
+/* Gợi ý câu hỏi */
+#chat-suggestions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  padding: 5px;
+  justify-content: space-around;
+}
+
+.suggestion-btn {
+  background-color: #e0e0e0;
+  border: none;
+  border-radius: 5px;
+  padding: 5px 10px;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.suggestion-btn:hover {
+  background-color: #d6d6d6;
+}
+
+/* Input */
+#chat-input-container {
+  display: flex;
+  padding: 10px;
+}
+
+#chat-input {
+  flex-grow: 1;
+  padding: 5px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  outline: none;
+}
+
+#send-btn {
+  margin-left: 10px;
+  padding: 5px 10px;
+  background-color: #6200ea;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#send-btn:hover {
+  background-color: #4500b5;
+}
+
 
     </style>
    
@@ -209,7 +324,29 @@
     </ul>
 </div> --}}
 {{-- endmenu logout --}}
-
+<!-- Bong bóng chat -->
+<div id="chat-bubble">
+    🤔
+  </div>
+  
+  <!-- Hộp thoại chat -->
+  <div id="chat-box">
+    <div id="chat-header">Hỗ Trợ Khách Hàng</div>
+    <div id="chat-messages">
+      <!-- Tin nhắn chào mừng -->
+      <div class="bot-message"> Quý khách có câu hỏi nào thắc mắc ạ?</div>
+    </div>
+    <div id="chat-suggestions">
+      <button class="suggestion-btn">Hỏi về sản phẩm</button>
+      <button class="suggestion-btn">Hỏi về đơn hàng</button>
+      <button class="suggestion-btn">Khác</button>
+    </div>
+    <div id="chat-input-container">
+      <input type="text" id="chat-input" placeholder="Nhập tin nhắn...">
+      <button id="send-btn">Gửi</button>
+    </div>
+  </div>
+  
     <!-- JavaScript Libraries -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
@@ -303,7 +440,86 @@
         });
 
     </script>
+    <script>
+        window.onload = () => {
+  const chatBox = document.getElementById('chat-box');
+  chatBox.style.display = 'none'; // Đảm bảo chat box luôn bị ẩn khi tải trang
+};
+// Lấy các phần tử cần thiết
+const chatBubble = document.getElementById('chat-bubble');
+const chatBox = document.getElementById('chat-box');
 
+// Hiện/Ẩn hộp thoại chat khi nhấn bong bóng
+chatBubble.addEventListener('click', (e) => {
+  e.stopPropagation(); // Ngừng sự kiện bọt khí để tránh việc đóng hộp thoại khi nhấn bong bóng
+  // Toggle hiển thị hộp thoại chat
+  if (chatBox.style.display === 'none' || chatBox.style.display === '') {
+    chatBox.style.display = 'flex'; // Hiện hộp thoại
+  } else {
+    chatBox.style.display = 'none'; // Ẩn hộp thoại
+  }
+});
+
+// Ẩn hộp thoại khi nhấn ra ngoài
+document.addEventListener('click', (e) => {
+  // Kiểm tra nếu nhấn ra ngoài hộp thoại và bong bóng
+  if (!chatBox.contains(e.target) && e.target !== chatBubble) {
+    chatBox.style.display = 'none'; // Ẩn hộp thoại
+  }
+});
+
+// Gửi tin nhắn
+const sendBtn = document.getElementById('send-btn');
+const chatInput = document.getElementById('chat-input');
+const chatMessages = document.getElementById('chat-messages');
+
+function sendMessage(message) {
+  if (message.trim() === '') return;
+
+  // Thêm tin nhắn người dùng
+  const userMessage = document.createElement('div');
+  userMessage.textContent = `Bạn: ${message}`;
+  userMessage.className = 'user-message';
+  chatMessages.appendChild(userMessage);
+
+  // Clear input
+  chatInput.value = "";
+
+  // Tự động cuộn xuống cuối
+  chatMessages.scrollTop = chatMessages.scrollHeight;
+
+  // Thêm phản hồi bot
+  setTimeout(() => {
+    const botReply = document.createElement('div');
+    botReply.textContent = "Cảm ơn quý khách! Chúng tôi sẽ phản hồi ngay.";
+    botReply.className = 'bot-message';
+    chatMessages.appendChild(botReply);
+
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+  }, 1000);
+}
+
+// Sự kiện nhấn nút Gửi
+sendBtn.addEventListener('click', () => {
+  sendMessage(chatInput.value);
+});
+
+// Nhấn Enter để gửi tin nhắn
+chatInput.addEventListener('keypress', (e) => {
+  if (e.key === 'Enter') {
+    sendMessage(chatInput.value);
+  }
+});
+
+// Sự kiện cho các nút gợi ý
+const suggestionButtons = document.querySelectorAll('.suggestion-btn');
+suggestionButtons.forEach((button) => {
+  button.addEventListener('click', () => {
+    sendMessage(button.textContent);
+  });
+});
+
+</script>
 </body>
 
 </html>
