@@ -278,21 +278,22 @@ public function sendTestEmail()
     try {
         Mail::raw('Đây là email thử nghiệm từ Laravel', function($message) use ($recipient) {
             $message->to($recipient)
-                    ->from('phanvson05@gmail.com')
-                    ->subject('Thông báo trạng thái đơn hàng');
+                    ->from('your_email@example.com', 'Your App Name')
+                    ->subject('Thử nghiệm gửi email từ Laravel');
         });
 
-        return 'Đã gửi email đến anh ' . $recipient;
+        return response()->json(['success' => true, 'message' => 'Email thử nghiệm đã được gửi.']);
     } catch (\Exception $e) {
-        return 'Lỗi gửi email: ' . $e->getMessage();
+        return response()->json(['success' => false, 'message' => 'Lỗi khi gửi email: ' . $e->getMessage()]);
     }
 }
 
 
 
 
-public function sendOrderStatusEmail()
-{
-    Mail::to('lienbinhlanh@gmail.com')->send(new OrderStatusUpdated());
-}
+
+// public function sendOrderStatusEmail()
+// {
+//     Mail::to('lienbinhlanh@gmail.com')->send(new OrderStatusUpdated());
+// }
 }
