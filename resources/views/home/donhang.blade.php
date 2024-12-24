@@ -56,11 +56,11 @@
                         Sản phẩm
                     </td>
                     <td>
-                        Số lượng
-                    </td>
-                    <td style="text-align: right">
                         Giá
                     </td>
+                    {{-- <td style="text-align: right">
+                        Giá
+                    </td> --}}
                 </tr>
                 @php
                     $price = 0;
@@ -68,15 +68,15 @@
                 @foreach($orderItems->where('order_id', $order->id) as $orderItem)
                 <tr class="item">
                     <td>
-                        <b>{{ $orderItem->product->name }}</b>
+                        <b>{{ $orderItem->product->name }}</b> <p>(số lượng:{{ $orderItem->quantity }})</p>
                     </td>
-                    <td>
-                        <b>{{ $orderItem->quantity }}</b>
+                    <td class="formatted-number reformat">
+                        <b>{{ $orderItem->price }}</b>
                         
                     </td>
-                    <td class="formatted-number reformat" style="text-align: right; font-weight: 700;">
+                    {{-- <td class="formatted-number reformat" style="text-align: right; font-weight: 700;">
                         <b>{{ $orderItem->price }}</b>
-                    </td>
+                    </td> --}}
                 </tr>
                
                 @endforeach
